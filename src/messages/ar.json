@@ -1,0 +1,27 @@
+{
+  "dir": "rtl",
+  "nav": {
+    "home": "الرئيسية",
+    "programs": "البرامج",
+    "about": "من نحن",
+    "contact": "تواصل معنا",
+    "login": "تسجيل الدخول",
+    "signup": "إنشاء حساب",
+    "logout": "تسجيل الخروج"
+  },
+  "footer": {
+    "tagline": "تمكين الطلاب في جميع أنحاء فلسطين",
+    "copyright": "© {year} مركز علم التعليمي. جميع الحقوق محفوظة.",
+    "programs": "البرامج",
+    "quickLinks": "روابط سريعة",
+    "contactUs": "تواصل معنا",
+    "followUs": "تابعنا",
+    "gcse": "GCSE",
+    "alevel": "A-Level",
+    "ib": "IB",
+    "tawjihi": "التوجيهي",
+    "email": "info@ilmlearningcenter.com",
+    "phone": "+970 XXX XXX XXXX",
+    "hours": "السبت – الخميس: ٩ صباحًا – ٩ مساءً"
+  }
+}
