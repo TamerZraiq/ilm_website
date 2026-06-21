@@ -1,0 +1,27 @@
+{
+  "dir": "ltr",
+  "nav": {
+    "home": "Home",
+    "programs": "Programs",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Logout"
+  },
+  "footer": {
+    "tagline": "Empowering students across Palestine",
+    "copyright": "© {year} Ilm Learning Center. All rights reserved.",
+    "programs": "Programs",
+    "quickLinks": "Quick Links",
+    "contactUs": "Contact Us",
+    "followUs": "Follow Us",
+    "gcse": "GCSE",
+    "alevel": "A-Level",
+    "ib": "IB",
+    "tawjihi": "Tawjihi",
+    "email": "info@ilmlearningcenter.com",
+    "phone": "+970 XXX XXX XXXX",
+    "hours": "Saturday – Thursday: 9am – 9pm"
+  }
+}
