@@ -7,7 +7,8 @@
     "contact": "Contact",
     "login": "Login",
     "signup": "Sign Up",
-    "logout": "Logout"
+    "logout": "Logout",
+    "dashboard": "Dashboard"
   },
   "footer": {
     "tagline": "Empowering students across Palestine",
@@ -23,5 +24,27 @@
     "email": "info@ilmlearningcenter.com",
     "phone": "+970 XXX XXX XXXX",
     "hours": "Saturday – Thursday: 9am – 9pm"
+  },
+  "auth": {
+    "loginTitle": "Sign in to your account",
+    "signupTitle": "Create your account",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "fullName": "Full Name",
+    "submit": "Continue",
+    "signingIn": "Signing in...",
+    "creatingAccount": "Creating account...",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "signUpLink": "Sign up",
+    "signInLink": "Sign in",
+    "verifyEmail": "Check your email to confirm your account before signing in.",
+    "incorrectCredentials": "Incorrect email or password.",
+    "emailNotConfirmed": "Please verify your email before signing in.",
+    "genericError": "Something went wrong. Please try again.",
+    "signOut": "Sign Out",
+    "comingSoon": "Coming Soon",
+    "role": "Role"
   }
 }
