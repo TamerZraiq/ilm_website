@@ -46,5 +46,114 @@
     "signOut": "Sign Out",
     "comingSoon": "Coming Soon",
     "role": "Role"
+  },
+  "hero": {
+    "label": "Tutoring Centre — Palestine",
+    "headline": "Unlock Your Full Academic Potential",
+    "subheadline": "Expert tutoring for GCSE, A-Level, IB, and Tawjihi students. Personalised sessions built around each student's goals.",
+    "ctaPrimary": "Explore Programs",
+    "ctaSecondary": "Get in Touch",
+    "trustLine": "Trusted by students across Palestine"
+  },
+  "programs": {
+    "sectionTitle": "What We Teach",
+    "pageTitle": "Our Programs",
+    "pageIntro": "We offer expert tutoring across the most widely studied curricula in Palestine. Whether you're preparing for international examinations or the national Tawjihi, our tutors are subject specialists who know the syllabus inside out.",
+    "gcse": {
+      "name": "GCSE",
+      "shortDesc": "Core and extended subjects for Year 10–11 students",
+      "longDesc": "Our GCSE programme supports Year 10 and 11 students sitting Cambridge IGCSE and Edexcel GCSE examinations. We cover all core and extended subjects with a focus on exam technique and conceptual clarity."
+    },
+    "alevel": {
+      "name": "A-Level",
+      "shortDesc": "Advanced preparation for university entry",
+      "longDesc": "For students in Years 12 and 13 preparing for A-Level examinations. Our tutors specialise in the subjects most commonly required for university admissions, with structured revision plans and past paper practice."
+    },
+    "ib": {
+      "name": "IB",
+      "shortDesc": "Higher and Standard Level across all IB groups",
+      "longDesc": "We support IB Diploma students across Higher and Standard Level subjects. Sessions cover the full IB syllabus including Internal Assessments, Extended Essays, and exam preparation."
+    },
+    "tawjihi": {
+      "name": "Tawjihi",
+      "shortDesc": "Full support for the Palestinian national curriculum",
+      "longDesc": "Complete preparation for the Palestinian General Secondary Education Certificate (Tawjihi). We cover all branches — Scientific, Literary, and Commercial — with tutors who understand the Ministry of Education curriculum."
+    },
+    "tawjihiBranches": "All Tawjihi branches covered — Scientific, Literary, and Commercial",
+    "ctaHeading": "Don't see your subject?",
+    "ctaText": "Get in touch — we'll find the right tutor.",
+    "ctaButton": "Contact Us"
+  },
+  "whyIlm": {
+    "title": "Why Students Choose Ilm",
+    "specialists": {
+      "title": "Subject Specialists",
+      "desc": "Our tutors teach only their area of expertise — not generalists covering everything."
+    },
+    "tawjihi": {
+      "title": "Covers Tawjihi",
+      "desc": "One of few centres supporting the Palestinian curriculum alongside international qualifications."
+    },
+    "tailored": {
+      "title": "Built Around You",
+      "desc": "Every session is tailored to the individual student's gaps, not a generic syllabus run-through."
+    }
+  },
+  "testimonials": {
+    "title": "What Students Say",
+    "quote1": "My A-Level Chemistry grade jumped from a D to a B after just two months of sessions. The explanations actually made sense.",
+    "author1": "Fatima, A-Level student",
+    "quote2": "I was struggling badly with Tawjihi Maths but my tutor helped me understand the patterns. I passed with distinction.",
+    "author2": "Omar, Tawjihi student"
+  },
+  "ctaBanner": {
+    "heading": "Ready to start?",
+    "subtext": "Get in touch and we'll match you with the right tutor.",
+    "button": "Contact Us"
+  },
+  "about": {
+    "pageTitle": "About Ilm Learning Center",
+    "story1": "Ilm Learning Center was founded in Palestine with one goal: to give every student access to the kind of expert, focused tutoring that makes the difference between struggling and succeeding. Ilm (علم) means knowledge in Arabic — it's not just our name, it's our purpose.",
+    "story2": "We work with students preparing for GCSE, A-Level, IB, and Tawjihi examinations, offering personalised one-to-one sessions that are built around each student's specific needs, not a generic programme.",
+    "valuesTitle": "What We Stand For",
+    "excellence": {
+      "title": "Excellence",
+      "desc": "We hold our tutors to high standards and our students to even higher ones. Good enough is never the goal."
+    },
+    "personalisation": {
+      "title": "Personalisation",
+      "desc": "No two students are the same. We don't run classes — we build individual learning plans."
+    },
+    "community": {
+      "title": "Community",
+      "desc": "We're Palestinian educators serving Palestinian students. This isn't just a service, it's a commitment."
+    },
+    "teamTitle": "Meet the Team"
+  },
+  "contact": {
+    "pageTitle": "Get in Touch",
+    "formTitle": "Send us a message",
+    "name": "Full Name",
+    "email": "Email",
+    "subject": "Subject of Interest",
+    "subjectOptions": {
+      "gcse": "GCSE",
+      "alevel": "A-Level",
+      "ib": "IB",
+      "tawjihi": "Tawjihi",
+      "general": "General Inquiry"
+    },
+    "message": "Message",
+    "submit": "Send Message",
+    "sending": "Sending...",
+    "success": "Thank you — we'll be in touch within 24 hours.",
+    "error": "Something went wrong. Please try again.",
+    "whatsapp": "Chat on WhatsApp",
+    "emailLabel": "Email",
+    "emailAddress": "info@ilmlearningcenter.com",
+    "location": "Palestine",
+    "hours": "Saturday – Thursday, 9:00am – 9:00pm",
+    "hoursLabel": "Working Hours",
+    "locationLabel": "Location"
   }
 }
