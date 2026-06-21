@@ -7,7 +7,8 @@
     "contact": "تواصل معنا",
     "login": "تسجيل الدخول",
     "signup": "إنشاء حساب",
-    "logout": "تسجيل الخروج"
+    "logout": "تسجيل الخروج",
+    "dashboard": "لوحة التحكم"
   },
   "footer": {
     "tagline": "تمكين الطلاب في جميع أنحاء فلسطين",
@@ -23,5 +24,27 @@
     "email": "info@ilmlearningcenter.com",
     "phone": "+970 XXX XXX XXXX",
     "hours": "السبت – الخميس: ٩ صباحًا – ٩ مساءً"
+  },
+  "auth": {
+    "loginTitle": "تسجيل الدخول إلى حسابك",
+    "signupTitle": "إنشاء حسابك",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "fullName": "الاسم الكامل",
+    "submit": "متابعة",
+    "signingIn": "جارٍ تسجيل الدخول...",
+    "creatingAccount": "جارٍ إنشاء الحساب...",
+    "noAccount": "ليس لديك حساب؟",
+    "haveAccount": "لديك حساب بالفعل؟",
+    "signUpLink": "إنشاء حساب",
+    "signInLink": "تسجيل الدخول",
+    "verifyEmail": "تحقق من بريدك الإلكتروني لتأكيد حسابك قبل تسجيل الدخول.",
+    "incorrectCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
+    "emailNotConfirmed": "يرجى تأكيد بريدك الإلكتروني قبل تسجيل الدخول.",
+    "genericError": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "signOut": "تسجيل الخروج",
+    "comingSoon": "قريبًا",
+    "role": "الدور"
   }
 }
