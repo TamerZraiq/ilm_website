@@ -20,9 +20,15 @@ const cairo = Cairo({
 });
 
 export const metadata: Metadata = {
-  title: "Ilm Learning Center",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+  ),
+  title: {
+    default: "Ilm Learning Center",
+    template: "%s | Ilm Learning Center",
+  },
   description:
-    "Expert tutoring for GCSE, A-Level, IB, and Tawjihi students in Palestine",
+    "Expert tutoring for GCSE, A-Level, IB, and Tawjihi students in Palestine.",
 };
 
 export default async function LocaleLayout({

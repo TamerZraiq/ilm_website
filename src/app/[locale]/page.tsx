@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import { useTranslations } from "next-intl";
 import { GraduationCap, BookOpen, Users, Target, Award, Quote } from "lucide-react";
 import { Link } from "@/i18n/navigation";
+
+export const metadata: Metadata = {
+  title: "Expert Tutoring in Palestine",
+  description:
+    "Expert tutoring for GCSE, A-Level, IB, and Tawjihi students. Personalised sessions built around each student's goals.",
+};
 
 export default function HomePage() {
   const t = useTranslations();

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { contactSchema } from "../schemas";
+import { contactSchema, contactSubjects, type ContactInput } from "../schemas";
 
 describe("contactSchema", () => {
   it("accepts valid input", () => {
@@ -40,6 +40,17 @@ describe("contactSchema", () => {
       message: "Too short",
     });
     expect(result.success).toBe(false);
+  });
+
+  it("exports contactSubjects array and ContactInput type", () => {
+    expect(contactSubjects).toEqual(["gcse", "alevel", "ib", "tawjihi", "general"]);
+    const valid: ContactInput = {
+      name: "Test",
+      email: "t@t.com",
+      subject: "gcse",
+      message: "A message that is definitely long enough for validation.",
+    };
+    expect(contactSchema.parse(valid)).toEqual(valid);
   });
 
   it("rejects invalid subject enum", () => {
