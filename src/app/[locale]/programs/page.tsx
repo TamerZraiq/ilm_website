@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "@/i18n/navigation";
+
+export const metadata: Metadata = {
+  title: "Our Programs",
+  description:
+    "Tutoring programs for GCSE, A-Level, IB Diploma, and Palestinian Tawjihi examinations. Subject specialists covering all major disciplines.",
+};
 
 const GCSE_SUBJECTS = [
   "Mathematics",

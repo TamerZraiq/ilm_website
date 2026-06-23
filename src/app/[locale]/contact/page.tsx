@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import { useTranslations } from "next-intl";
 import { MessageCircle, Mail, MapPin, Clock } from "lucide-react";
 import { ContactForm } from "@/components/sections/contact-form";
+
+export const metadata: Metadata = {
+  title: "Contact Us",
+  description:
+    "Get in touch with Ilm Learning Center. Enquire about GCSE, A-Level, IB, or Tawjihi tutoring sessions.",
+};
 
 export default function ContactPage() {
   const t = useTranslations("contact");

@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import { useTranslations } from "next-intl";
 import { Award, User, Users } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "About Us",
+  description:
+    "Ilm Learning Center — Palestinian educators providing expert, personalised tutoring for GCSE, A-Level, IB, and Tawjihi students.",
+};
 
 // TODO: Replace with real team data and photos from client
 const TEAM = [
