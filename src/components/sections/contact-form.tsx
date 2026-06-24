@@ -10,11 +10,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { contactSchema, contactSubjects, type ContactInput } from "@/lib/contact/schemas";
-import { submitContactForm } from "@/lib/contact/actions";
+
+type Status = "idle" | "loading" | "success" | "error" | "rateLimited";
 
 export function ContactForm() {
   const t = useTranslations("contact");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<Status>("idle");
 
   const {
     register,
@@ -27,12 +28,23 @@ export function ContactForm() {
 
   async function onSubmit(data: ContactInput) {
     setStatus("loading");
-    const result = await submitContactForm(data);
 
-    if ("success" in result) {
-      setStatus("success");
-      reset();
-    } else {
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        setStatus("success");
+        reset();
+      } else if (res.status === 429) {
+        setStatus("rateLimited");
+      } else {
+        setStatus("error");
+      }
+    } catch {
       setStatus("error");
     }
   }
@@ -111,6 +123,9 @@ export function ContactForm() {
 
       {status === "error" && (
         <p className="text-sm text-red-600">{t("error")}</p>
+      )}
+      {status === "rateLimited" && (
+        <p className="text-sm text-amber-600">{t("rateLimited")}</p>
       )}
 
       <Button

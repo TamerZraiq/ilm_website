@@ -7,6 +7,10 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { AdminProvider } from "@/lib/auth/admin-context";
+import { SiteContentProvider } from "@/lib/content/site-content-context";
+import { checkIsAdmin } from "@/lib/auth/admin";
+import { getSiteContent } from "@/lib/content/get-site-content";
 import "../globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -44,7 +48,14 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  const messages = await getMessages();
+  const [messages, isAdmin, siteContent] = await Promise.all([
+    getMessages(),
+    checkIsAdmin(),
+    getSiteContent(),
+  ]);
+
+  console.log("[layout] isAdmin:", isAdmin, "| siteContent keys:", Object.keys(siteContent).length);
+
   const dir = locale === "ar" ? "rtl" : "ltr";
   const fontClass =
     locale === "ar"
@@ -55,9 +66,13 @@ export default async function LocaleLayout({
     <html lang={locale} dir={dir} className={`${jakarta.variable} ${cairo.variable}`}>
       <body className={`${fontClass} min-h-screen flex flex-col antialiased`}>
         <NextIntlClientProvider messages={messages}>
-          <Navbar locale={locale} />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <AdminProvider isAdmin={isAdmin}>
+            <SiteContentProvider content={siteContent}>
+              <Navbar locale={locale} />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </SiteContentProvider>
+          </AdminProvider>
         </NextIntlClientProvider>
       </body>
     </html>
