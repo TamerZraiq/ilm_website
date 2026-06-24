@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ilm — Workspace</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0c1322;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      padding: 48px 24px 64px;
+    }
+
+    .container { max-width: 880px; margin: 0 auto; }
+
+    /* ── Header ── */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 48px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .logo {
+      width: 48px; height: 48px;
+      background: #1A2B6B;
+      border: 1.5px solid #C9A84C;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; color: #C9A84C;
+      flex-shrink: 0;
+      font-family: serif;
+    }
+
+    .header-meta h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
+    .header-meta p  { font-size: 13px; color: rgba(255,255,255,0.38); margin-top: 3px; }
+
+    .phase-pill {
+      margin-left: auto;
+      padding: 5px 14px;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      color: #C9A84C;
+    }
+
+    /* ── Section label ── */
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 14px;
+    }
+
+    /* ── Tool grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      transition: background 0.18s, border-color 0.18s, transform 0.12s;
+    }
+    .card:hover {
+      background: rgba(26,43,107,0.35);
+      border-color: rgba(201,168,76,0.35);
+      transform: translateY(-1px);
+    }
+    .card:active { transform: translateY(0); }
+
+    .card-icon {
+      width: 38px; height: 38px;
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .card-desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.38);
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    .card-cta {
+      font-size: 12px;
+      font-weight: 600;
+      color: #C9A84C;
+      margin-top: 2px;
+    }
+
+    /* ── Morning routine ── */
+    .routine {
+      background: rgba(26,43,107,0.25);
+      border: 1px solid rgba(201,168,76,0.12);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .steps { display: flex; flex-direction: column; gap: 11px; }
+
+    .step {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5;
+    }
+
+    .step-n {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: rgba(201,168,76,0.12);
+      color: #C9A84C;
+      font-size: 10px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    code {
+      background: rgba(0,0,0,0.35);
+      padding: 1px 7px;
+      border-radius: 4px;
+      font-family: 'Cascadia Code', 'Consolas', 'Courier New', monospace;
+      font-size: 11px;
+      color: #7ee8a2;
+    }
+
+    /* ── Config warning ── */
+    .config-warn {
+      margin-bottom: 32px;
+      padding: 12px 16px;
+      background: rgba(255, 180, 0, 0.06);
+      border: 1px solid rgba(255, 180, 0, 0.2);
+      border-radius: 8px;
+      font-size: 12px;
+      color: rgba(255,200,80,0.85);
+      display: none;
+    }
+    .config-warn.visible { display: block; }
+
+    @media (max-width: 680px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+      .phase-pill { display: none; }
+    }
+    @media (max-width: 440px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">ع</div>
+    <div class="header-meta">
+      <h1>Ilm Learning Center</h1>
+      <p>Project Workspace</p>
+    </div>
+    <div class="phase-pill" id="phasePill">Phase 4 — Up Next</div>
+  </div>
+
+  <!-- Config warning -->
+  <div class="config-warn" id="configWarn">
+    Update the CONFIG block at the bottom of this file with your real URLs before using.
+  </div>
+
+  <!-- Tools -->
+  <div class="section-label">Tools</div>
+  <div class="grid" id="grid"></div>
+
+  <!-- Morning routine -->
+  <div class="routine">
+    <div class="section-label" style="margin-bottom:16px">Morning Routine</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        Click <strong style="color:#fff">VS Code</strong> above — the project opens directly in your editor.
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        In the VS Code terminal run <code>npm run dev</code> to start the local server at localhost:3000.
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        Open <strong style="color:#fff">Supabase</strong> if you need to run migrations, check data, or tweak auth settings.
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        Open <strong style="color:#fff">GitHub</strong> to check if CI is green before writing new code.
+      </div>
+      <div class="step">
+        <div class="step-n">5</div>
+        Open <strong style="color:#fff">Vercel</strong> to verify the latest deployment and check logs if something looks off.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // ─────────────────────────────────────────────────────
+  //  CONFIG — update all values before using
+  // ─────────────────────────────────────────────────────
+  const CONFIG = {
+    // Absolute path to your project folder (Windows: use forward slashes)
+    vscodePath:  'C:\\Users\\tamer\\Projects\\ilm_website',
+
+    // Your GitHub repo URL
+    github:      'https://github.com/TamerZraiq/ilm_website',
+
+    // Your Vercel project dashboard URL
+    vercel:      'https://vercel.com/tamerzraiqs-projects/ilm-website/FrcUQpWTzPtaqUv9LsXkpCiKdZHP',
+
+    // Your Supabase project URL — find it in Project Settings → General
+    supabase:    'https://supabase.com/dashboard/project/lvvvhozkopsvbeiwgnzo',
+
+    // Upstash Redis console
+    upstash:     'https://console.upstash.com/redis/8b123d96-ed5e-49a1-8883-6730f23f3692/details?teamid=0',
+
+    // Resend email dashboard
+    resend:      'https://resend.com/emails',
+  }
+  // ─────────────────────────────────────────────────────
+
+  const TOOLS = [
+    {
+      id: 'vscode',
+      title: 'VS Code',
+      desc: 'Open the codebase in your editor',
+      cta: 'Open Editor →',
+      href: () => `vscode://file/${CONFIG.vscodePath}`,
+      external: false,
+      iconBg: 'rgba(0,122,204,0.15)',
+      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 16.612V7.39L6 4l6 5.25L18 3l6 3.388v11.224L18 21l-6-5.25L6 20 0 16.612Z" fill="none"/>
+        <path d="M17.5 3.344L9 11 4.5 7.5 1 9.25v5.5L4.5 16.5 9 13l8.5 7.656L23 18V6L17.5 3.344Z" fill="#007ACC"/>
+      </svg>`,
+    },
+    {
+      id: 'github',
+      title: 'GitHub',
+      desc: 'Source code, CI runs, pull requests',
+      cta: 'Open Repo →',
+      href: () => CONFIG.github,
+      external: true,
+      iconBg: 'rgba(255,255,255,0.06)',
+      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="rgba(255,255,255,0.85)">
+        <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/>
+      </svg>`,
+    },
+    {
+      id: 'vercel',
+      title: 'Vercel',
+      desc: 'Deployments, previews, env vars, logs',
+      cta: 'Open Dashboard →',
+      href: () => CONFIG.vercel,
+      external: true,
+      iconBg: 'rgba(255,255,255,0.06)',
+      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="rgba(255,255,255,0.9)">
+        <path d="M12 2L22 20H2L12 2Z"/>
+      </svg>`,
+    },
+    {
+      id: 'supabase',
+      title: 'Supabase',
+      desc: 'Database, auth, SQL editor, storage, RLS',
+      cta: 'Open Project →',
+      href: () => CONFIG.supabase,
+      external: true,
+      iconBg: 'rgba(62,207,142,0.1)',
+      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M11.9 2.5L3.5 15h8.4v7l9-12.5H12.9L11.9 2.5Z" fill="#3ECF8E"/>
+      </svg>`,
+    },
+    {
+      id: 'upstash',
+      title: 'Upstash',
+      desc: 'Redis rate limiting — used from Phase 4',
+      cta: 'Open Console →',
+      href: () => CONFIG.upstash,
+      external: true,
+      iconBg: 'rgba(0,230,118,0.08)',
+      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="9" stroke="#00E676" stroke-width="1.5"/>
+        <path d="M8 12h8M12 8v8" stroke="#00E676" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>`,
+    },
+    {
+      id: 'resend',
+      title: 'Resend',
+      desc: 'Transactional email for contact form — Phase 4',
+      cta: 'Open Dashboard →',
+      href: () => CONFIG.resend,
+      external: true,
+      iconBg: 'rgba(99,102,241,0.1)',
+      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <rect x="2" y="4" width="20" height="16" rx="3" stroke="#818CF8" stroke-width="1.5"/>
+        <path d="M2 8l10 7 10-7" stroke="#818CF8" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>`,
+    },
+  ]
+
+  // Check for unconfigured values
+  const hasPlaceholders = Object.values(CONFIG).some(v => v.includes('REPLACE'))
+  if (hasPlaceholders) {
+    document.getElementById('configWarn').classList.add('visible')
+  }
+
+  // Render cards
+  const grid = document.getElementById('grid')
+  TOOLS.forEach(tool => {
+    const a = document.createElement('a')
+    a.className = 'card'
+    a.href = tool.href()
+    if (tool.external) { a.target = '_blank'; a.rel = 'noopener noreferrer' }
+    a.innerHTML = `
+      <div class="card-icon" style="background:${tool.iconBg}">${tool.icon}</div>
+      <div>
+        <div class="card-title">${tool.title}</div>
+        <div class="card-desc">${tool.desc}</div>
+      </div>
+      <div class="card-cta">${tool.cta}</div>
+    `
+    grid.appendChild(a)
+  })
+</script>
+</body>
+</html>

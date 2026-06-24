@@ -4,11 +4,7 @@
     "home": "Home",
     "programs": "Programs",
     "about": "About",
-    "contact": "Contact",
-    "login": "Login",
-    "signup": "Sign Up",
-    "logout": "Logout",
-    "dashboard": "Dashboard"
+    "contact": "Contact"
   },
   "footer": {
     "tagline": "Empowering students across Palestine",
@@ -24,28 +20,6 @@
     "email": "info@ilmlearningcenter.com",
     "phone": "+970 XXX XXX XXXX",
     "hours": "Saturday – Thursday: 9am – 9pm"
-  },
-  "auth": {
-    "loginTitle": "Sign in to your account",
-    "signupTitle": "Create your account",
-    "email": "Email",
-    "password": "Password",
-    "confirmPassword": "Confirm Password",
-    "fullName": "Full Name",
-    "submit": "Continue",
-    "signingIn": "Signing in...",
-    "creatingAccount": "Creating account...",
-    "noAccount": "Don't have an account?",
-    "haveAccount": "Already have an account?",
-    "signUpLink": "Sign up",
-    "signInLink": "Sign in",
-    "verifyEmail": "Check your email to confirm your account before signing in.",
-    "incorrectCredentials": "Incorrect email or password.",
-    "emailNotConfirmed": "Please verify your email before signing in.",
-    "genericError": "Something went wrong. Please try again.",
-    "signOut": "Sign Out",
-    "comingSoon": "Coming Soon",
-    "role": "Role"
   },
   "hero": {
     "label": "Tutoring Centre — Palestine",
@@ -148,6 +122,7 @@
     "sending": "Sending...",
     "success": "Thank you — we'll be in touch within 24 hours.",
     "error": "Something went wrong. Please try again.",
+    "rateLimited": "Too many messages sent. Please try again later.",
     "whatsapp": "Chat on WhatsApp",
     "emailLabel": "Email",
     "emailAddress": "info@ilmlearningcenter.com",
@@ -155,5 +130,41 @@
     "hours": "Saturday – Thursday, 9:00am – 9:00pm",
     "hoursLabel": "Working Hours",
     "locationLabel": "Location"
+  },
+  "admin": {
+    "signIn": "Sign in to continue",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign In",
+    "signingIn": "Signing in...",
+    "invalidCredentials": "Invalid credentials.",
+    "signOut": "Sign Out",
+    "title": "Ilm Admin",
+    "welcome": "Welcome back. Choose a section to manage.",
+    "teachers": "Teachers",
+    "subscriptionPlans": "Subscription Plans",
+    "manageTeachers": "Manage Teachers",
+    "manageTeachersDesc": "Add, edit, or remove tutors displayed on the public website.",
+    "managePlans": "Manage Subscription Plans",
+    "managePlansDesc": "Configure pricing plans, features, and billing periods.",
+    "teachersComingSoon": "Teachers management — coming soon",
+    "plansComingSoon": "Subscription plans management — coming soon"
+  },
+  "cms": {
+    "edit": "Edit",
+    "save": "Save",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "saved": "Saved",
+    "addTeacher": "Add Teacher",
+    "editTeacher": "Edit Teacher",
+    "addPlan": "Add Plan",
+    "editPlan": "Edit Plan",
+    "deleteConfirm": "Are you sure you want to delete this?",
+    "english": "English",
+    "arabic": "Arabic",
+    "adminMode": "Admin",
+    "editSection": "Edit this section",
+    "noPlans": "No subscription plans yet."
   }
 }

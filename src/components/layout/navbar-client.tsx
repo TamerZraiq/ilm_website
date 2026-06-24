@@ -2,11 +2,10 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { BookOpen, Menu, X, ChevronDown } from "lucide-react";
+import { BookOpen, Menu, X } from "lucide-react";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
-import { signOutAction } from "@/lib/auth/actions";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { AdminToolbar } from "@/components/cms/admin-toolbar";
 
 const navLinks = [
   { key: "home" as const, href: "/" as const },
@@ -15,17 +14,11 @@ const navLinks = [
   { key: "contact" as const, href: "/contact" as const },
 ];
 
-interface NavbarClientProps {
-  locale: string;
-  user: { firstName: string; email: string } | null;
-}
-
-export function NavbarClient({ locale, user }: NavbarClientProps) {
+export function NavbarClient({ locale }: { locale: string }) {
   const t = useTranslations("nav");
   const pathname = usePathname();
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const switchLocale = locale === "en" ? "ar" : "en";
 
@@ -34,10 +27,10 @@ export function NavbarClient({ locale, user }: NavbarClientProps) {
     setMobileOpen(false);
   }
 
-  const boundSignOut = signOutAction.bind(null, locale);
-
   return (
-    <header className="sticky top-0 z-50 bg-navy border-b border-gold/20">
+    <>
+    <AdminToolbar />
+    <header className="sticky top-0 z-50 border-b border-gold/20 bg-navy">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link href="/" className="flex items-center gap-2 text-white">
           <BookOpen className="h-7 w-7 text-gold" />
@@ -66,52 +59,6 @@ export function NavbarClient({ locale, user }: NavbarClientProps) {
           >
             {switchLocale === "ar" ? "AR" : "EN"}
           </button>
-
-          {user ? (
-            <div className="relative">
-              <button
-                onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="flex items-center gap-1.5 text-sm font-medium text-white/80 transition-colors hover:text-gold"
-              >
-                {user.firstName}
-                <ChevronDown className="h-4 w-4" />
-              </button>
-              {dropdownOpen && (
-                <div className="absolute end-0 mt-2 w-44 rounded-md border border-gold/10 bg-navy-dark py-1 shadow-lg">
-                  <Link
-                    href="/dashboard"
-                    onClick={() => setDropdownOpen(false)}
-                    className="block px-4 py-2 text-sm text-white/80 hover:bg-gold/10 hover:text-gold"
-                  >
-                    {t("dashboard")}
-                  </Link>
-                  <form action={boundSignOut}>
-                    <button
-                      type="submit"
-                      className="block w-full px-4 py-2 text-start text-sm text-white/80 hover:bg-gold/10 hover:text-gold"
-                    >
-                      {t("logout")}
-                    </button>
-                  </form>
-                </div>
-              )}
-            </div>
-          ) : (
-            <>
-              <Link
-                href="/auth/login"
-                className="text-sm font-medium text-white/80 transition-colors hover:text-gold"
-              >
-                {t("login")}
-              </Link>
-              <Link
-                href="/auth/signup"
-                className="rounded-md bg-gold px-4 py-2 text-sm font-semibold text-navy transition-colors hover:bg-gold-light"
-              >
-                {t("signup")}
-              </Link>
-            </>
-          )}
         </div>
 
         <button
@@ -152,47 +99,10 @@ export function NavbarClient({ locale, user }: NavbarClientProps) {
             >
               {switchLocale === "ar" ? "العربية" : "English"}
             </button>
-
-            {user ? (
-              <>
-                <Link
-                  href="/dashboard"
-                  onClick={() => setMobileOpen(false)}
-                  className="text-base font-medium text-white/80 transition-colors hover:text-gold"
-                >
-                  {t("dashboard")}
-                </Link>
-                <form action={boundSignOut}>
-                  <Button
-                    type="submit"
-                    variant="outline"
-                    className="w-full border-gold/30 text-gold hover:bg-gold/10"
-                  >
-                    {t("logout")}
-                  </Button>
-                </form>
-              </>
-            ) : (
-              <div className="flex gap-4">
-                <Link
-                  href="/auth/login"
-                  onClick={() => setMobileOpen(false)}
-                  className="text-base font-medium text-white/80 transition-colors hover:text-gold"
-                >
-                  {t("login")}
-                </Link>
-                <Link
-                  href="/auth/signup"
-                  onClick={() => setMobileOpen(false)}
-                  className="rounded-md bg-gold px-4 py-2 text-sm font-semibold text-navy transition-colors hover:bg-gold-light"
-                >
-                  {t("signup")}
-                </Link>
-              </div>
-            )}
           </div>
         </div>
       )}
     </header>
+    </>
   );
 }

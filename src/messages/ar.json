@@ -4,11 +4,7 @@
     "home": "الرئيسية",
     "programs": "البرامج",
     "about": "من نحن",
-    "contact": "تواصل معنا",
-    "login": "تسجيل الدخول",
-    "signup": "إنشاء حساب",
-    "logout": "تسجيل الخروج",
-    "dashboard": "لوحة التحكم"
+    "contact": "تواصل معنا"
   },
   "footer": {
     "tagline": "تمكين الطلاب في جميع أنحاء فلسطين",
@@ -24,28 +20,6 @@
     "email": "info@ilmlearningcenter.com",
     "phone": "+970 XXX XXX XXXX",
     "hours": "السبت – الخميس: ٩ صباحًا – ٩ مساءً"
-  },
-  "auth": {
-    "loginTitle": "تسجيل الدخول إلى حسابك",
-    "signupTitle": "إنشاء حسابك",
-    "email": "البريد الإلكتروني",
-    "password": "كلمة المرور",
-    "confirmPassword": "تأكيد كلمة المرور",
-    "fullName": "الاسم الكامل",
-    "submit": "متابعة",
-    "signingIn": "جارٍ تسجيل الدخول...",
-    "creatingAccount": "جارٍ إنشاء الحساب...",
-    "noAccount": "ليس لديك حساب؟",
-    "haveAccount": "لديك حساب بالفعل؟",
-    "signUpLink": "إنشاء حساب",
-    "signInLink": "تسجيل الدخول",
-    "verifyEmail": "تحقق من بريدك الإلكتروني لتأكيد حسابك قبل تسجيل الدخول.",
-    "incorrectCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
-    "emailNotConfirmed": "يرجى تأكيد بريدك الإلكتروني قبل تسجيل الدخول.",
-    "genericError": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
-    "signOut": "تسجيل الخروج",
-    "comingSoon": "قريبًا",
-    "role": "الدور"
   },
   "hero": {
     "label": "مركز تعليمي — فلسطين",
@@ -148,6 +122,7 @@
     "sending": "جارٍ الإرسال...",
     "success": "شكرًا لك — سنتواصل معك خلال ٢٤ ساعة.",
     "error": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "rateLimited": "تم إرسال عدد كبير من الرسائل. يرجى المحاولة لاحقًا.",
     "whatsapp": "تحدث عبر واتساب",
     "emailLabel": "البريد الإلكتروني",
     "emailAddress": "info@ilmlearningcenter.com",
@@ -155,5 +130,41 @@
     "hours": "السبت – الخميس، ٩:٠٠ صباحًا – ٩:٠٠ مساءً",
     "hoursLabel": "ساعات العمل",
     "locationLabel": "الموقع"
+  },
+  "admin": {
+    "signIn": "سجّل الدخول للمتابعة",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "submit": "تسجيل الدخول",
+    "signingIn": "جارٍ تسجيل الدخول...",
+    "invalidCredentials": "بيانات الاعتماد غير صحيحة.",
+    "signOut": "تسجيل الخروج",
+    "title": "إدارة علم",
+    "welcome": "مرحبًا بعودتك. اختر قسمًا لإدارته.",
+    "teachers": "المعلمون",
+    "subscriptionPlans": "خطط الاشتراك",
+    "manageTeachers": "إدارة المعلمين",
+    "manageTeachersDesc": "إضافة أو تعديل أو حذف المعلمين المعروضين على الموقع.",
+    "managePlans": "إدارة خطط الاشتراك",
+    "managePlansDesc": "إعداد خطط الأسعار والميزات وفترات الفوترة.",
+    "teachersComingSoon": "إدارة المعلمين — قريبًا",
+    "plansComingSoon": "إدارة خطط الاشتراك — قريبًا"
+  },
+  "cms": {
+    "edit": "تعديل",
+    "save": "حفظ",
+    "saving": "جارٍ الحفظ...",
+    "cancel": "إلغاء",
+    "saved": "تم الحفظ",
+    "addTeacher": "إضافة معلم",
+    "editTeacher": "تعديل المعلم",
+    "addPlan": "إضافة خطة",
+    "editPlan": "تعديل الخطة",
+    "deleteConfirm": "هل أنت متأكد من حذف هذا؟",
+    "english": "الإنجليزية",
+    "arabic": "العربية",
+    "adminMode": "مدير",
+    "editSection": "تعديل هذا القسم",
+    "noPlans": "لا توجد خطط اشتراك بعد."
   }
 }

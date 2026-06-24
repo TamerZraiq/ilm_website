@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { BookOpen, Camera, Globe, MessageCircle } from "lucide-react";
 import { Link } from "@/i18n/navigation";
+import { InlineText } from "@/components/cms/inline-text";
 
 export function Footer() {
   const t = useTranslations("footer");
@@ -17,79 +18,39 @@ export function Footer() {
               <BookOpen className="h-6 w-6 text-gold" />
               <span className="text-lg font-bold">Ilm Learning Center</span>
             </div>
-            <p className="mt-3 text-sm text-white/60">{t("tagline")}</p>
+            <InlineText contentKey="footer.tagline" fallback={t("tagline")} as="p" className="mt-3 text-sm text-white/60" />
           </div>
 
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gold">
-              {t("programs")}
-            </h3>
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gold">{t("programs")}</h3>
             <ul className="space-y-2 text-sm text-white/60">
-              <li>
-                <Link href="/programs" className="transition-colors hover:text-white">
-                  {t("gcse")}
-                </Link>
-              </li>
-              <li>
-                <Link href="/programs" className="transition-colors hover:text-white">
-                  {t("alevel")}
-                </Link>
-              </li>
-              <li>
-                <Link href="/programs" className="transition-colors hover:text-white">
-                  {t("ib")}
-                </Link>
-              </li>
-              <li>
-                <Link href="/programs" className="transition-colors hover:text-white">
-                  {t("tawjihi")}
-                </Link>
-              </li>
+              <li><Link href="/programs" className="transition-colors hover:text-white">{t("gcse")}</Link></li>
+              <li><Link href="/programs" className="transition-colors hover:text-white">{t("alevel")}</Link></li>
+              <li><Link href="/programs" className="transition-colors hover:text-white">{t("ib")}</Link></li>
+              <li><Link href="/programs" className="transition-colors hover:text-white">{t("tawjihi")}</Link></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gold">
-              {t("quickLinks")}
-            </h3>
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gold">{t("quickLinks")}</h3>
             <ul className="space-y-2 text-sm text-white/60">
-              <li>
-                <Link href="/" className="transition-colors hover:text-white">
-                  {nav("home")}
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="transition-colors hover:text-white">
-                  {nav("about")}
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="transition-colors hover:text-white">
-                  {nav("contact")}
-                </Link>
-              </li>
+              <li><Link href="/" className="transition-colors hover:text-white">{nav("home")}</Link></li>
+              <li><Link href="/about" className="transition-colors hover:text-white">{nav("about")}</Link></li>
+              <li><Link href="/contact" className="transition-colors hover:text-white">{nav("contact")}</Link></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gold">
-              {t("contactUs")}
-            </h3>
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gold">{t("contactUs")}</h3>
             <ul className="space-y-2 text-sm text-white/60">
-              <li>{t("email")}</li>
-              <li>{t("phone")}</li>
-              <li>{t("hours")}</li>
+              <li><InlineText contentKey="footer.email" fallback={t("email")} /></li>
+              <li><InlineText contentKey="footer.phone" fallback={t("phone")} /></li>
+              <li><InlineText contentKey="footer.hours" fallback={t("hours")} /></li>
             </ul>
             <div className="mt-4 flex gap-4">
-              <a href="#" aria-label="Instagram" className="text-white/40 transition-colors hover:text-gold">
-                <Camera className="h-5 w-5" />
-              </a>
-              <a href="#" aria-label="Facebook" className="text-white/40 transition-colors hover:text-gold">
-                <Globe className="h-5 w-5" />
-              </a>
-              <a href="#" aria-label="WhatsApp" className="text-white/40 transition-colors hover:text-gold">
-                <MessageCircle className="h-5 w-5" />
-              </a>
+              <a href="#" aria-label="Instagram" className="text-white/40 transition-colors hover:text-gold"><Camera className="h-5 w-5" /></a>
+              <a href="#" aria-label="Facebook" className="text-white/40 transition-colors hover:text-gold"><Globe className="h-5 w-5" /></a>
+              <a href="#" aria-label="WhatsApp" className="text-white/40 transition-colors hover:text-gold"><MessageCircle className="h-5 w-5" /></a>
             </div>
           </div>
         </div>
