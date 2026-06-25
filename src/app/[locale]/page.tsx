@@ -23,7 +23,8 @@ export default async function HomePage() {
       plans={plans ?? []}
       translations={{
         heroLabel: t("hero.label"),
-        heroHeadline: t("hero.headline"),
+        heroTitle1: t("hero.title1"),
+        heroTitle2: t("hero.title2"),
         heroSubheadline: t("hero.subheadline"),
         heroCtaPrimary: t("hero.ctaPrimary"),
         heroCtaSecondary: t("hero.ctaSecondary"),

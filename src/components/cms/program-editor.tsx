@@ -69,7 +69,7 @@ function ProgramCard({
   const [isPending, startTransition] = useTransition();
 
   const idx = program?.display_order ?? 0;
-  const bg = idx % 2 === 0 ? "bg-white" : "bg-gray-50";
+  const bg = idx % 2 === 0 ? "bg-white" : "bg-warm";
 
   function handleSave() {
     startTransition(async () => {
@@ -116,11 +116,12 @@ function ProgramCard({
               <button onClick={handleDelete} disabled={isPending} className="rounded-full bg-red-100 px-3 py-1.5 text-xs font-semibold text-red-600 shadow hover:bg-red-200"><Trash2 className="inline size-3 me-1" />Delete</button>
             </div>
           )}
-          <h2 className="mb-4 text-2xl font-bold text-navy">{name}</h2>
-          {desc && <p className="mb-8 max-w-3xl text-gray-600">{desc}</p>}
-          <div className="flex flex-wrap gap-3">
+          <h2 className="mb-1 text-2xl font-bold text-navy">{name}</h2>
+          <div className="mb-6 h-[2px] w-10 bg-gold" />
+          {desc && <p className="mb-8 max-w-2xl text-navy/50">{desc}</p>}
+          <div className="flex flex-wrap gap-2">
             {subjects.map((s) => (
-              <Badge key={s} className="bg-navy px-3 py-1.5 text-sm text-white">{s}</Badge>
+              <Badge key={s} className="border-none bg-navy/[0.05] px-3 py-1.5 text-sm font-medium text-navy">{s}</Badge>
             ))}
           </div>
         </div>

@@ -24,6 +24,9 @@
   "hero": {
     "label": "Tutoring Centre — Palestine",
     "headline": "Unlock Your Full Academic Potential",
+    "title1": "Where Knowledge",
+    "title2": "Takes Root",
+    "scrollHint": "Scroll to explore ↓",
     "subheadline": "Expert tutoring for GCSE, A-Level, IB, and Tawjihi students. Personalised sessions built around each student's goals.",
     "ctaPrimary": "Explore Programs",
     "ctaSecondary": "Get in Touch",
