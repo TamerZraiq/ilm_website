@@ -9,6 +9,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { AdminProvider } from "@/lib/auth/admin-context";
 import { SiteContentProvider } from "@/lib/content/site-content-context";
+import { SmoothScroll } from "@/components/providers/smooth-scroll";
 import { checkIsAdmin } from "@/lib/auth/admin";
 import { getSiteContent } from "@/lib/content/get-site-content";
 import "../globals.css";
@@ -54,8 +55,6 @@ export default async function LocaleLayout({
     getSiteContent(),
   ]);
 
-  console.log("[layout] isAdmin:", isAdmin, "| siteContent keys:", Object.keys(siteContent).length);
-
   const dir = locale === "ar" ? "rtl" : "ltr";
   const fontClass =
     locale === "ar"
@@ -64,13 +63,15 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} dir={dir} className={`${jakarta.variable} ${cairo.variable}`}>
-      <body className={`${fontClass} min-h-screen flex flex-col antialiased`}>
+      <body className={`${fontClass} min-h-screen flex flex-col bg-warm text-navy antialiased`}>
         <NextIntlClientProvider messages={messages}>
           <AdminProvider isAdmin={isAdmin}>
             <SiteContentProvider content={siteContent}>
-              <Navbar locale={locale} />
-              <main className="flex-1">{children}</main>
-              <Footer />
+              <SmoothScroll>
+                <Navbar locale={locale} />
+                <main className="flex-1">{children}</main>
+                <Footer />
+              </SmoothScroll>
             </SiteContentProvider>
           </AdminProvider>
         </NextIntlClientProvider>
