@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
@@ -69,7 +68,7 @@
   --secondary: #F7F5F0;
   --secondary-foreground: #1A2B6B;
   --muted: #F0EDE6;
-  --muted-foreground: rgba(26, 43, 107, 0.5);
+  --muted-foreground: rgba(26, 43, 107, 0.7);
   --accent: #C9A84C;
   --accent-foreground: #1A2B6B;
   --destructive: oklch(0.577 0.245 27.325);
@@ -101,7 +100,6 @@
   }
   html {
     @apply font-sans;
-    scroll-behavior: auto;
   }
 }
 

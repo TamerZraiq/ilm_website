@@ -28,7 +28,7 @@ export function ProgramsClient({ programs, translations: t }: { programs: Progra
             </h1>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-4 max-w-2xl text-lg text-navy/60">
+            <p className="mt-4 max-w-2xl text-lg text-navy/70">
               <InlineText contentKey="programs.pageIntro" fallback={t.pageIntro} multiline />
             </p>
           </Reveal>
@@ -45,7 +45,7 @@ export function ProgramsClient({ programs, translations: t }: { programs: Progra
             <h2 className="text-2xl font-bold tracking-tight text-navy">
               <InlineText contentKey="programs.ctaHeading" fallback={t.ctaHeading} />
             </h2>
-            <p className="mt-3 text-navy/50">
+            <p className="mt-3 text-navy/70">
               <InlineText contentKey="programs.ctaText" fallback={t.ctaText} />
             </p>
             <Link href="/contact" className="mt-8 inline-flex h-12 items-center rounded-lg bg-gold px-8 text-sm font-semibold text-navy transition-colors hover:bg-gold-dark">

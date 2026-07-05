@@ -40,7 +40,7 @@ export function TagInput({ value, onChange, placeholder }: TagInputProps) {
             <button
               type="button"
               onClick={() => removeTag(tag)}
-              className="text-navy/50 hover:text-navy"
+              className="text-navy/70 hover:text-navy"
             >
               <X className="size-3" />
             </button>

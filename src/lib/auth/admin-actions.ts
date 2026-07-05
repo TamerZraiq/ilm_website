@@ -1,6 +1,8 @@
 "use server";
 
 import { createClient } from "@/lib/supabase/server";
+import { checkRateLimit } from "@/lib/rate-limit";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
@@ -12,6 +14,20 @@ const adminLoginSchema = z.object({
 export type AdminLoginResult = {
   error?: string;
 };
+
+async function loginAllowed(): Promise<boolean> {
+  const headerStore = await headers();
+  const ip =
+    headerStore.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "anonymous";
+  try {
+    return await checkRateLimit("admin-login", ip, 5, "15 m");
+  } catch (err) {
+    // Rate limiting must not take the login down with it if Redis is
+    // unreachable; the attempt is logged instead.
+    console.error("Login rate limit unavailable:", err);
+    return true;
+  }
+}
 
 export async function adminLoginAction(
   locale: string,
@@ -25,6 +41,10 @@ export async function adminLoginAction(
 
   if (!parsed.success) {
     return { error: "invalid_input" };
+  }
+
+  if (!(await loginAllowed())) {
+    return { error: "rate_limited" };
   }
 
   const supabase = await createClient();

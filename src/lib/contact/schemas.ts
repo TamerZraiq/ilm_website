@@ -20,6 +20,8 @@ export const contactSchema = z.object({
     .string()
     .min(20, "Message must be at least 20 characters")
     .max(2000, "Message is too long"),
+  // Honeypot — hidden in the UI, must stay empty for real users
+  company: z.string().max(200).optional(),
 });
 
 export type ContactInput = z.infer<typeof contactSchema>;

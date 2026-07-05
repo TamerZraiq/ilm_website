@@ -2,8 +2,8 @@
 
 import { useState, useTransition } from "react";
 import Image from "next/image";
-import { Plus, Trash2 } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { Plus, Trash2, Users } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 import { useAdmin } from "@/lib/auth/admin-context";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -50,7 +50,12 @@ export function TeacherEditor({ teachers }: { teachers: Teacher[] }) {
         )}
       </div>
       {teachers.length === 0 && !adding && (
-        <p className="mt-4 text-center text-gray-500">Team coming soon</p>
+        <div className="mx-auto flex max-w-md flex-col items-center rounded-2xl border border-dashed border-navy/15 bg-white/60 px-8 py-12 text-center">
+          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gold/10 text-gold">
+            <Users className="h-5 w-5" />
+          </div>
+          <p className="text-sm font-medium text-navy/70">{t("teamComingSoon")}</p>
+        </div>
       )}
     </>
   );
@@ -70,6 +75,8 @@ function TeacherCard({
   onCancel?: () => void;
 }) {
   const t = useTranslations("cms");
+  const locale = useLocale();
+  const isRtl = locale === "ar";
   const [editing, setEditing] = useState(!!isNew);
   const [name, setName] = useState(teacher?.full_name ?? "");
   const [nameAr, setNameAr] = useState(teacher?.full_name_ar ?? "");
@@ -80,7 +87,10 @@ function TeacherCard({
   const [order, setOrder] = useState(teacher?.display_order ?? 0);
   const [isPending, startTransition] = useTransition();
 
-  const initials = (name || "?")
+  const displayName = isRtl && nameAr ? nameAr : name;
+  const displayBio = isRtl && bioAr ? bioAr : bio;
+
+  const initials = (displayName || "?")
     .split(" ")
     .map((w) => w[0])
     .join("")
@@ -138,13 +148,13 @@ function TeacherCard({
         )}
 
         {teacher?.avatar_url ? (
-          <Image src={teacher.avatar_url} alt={name} width={64} height={64} className="mb-4 h-16 w-16 rounded-full object-cover" />
+          <Image src={teacher.avatar_url} alt={displayName} width={64} height={64} className="mb-4 h-16 w-16 rounded-full object-cover" />
         ) : (
           <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-navy text-lg font-bold text-gold">
             {initials}
           </div>
         )}
-        <h3 className="text-lg font-bold text-navy">{name}</h3>
+        <h3 className="text-lg font-bold text-navy">{displayName}</h3>
         {subjects.length > 0 && (
           <div className="mt-3 flex flex-wrap justify-center gap-2">
             {subjects.map((s) => (
@@ -152,7 +162,7 @@ function TeacherCard({
             ))}
           </div>
         )}
-        {bio && <p className="mt-4 text-sm text-gray-600">{bio}</p>}
+        {displayBio && <p className="mt-4 text-sm text-gray-600">{displayBio}</p>}
       </div>
     );
   }

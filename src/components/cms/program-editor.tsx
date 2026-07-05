@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { Plus, Trash2 } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useAdmin } from "@/lib/auth/admin-context";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -58,6 +58,8 @@ function ProgramCard({
   onCancel?: () => void;
 }) {
   const t = useTranslations("cms");
+  const locale = useLocale();
+  const isRtl = locale === "ar";
   const [editing, setEditing] = useState(!!isNew);
   const [name, setName] = useState(program?.name ?? "");
   const [nameAr, setNameAr] = useState(program?.name_ar ?? "");
@@ -67,6 +69,10 @@ function ProgramCard({
   const [subjectsAr, setSubjectsAr] = useState<string[]>(program?.subjects_ar ?? []);
   const [order, setOrder] = useState(program?.display_order ?? 0);
   const [isPending, startTransition] = useTransition();
+
+  const displayName = isRtl && nameAr ? nameAr : name;
+  const displayDesc = isRtl && descAr ? descAr : desc;
+  const displaySubjects = isRtl && subjectsAr.length > 0 ? subjectsAr : subjects;
 
   const idx = program?.display_order ?? 0;
   const bg = idx % 2 === 0 ? "bg-white" : "bg-warm";
@@ -116,11 +122,11 @@ function ProgramCard({
               <button onClick={handleDelete} disabled={isPending} className="rounded-full bg-red-100 px-3 py-1.5 text-xs font-semibold text-red-600 shadow hover:bg-red-200"><Trash2 className="inline size-3 me-1" />Delete</button>
             </div>
           )}
-          <h2 className="mb-1 text-2xl font-bold text-navy">{name}</h2>
+          <h2 className="mb-1 text-2xl font-bold text-navy">{displayName}</h2>
           <div className="mb-6 h-[2px] w-10 bg-gold" />
-          {desc && <p className="mb-8 max-w-2xl text-navy/50">{desc}</p>}
+          {displayDesc && <p className="mb-8 max-w-2xl text-navy/70">{displayDesc}</p>}
           <div className="flex flex-wrap gap-2">
-            {subjects.map((s) => (
+            {displaySubjects.map((s) => (
               <Badge key={s} className="border-none bg-navy/[0.05] px-3 py-1.5 text-sm font-medium text-navy">{s}</Badge>
             ))}
           </div>

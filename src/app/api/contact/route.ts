@@ -1,23 +1,16 @@
 import { NextResponse } from "next/server";
-import { Ratelimit } from "@upstash/ratelimit";
-import { Redis } from "@upstash/redis";
 import { Resend } from "resend";
+import { checkRateLimit } from "@/lib/rate-limit";
 import { contactSchema } from "@/lib/contact/schemas";
 
+const MAX_BODY_BYTES = 10_000;
+
 const sanitize = (s: string) => s.replace(/<[^>]*>/g, "").trim();
+// Names are interpolated into the email subject; strip line breaks so
+// user input can never add headers or extra subject lines.
+const singleLine = (s: string) => s.replace(/[\r\n]+/g, " ");
 
-let ratelimit: Ratelimit | null = null;
 let resend: Resend | null = null;
-
-function getRatelimit() {
-  if (!ratelimit) {
-    ratelimit = new Ratelimit({
-      redis: Redis.fromEnv(),
-      limiter: Ratelimit.slidingWindow(5, "1 h"),
-    });
-  }
-  return ratelimit;
-}
 
 function getResend() {
   if (!resend) {
@@ -27,12 +20,17 @@ function getResend() {
 }
 
 export async function POST(request: Request) {
+  const contentLength = Number(request.headers.get("content-length") ?? 0);
+  if (contentLength > MAX_BODY_BYTES) {
+    return NextResponse.json({ error: "Payload too large" }, { status: 413 });
+  }
+
   const ip =
     request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
     "anonymous";
 
-  const { success } = await getRatelimit().limit(ip);
-  if (!success) {
+  const allowed = await checkRateLimit("contact", ip, 5, "1 h");
+  if (!allowed) {
     return NextResponse.json(
       { error: "Too many requests" },
       { status: 429, headers: { "Retry-After": "3600" } }
@@ -51,13 +49,22 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid input" }, { status: 400 });
   }
 
-  const { name, email, subject, message } = parsed.data;
-  const cleanName = sanitize(name);
+  const { name, email, subject, message, company } = parsed.data;
+
+  // Honeypot: real users never fill this hidden field. Report success so
+  // bots can't detect the trap, but send nothing.
+  if (company) {
+    return NextResponse.json({ success: true });
+  }
+
+  const cleanName = singleLine(sanitize(name));
   const cleanMessage = sanitize(message);
 
   try {
     await getResend().emails.send({
-      from: "Ilm Learning Center <onboarding@resend.dev>",
+      from:
+        process.env.CONTACT_FROM ??
+        "Ilm Learning Center <onboarding@resend.dev>",
       to: process.env.CONTACT_EMAIL!,
       subject: `New inquiry [${subject}] from ${cleanName}`,
       text: [
