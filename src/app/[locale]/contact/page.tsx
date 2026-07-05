@@ -2,11 +2,15 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { ContactClient } from "@/components/sections/contact-client";
 
-export const metadata: Metadata = {
-  title: "Contact Us",
-  description:
-    "Get in touch with Ilm Learning Center. Enquire about GCSE, A-Level, IB, or Tawjihi tutoring sessions.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "meta.contact" });
+  return { title: t("title"), description: t("description") };
+}
 
 export default async function ContactPage() {
   const t = await getTranslations("contact");

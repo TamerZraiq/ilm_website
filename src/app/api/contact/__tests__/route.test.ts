@@ -89,6 +89,40 @@ describe("POST /api/contact", () => {
     expect(await res.json()).toEqual({ error: "Failed to send message" });
   });
 
+  it("silently drops honeypot submissions without sending", async () => {
+    const res = await POST(
+      makeRequest({ ...validBody, company: "Totally Real Corp" })
+    );
+
+    expect(res.status).toBe(200);
+    expect(await res.json()).toEqual({ success: true });
+    expect(mockSend).not.toHaveBeenCalled();
+  });
+
+  it("rejects oversized payloads", async () => {
+    const headers = new Headers({
+      "Content-Type": "application/json",
+      "Content-Length": "50000",
+    });
+    const res = await POST(
+      new Request("http://localhost:3000/api/contact", {
+        method: "POST",
+        headers,
+        body: JSON.stringify(validBody),
+      })
+    );
+
+    expect(res.status).toBe(413);
+    expect(mockSend).not.toHaveBeenCalled();
+  });
+
+  it("strips newlines from the name used in the subject line", async () => {
+    await POST(makeRequest({ ...validBody, name: "Fatima\r\nBcc: evil" }));
+
+    const call = (mockSend as Mock).mock.calls[0]?.[0];
+    expect(call.subject).toBe("New inquiry [gcse] from Fatima Bcc: evil");
+  });
+
   it("strips HTML from name and message before sending", async () => {
     const body = {
       ...validBody,

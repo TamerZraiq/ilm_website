@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 
@@ -25,7 +26,7 @@ export async function requireAdmin(locale = "en") {
   return user;
 }
 
-export async function checkIsAdmin(): Promise<boolean> {
+export const checkIsAdmin = cache(async (): Promise<boolean> => {
   try {
     const supabase = await createClient();
     const {
@@ -40,4 +41,4 @@ export async function checkIsAdmin(): Promise<boolean> {
   } catch {
     return false;
   }
-}
+});

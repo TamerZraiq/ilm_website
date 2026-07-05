@@ -52,7 +52,7 @@ export function NavbarClient({ locale }: { locale: string }) {
         <nav className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-6">
           <Link href="/" className="flex items-center gap-3">
             <Image
-              src="/logo.png"
+              src="/logo-icon.png"
               alt="Ilm Learning Center"
               width={42}
               height={42}
@@ -70,7 +70,7 @@ export function NavbarClient({ locale }: { locale: string }) {
                 href={link.href}
                 className={cn(
                   "relative py-1 text-[14px] font-medium transition-colors hover:text-gold",
-                  pathname === link.href ? "text-navy" : "text-navy/45"
+                  pathname === link.href ? "text-navy" : "text-navy/70"
                 )}
               >
                 {t(link.key)}
@@ -84,7 +84,7 @@ export function NavbarClient({ locale }: { locale: string }) {
           <div className="hidden md:block">
             <button
               onClick={handleLocaleSwitch}
-              className="rounded-lg border border-navy/10 px-3.5 py-1.5 text-[13px] font-medium text-navy/45 transition-colors hover:border-gold/30 hover:text-gold"
+              className="rounded-lg border border-navy/10 px-3.5 py-1.5 text-[13px] font-medium text-navy/70 transition-colors hover:border-gold/30 hover:text-gold"
             >
               {switchLocale === "ar" ? "عربي" : "EN"}
             </button>
@@ -111,7 +111,7 @@ export function NavbarClient({ locale }: { locale: string }) {
                     "rounded-lg px-4 py-3 text-[15px] font-medium transition-colors",
                     pathname === link.href
                       ? "bg-warm text-navy"
-                      : "text-navy/45 hover:bg-warm hover:text-navy"
+                      : "text-navy/70 hover:bg-warm hover:text-navy"
                   )}
                 >
                   {t(link.key)}
@@ -120,7 +120,7 @@ export function NavbarClient({ locale }: { locale: string }) {
               <hr className="my-2 border-navy/[0.06]" />
               <button
                 onClick={handleLocaleSwitch}
-                className="rounded-lg px-4 py-3 text-start text-[15px] font-medium text-navy/45 transition-colors hover:bg-warm hover:text-navy"
+                className="rounded-lg px-4 py-3 text-start text-[15px] font-medium text-navy/70 transition-colors hover:bg-warm hover:text-navy"
               >
                 {switchLocale === "ar" ? "العربية" : "English"}
               </button>

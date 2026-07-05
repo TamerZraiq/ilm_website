@@ -1,5 +1,25 @@
 {
   "dir": "ltr",
+  "meta": {
+    "siteName": "Ilm Learning Center",
+    "siteDescription": "Expert tutoring for GCSE, A-Level, IB, and Tawjihi students in Palestine.",
+    "home": {
+      "title": "Expert Tutoring in Palestine",
+      "description": "Expert tutoring for GCSE, A-Level, IB, and Tawjihi students. Personalised sessions built around each student's goals."
+    },
+    "programs": {
+      "title": "Our Programs",
+      "description": "Tutoring programs for GCSE, A-Level, IB Diploma, and Palestinian Tawjihi examinations. Subject specialists covering all major disciplines."
+    },
+    "about": {
+      "title": "About Us",
+      "description": "Ilm Learning Center — Palestinian educators providing expert, personalised tutoring for GCSE, A-Level, IB, and Tawjihi students."
+    },
+    "contact": {
+      "title": "Contact Us",
+      "description": "Get in touch with Ilm Learning Center. Enquire about GCSE, A-Level, IB, or Tawjihi tutoring sessions."
+    }
+  },
   "nav": {
     "home": "Home",
     "programs": "Programs",
@@ -57,9 +77,13 @@
       "longDesc": "Complete preparation for the Palestinian General Secondary Education Certificate (Tawjihi). We cover all branches — Scientific, Literary, and Commercial — with tutors who understand the Ministry of Education curriculum."
     },
     "tawjihiBranches": "All Tawjihi branches covered — Scientific, Literary, and Commercial",
+    "learnMore": "Learn more →",
     "ctaHeading": "Don't see your subject?",
     "ctaText": "Get in touch — we'll find the right tutor.",
     "ctaButton": "Contact Us"
+  },
+  "pricing": {
+    "title": "Pricing"
   },
   "whyIlm": {
     "title": "Why Students Choose Ilm",
@@ -141,7 +165,25 @@
     "submit": "Sign In",
     "signingIn": "Signing in...",
     "invalidCredentials": "Invalid credentials.",
+    "rateLimited": "Too many sign-in attempts. Please try again in 15 minutes.",
     "signOut": "Sign Out",
+    "forgotPassword": "Forgot password?",
+    "resetPasswordTitle": "Reset your password",
+    "resetPasswordDesc": "Enter the email for your admin account and we'll send you a link to set a new password.",
+    "sendResetLink": "Send Reset Link",
+    "sendingResetLink": "Sending...",
+    "resetLinkSent": "If an account exists for that email, a reset link is on its way. Check your inbox.",
+    "resetRateLimited": "Too many reset requests. Please try again in an hour.",
+    "backToLogin": "Back to sign in",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "updatePasswordTitle": "Set a new password",
+    "updatePassword": "Update Password",
+    "updating": "Updating...",
+    "passwordTooShort": "Password must be at least 12 characters.",
+    "passwordMismatch": "Passwords do not match.",
+    "passwordUpdated": "Password updated. Please sign in.",
+    "changePassword": "Change Password",
     "title": "Ilm Admin",
     "welcome": "Welcome back. Choose a section to manage.",
     "teachers": "Teachers",
@@ -159,6 +201,7 @@
     "saving": "Saving...",
     "cancel": "Cancel",
     "saved": "Saved",
+    "adminModeHint": "Hover any text to edit it. Enter or click away saves; Esc cancels.",
     "addTeacher": "Add Teacher",
     "editTeacher": "Edit Teacher",
     "addPlan": "Add Plan",
@@ -168,6 +211,15 @@
     "arabic": "Arabic",
     "adminMode": "Admin",
     "editSection": "Edit this section",
-    "noPlans": "No subscription plans yet."
+    "noPlans": "No subscription plans yet.",
+    "teamComingSoon": "Our team profiles are being added soon."
+  },
+  "errors": {
+    "title": "Something went wrong",
+    "message": "An unexpected error occurred. Please try again.",
+    "tryAgain": "Try Again",
+    "goHome": "Go Home",
+    "notFoundTitle": "Page Not Found",
+    "notFoundMessage": "The page you're looking for doesn't exist."
   }
 }

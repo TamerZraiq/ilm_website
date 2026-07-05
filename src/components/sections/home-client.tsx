@@ -6,8 +6,8 @@ import { BookOpen, GraduationCap, Target, Award } from "lucide-react";
 import { InlineText } from "@/components/cms/inline-text";
 import { PlanEditor } from "@/components/cms/plan-editor";
 import { useAdmin } from "@/lib/auth/admin-context";
+import { HeroIllustration } from "@/components/sections/hero-illustration";
 import {
-  HandSvg,
   LeafHorizontal,
   LeafVertical,
   LeafLarge,
@@ -32,6 +32,8 @@ interface HomeTranslations {
   heroCtaSecondary: string;
   heroTrustLine: string;
   programsSectionTitle: string;
+  learnMore: string;
+  pricingTitle: string;
   gcse: { name: string; shortDesc: string };
   alevel: { name: string; shortDesc: string };
   ib: { name: string; shortDesc: string };
@@ -59,24 +61,6 @@ const PROGRAMS_META = [
   { key: "ib", icon: Award },
   { key: "tawjihi", icon: Target },
 ] as const;
-
-function LogoIllustration({ handClass }: { handClass: string }) {
-  return (
-    <div className="relative w-fit">
-      <HandSvg className={`block w-auto text-[#1A2B6B] ${handClass}`} />
-      <div className="absolute text-[#C9A84C]" style={{ left: "-35%", top: "22%", width: "42%", transform: "translate(-50%,-50%)" }}><LeafLarge /></div>
-      <div className="absolute text-[#C9A84C]" style={{ left: "-40%", top: "6%", width: "48%", transform: "translate(-50%,-50%)" }}><LeafHorizontal /></div>
-      <div className="absolute text-[#C9A84C]" style={{ left: "-18%", top: "-8%", width: "14%", transform: "translate(-50%,-50%)" }}><LeafMedium /></div>
-      <div className="absolute text-[#C9A84C]" style={{ left: "-8%", top: "-18%", width: "16%", transform: "translate(-50%,-50%)" }}><LeafTall /></div>
-      <div className="absolute text-[#C9A84C]" style={{ left: "2%", top: "-5%", width: "10%", transform: "translate(-50%,-50%)" }}><LeafSmall /></div>
-      <div className="absolute text-[#C9A84C]" style={{ left: "12%", top: "-25%", width: "12%", transform: "translate(-50%,-50%)" }}><LeafVertical /></div>
-      <div className="absolute text-[#C9A84C]" style={{ left: "24%", top: "-20%", width: "8%", transform: "translate(-50%,-50%)" }}><LeafThin /></div>
-      <div className="absolute text-[#C9A84C]" style={{ left: "82%", top: "-12%", width: "22%", transform: "translate(-50%,-50%)" }}><StarLarge /></div>
-      <div className="absolute text-[#C9A84C]" style={{ left: "100%", top: "5%", width: "13%", transform: "translate(-50%,-50%)" }}><StarMedium /></div>
-      <div className="absolute text-[#C9A84C]" style={{ left: "62%", top: "-25%", width: "8%", transform: "translate(-50%,-50%)" }}><StarSmall /></div>
-    </div>
-  );
-}
 
 function HeroBackground() {
   return (
@@ -159,13 +143,8 @@ export function HomeClient({
         <HeroBackground />
 
         <div className={`relative z-[1] flex w-full items-center justify-center py-10 md:w-[45%] md:py-0 ${isRtl ? "md:justify-start" : "md:justify-end"}`}>
-          <div className="hidden md:block" style={{ transform: isRtl ? "translateX(-2%)" : "translateX(-15%)" }}>
-            <div style={isRtl ? { transform: "scaleX(-1)" } : undefined}>
-              <LogoIllustration handClass="h-[85vh]" />
-            </div>
-          </div>
-          <div className="md:hidden">
-            <LogoIllustration handClass="h-[40vh]" />
+          <div style={isRtl ? { transform: "scaleX(-1)" } : undefined}>
+            <HeroIllustration />
           </div>
         </div>
 
@@ -181,7 +160,7 @@ export function HomeClient({
           <div className="relative mx-auto mt-3 h-[3px] w-48 overflow-hidden rounded-full bg-[#C9A84C] md:mx-0">
             <div className="absolute inset-0 -translate-x-full animate-[shimmer_3s_ease-in-out_infinite]" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)" }} />
           </div>
-          <p className="mx-auto mt-5 max-w-[440px] text-[16px] leading-[1.7] text-[#1A2B6B]/50 md:mx-0">
+          <p className="mx-auto mt-5 max-w-[440px] text-[16px] leading-[1.7] text-navy/70 md:mx-0">
             <InlineText contentKey="hero.subheadline" fallback={t.heroSubheadline} multiline />
           </p>
           <div className="mt-8 flex flex-col items-center gap-[14px] sm:flex-row sm:justify-center md:justify-start">
@@ -193,7 +172,7 @@ export function HomeClient({
               <InlineText contentKey="hero.ctaSecondary" fallback={t.heroCtaSecondary} />
             </Link>
           </div>
-          <p className="mt-6 text-[13px] text-[#1A2B6B]/25">
+          <p className="mt-6 text-[13px] text-navy/70">
             <InlineText contentKey="hero.trustLine" fallback={t.heroTrustLine} />
           </p>
         </div>
@@ -226,11 +205,11 @@ export function HomeClient({
                   <h3 className="mb-2 text-lg font-semibold text-navy">
                     <InlineText contentKey={`programs.${p.key}.name`} fallback={prog.name} />
                   </h3>
-                  <p className="mb-4 text-sm leading-relaxed text-navy/50">
+                  <p className="mb-4 text-sm leading-relaxed text-navy/70">
                     <InlineText contentKey={`programs.${p.key}.shortDesc`} fallback={prog.shortDesc} />
                   </p>
                   <span className="mt-auto text-[13px] font-semibold text-gold transition-transform duration-200 group-hover:translate-x-1">
-                    Learn more →
+                    {t.learnMore}
                   </span>
                 </Link>
               );
@@ -245,7 +224,7 @@ export function HomeClient({
           <ScatterWarm />
           <div className="relative mx-auto max-w-7xl">
             <div className="mb-14 text-center">
-              <h2 className="text-4xl font-bold tracking-[-0.02em] text-navy">Pricing</h2>
+              <h2 className="text-4xl font-bold tracking-[-0.02em] text-navy">{t.pricingTitle}</h2>
               <div className="mx-auto mt-3 h-[2px] w-12 bg-gold" />
             </div>
             <PlanEditor plans={plans} />
@@ -276,7 +255,7 @@ export function HomeClient({
                     <h3 className="text-lg font-semibold text-navy">
                       <InlineText contentKey={item.tk} fallback={item.tf} />
                     </h3>
-                    <p className="mt-1 text-sm leading-relaxed text-navy/50">
+                    <p className="mt-1 text-sm leading-relaxed text-navy/70">
                       <InlineText contentKey={item.dk} fallback={item.df} multiline />
                     </p>
                   </div>
@@ -307,7 +286,7 @@ export function HomeClient({
                 <p className="text-base italic leading-[1.7] text-white/85">
                   <InlineText contentKey={item.qk} fallback={item.qf} multiline />
                 </p>
-                <p className="mt-5 text-[13px] text-white/45">
+                <p className="mt-5 text-[13px] text-white/65">
                   — <InlineText contentKey={item.ak} fallback={item.af} />
                 </p>
               </div>
@@ -329,14 +308,10 @@ export function HomeClient({
 
         <div className="relative mx-auto max-w-2xl">
           <div className="relative overflow-hidden rounded-2xl border border-gold/[0.2] bg-white p-10 text-center shadow-[0_0_40px_rgba(201,168,76,0.08)] lg:p-14">
-            <div className="absolute left-4 top-4 h-8 w-8 border-l-2 border-t-2 border-gold/20 rounded-tl-md" />
-            <div className="absolute right-4 top-4 h-8 w-8 border-r-2 border-t-2 border-gold/20 rounded-tr-md" />
-            <div className="absolute bottom-4 left-4 h-8 w-8 border-b-2 border-l-2 border-gold/20 rounded-bl-md" />
-            <div className="absolute bottom-4 right-4 h-8 w-8 border-b-2 border-r-2 border-gold/20 rounded-br-md" />
             <h2 className="text-[32px] font-bold tracking-tight text-navy">
               <InlineText contentKey="ctaBanner.heading" fallback={t.ctaHeading} />
             </h2>
-            <p className="mt-3 text-base text-navy/50">
+            <p className="mt-3 text-base text-navy/70">
               <InlineText contentKey="ctaBanner.subtext" fallback={t.ctaSubtext} />
             </p>
             <Link href="/contact" className="group relative mt-8 inline-flex h-[52px] items-center overflow-hidden rounded-[10px] bg-gold px-8 text-sm font-semibold text-navy-dark transition-all hover:shadow-[0_4px_20px_rgba(201,168,76,0.35)] hover:brightness-110">

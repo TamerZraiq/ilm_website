@@ -1,26 +1,42 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
+import { checkIsAdmin } from "@/lib/auth/admin";
+import { getPublicTeachers } from "@/lib/content/public-queries";
 import { AboutClient } from "@/components/sections/about-client";
+import type { Database } from "@/types/database.types";
 
-export const metadata: Metadata = {
-  title: "About Us",
-  description:
-    "Ilm Learning Center — Palestinian educators providing expert, personalised tutoring for GCSE, A-Level, IB, and Tawjihi students.",
-};
+type Teacher = Database["public"]["Tables"]["teachers"]["Row"];
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "meta.about" });
+  return { title: t("title"), description: t("description") };
+}
+
+async function getTeachers(): Promise<Teacher[]> {
+  if (await checkIsAdmin()) {
+    const supabase = await createClient();
+    const { data } = await supabase
+      .from("teachers")
+      .select("*")
+      .order("display_order");
+    return data ?? [];
+  }
+  return getPublicTeachers();
+}
 
 export default async function AboutPage() {
   const t = await getTranslations("about");
-  const supabase = await createClient();
-
-  const { data: teachers } = await supabase
-    .from("teachers")
-    .select("*")
-    .order("display_order");
+  const teachers = await getTeachers();
 
   return (
     <AboutClient
-      teachers={teachers ?? []}
+      teachers={teachers}
       translations={{
         pageTitle: t("pageTitle"),
         story1: t("story1"),

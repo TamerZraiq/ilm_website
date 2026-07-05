@@ -35,12 +35,12 @@ export function AboutClient({ teachers, translations: t }: { teachers: Teacher[]
           </Reveal>
           <div className="mt-10 max-w-2xl">
             <Reveal delay={0.1}>
-              <p className="text-lg leading-relaxed text-navy/60">
+              <p className="text-lg leading-relaxed text-navy/70">
                 <InlineText contentKey="about.story1" fallback={t.story1} multiline />
               </p>
             </Reveal>
             <Reveal delay={0.2}>
-              <p className="mt-6 text-lg leading-relaxed text-navy/60">
+              <p className="mt-6 text-lg leading-relaxed text-navy/70">
                 <InlineText contentKey="about.story2" fallback={t.story2} multiline />
               </p>
             </Reveal>
@@ -70,7 +70,7 @@ export function AboutClient({ teachers, translations: t }: { teachers: Teacher[]
                   <h3 className="text-lg font-bold text-navy">
                     <InlineText contentKey={v.tk} fallback={v.tf} />
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-navy/50">
+                  <p className="mt-3 text-sm leading-relaxed text-navy/70">
                     <InlineText contentKey={v.dk} fallback={v.df} multiline />
                   </p>
                 </div>

@@ -58,11 +58,22 @@ export function ContactForm() {
     );
   }
 
-  const inputClass = "mt-1.5 h-11 rounded-lg border-navy/10 bg-warm/50 text-navy placeholder:text-navy/30 focus-visible:border-gold focus-visible:ring-1 focus-visible:ring-gold/30";
-  const labelClass = "text-xs font-semibold uppercase tracking-wide text-navy/50";
+  const inputClass = "mt-1.5 h-11 rounded-lg border-navy/10 bg-warm/50 text-navy placeholder:text-navy/70 focus-visible:border-gold focus-visible:ring-1 focus-visible:ring-gold/30";
+  const labelClass = "text-xs font-semibold uppercase tracking-wide text-navy/70";
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+      <div className="absolute -start-[9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
+        <label htmlFor="company">Company</label>
+        <input
+          id="company"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          {...register("company")}
+        />
+      </div>
+
       <div>
         <Label htmlFor="name" className={labelClass}>{t("name")}</Label>
         <Input id="name" {...register("name")} className={inputClass} aria-invalid={!!errors.name} />
@@ -97,7 +108,7 @@ export function ContactForm() {
           id="message"
           rows={4}
           {...register("message")}
-          className="mt-1.5 rounded-lg border-navy/10 bg-warm/50 text-navy placeholder:text-navy/30 focus-visible:border-gold focus-visible:ring-1 focus-visible:ring-gold/30"
+          className="mt-1.5 rounded-lg border-navy/10 bg-warm/50 text-navy placeholder:text-navy/70 focus-visible:border-gold focus-visible:ring-1 focus-visible:ring-gold/30"
           aria-invalid={!!errors.message}
         />
         {errors.message && <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>}
