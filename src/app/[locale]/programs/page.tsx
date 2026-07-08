@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
-import { createClient } from "@/lib/supabase/server";
-import { checkIsAdmin } from "@/lib/auth/admin";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getPublicPrograms } from "@/lib/content/public-queries";
 import { ProgramsClient } from "@/components/sections/programs-client";
-import type { Database } from "@/types/database.types";
 
-type Program = Database["public"]["Tables"]["programs"]["Row"];
+export const revalidate = 3600;
 
 export async function generateMetadata({
   params,
@@ -18,21 +15,15 @@ export async function generateMetadata({
   return { title: t("title"), description: t("description") };
 }
 
-async function getPrograms(): Promise<Program[]> {
-  if (await checkIsAdmin()) {
-    const supabase = await createClient();
-    const { data } = await supabase
-      .from("programs")
-      .select("*")
-      .order("display_order");
-    return data ?? [];
-  }
-  return getPublicPrograms();
-}
-
-export default async function ProgramsPage() {
+export default async function ProgramsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("programs");
-  const programs = await getPrograms();
+  const programs = await getPublicPrograms();
 
   return (
     <ProgramsClient

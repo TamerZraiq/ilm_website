@@ -10,17 +10,17 @@ export function HeroIllustration() {
 
   return (
     <motion.div
-      className="relative mx-auto aspect-[693/694] w-60 sm:w-[336px] lg:w-[480px]"
+      className="relative mx-auto aspect-[693/694] w-[74vw] max-w-[360px] sm:max-w-[440px] md:w-full md:max-w-[600px]"
       initial={prefersReducedMotion ? false : { opacity: 0, y: 24, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.9, ease }}
     >
       <Image
-        src="/logo-icon.png"
+        src="/logo-icon.svg"
         alt="Ilm Learning Center"
         fill
         priority
-        sizes="(min-width: 1024px) 480px, (min-width: 640px) 336px, 240px"
+        unoptimized
         className="object-contain"
       />
     </motion.div>

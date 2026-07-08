@@ -29,7 +29,14 @@ export async function POST(request: Request) {
     request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
     "anonymous";
 
-  const allowed = await checkRateLimit("contact", ip, 5, "1 h");
+  let allowed = true;
+  try {
+    allowed = await checkRateLimit("contact", ip, 5, "1 h");
+  } catch (err) {
+    // A rate-limiter outage must not drop a genuine enquiry; log and fail open,
+    // matching the login/reset actions.
+    console.error("Contact rate limit unavailable:", err);
+  }
   if (!allowed) {
     return NextResponse.json(
       { error: "Too many requests" },

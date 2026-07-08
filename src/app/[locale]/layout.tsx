@@ -2,16 +2,20 @@ import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Cairo } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages, getTranslations } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { AdminProvider } from "@/lib/auth/admin-context";
 import { SiteContentProvider } from "@/lib/content/site-content-context";
-import { checkIsAdmin } from "@/lib/auth/admin";
+import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { getSiteContent } from "@/lib/content/get-site-content";
 import "../globals.css";
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -56,9 +60,12 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  const [messages, isAdmin, siteContent] = await Promise.all([
+  // Enables static rendering with next-intl; without it the translation
+  // helpers opt the whole route back into dynamic rendering.
+  setRequestLocale(locale);
+
+  const [messages, siteContent] = await Promise.all([
     getMessages(),
-    checkIsAdmin(),
     getSiteContent(),
   ]);
 
@@ -72,8 +79,9 @@ export default async function LocaleLayout({
     <html lang={locale} dir={dir} className={`${jakarta.variable} ${cairo.variable}`}>
       <body className={`${fontClass} min-h-screen flex flex-col bg-warm text-navy antialiased`}>
         <NextIntlClientProvider messages={messages}>
-          <AdminProvider isAdmin={isAdmin}>
+          <AdminProvider>
             <SiteContentProvider content={siteContent}>
+              <SmoothScroll />
               <Navbar locale={locale} />
               <main className="flex-1">{children}</main>
               <Footer />

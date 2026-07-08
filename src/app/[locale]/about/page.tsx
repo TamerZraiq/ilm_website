@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
-import { createClient } from "@/lib/supabase/server";
-import { checkIsAdmin } from "@/lib/auth/admin";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getPublicTeachers } from "@/lib/content/public-queries";
 import { AboutClient } from "@/components/sections/about-client";
-import type { Database } from "@/types/database.types";
 
-type Teacher = Database["public"]["Tables"]["teachers"]["Row"];
+export const revalidate = 3600;
 
 export async function generateMetadata({
   params,
@@ -18,21 +15,15 @@ export async function generateMetadata({
   return { title: t("title"), description: t("description") };
 }
 
-async function getTeachers(): Promise<Teacher[]> {
-  if (await checkIsAdmin()) {
-    const supabase = await createClient();
-    const { data } = await supabase
-      .from("teachers")
-      .select("*")
-      .order("display_order");
-    return data ?? [];
-  }
-  return getPublicTeachers();
-}
-
-export default async function AboutPage() {
+export default async function AboutPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("about");
-  const teachers = await getTeachers();
+  const teachers = await getPublicTeachers();
 
   return (
     <AboutClient
@@ -48,6 +39,10 @@ export default async function AboutPage() {
         personalisationDesc: t("personalisation.desc"),
         communityTitle: t("community.title"),
         communityDesc: t("community.desc"),
+        familyTitle: t("familyTitle"),
+        familyBody: t("familyBody"),
+        familyNote: t("familyNote"),
+        familyJoin: t("familyJoin"),
         teamTitle: t("teamTitle"),
       }}
     />

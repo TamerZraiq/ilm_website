@@ -50,29 +50,60 @@
     "subheadline": "Expert tutoring for GCSE, A-Level, IB, and Tawjihi students. Personalised sessions built around each student's goals.",
     "ctaPrimary": "Explore Programs",
     "ctaSecondary": "Get in Touch",
+    "ctaConsult": "Book a free consultation",
+    "ctaWhatsapp": "Message us on WhatsApp",
+    "curriculaLabel": "We teach",
     "trustLine": "Trusted by students across Palestine"
+  },
+  "feature": {
+    "title": "This is what a session actually looks like.",
+    "body": "No crowded classroom, no generic worksheet — one tutor, one student, and a plan built around the gaps that matter.",
+    "figLabel": "A tutoring session at Ilm",
+    "badge": "Inside a session",
+    "altTutoring": "A tutor working one-to-one with a young student at Ilm",
+    "altKids": "Two young learners drawing together during a session",
+    "altWelcome": "A tutor welcoming students at the centre",
+    "altClass": "A group of Ilm students smiling together"
+  },
+  "howItWorks": {
+    "title": "From first message to first breakthrough.",
+    "intro": "Getting started takes minutes — and the first conversation is always free.",
+    "step1Title": "Tell us the goal",
+    "step1Desc": "Send one message with the subject, level, and where the student is struggling. It takes two minutes.",
+    "step2Title": "Free consultation & match",
+    "step2Desc": "We assess the gaps and match the student with the right subject specialist — no charge, no pressure.",
+    "step3Title": "Personalised sessions",
+    "step3Desc": "One-to-one lessons built around a real plan, with exam technique and past papers that move the grade."
+  },
+  "statement": {
+    "text": "We don't run classes. We build a plan around one student."
   },
   "programs": {
     "sectionTitle": "What We Teach",
+    "galleryIntro": "Four curricula, one standard of tutoring — taught by specialists who know each syllabus inside out.",
     "pageTitle": "Our Programs",
     "pageIntro": "We offer expert tutoring across the most widely studied curricula in Palestine. Whether you're preparing for international examinations or the national Tawjihi, our tutors are subject specialists who know the syllabus inside out.",
     "gcse": {
       "name": "GCSE",
+      "kicker": "Years 10–11",
       "shortDesc": "Core and extended subjects for Year 10–11 students",
       "longDesc": "Our GCSE programme supports Year 10 and 11 students sitting Cambridge IGCSE and Edexcel GCSE examinations. We cover all core and extended subjects with a focus on exam technique and conceptual clarity."
     },
     "alevel": {
       "name": "A-Level",
+      "kicker": "Years 12–13",
       "shortDesc": "Advanced preparation for university entry",
       "longDesc": "For students in Years 12 and 13 preparing for A-Level examinations. Our tutors specialise in the subjects most commonly required for university admissions, with structured revision plans and past paper practice."
     },
     "ib": {
       "name": "IB",
+      "kicker": "Diploma",
       "shortDesc": "Higher and Standard Level across all IB groups",
       "longDesc": "We support IB Diploma students across Higher and Standard Level subjects. Sessions cover the full IB syllabus including Internal Assessments, Extended Essays, and exam preparation."
     },
     "tawjihi": {
       "name": "Tawjihi",
+      "kicker": "National curriculum",
       "shortDesc": "Full support for the Palestinian national curriculum",
       "longDesc": "Complete preparation for the Palestinian General Secondary Education Certificate (Tawjihi). We cover all branches — Scientific, Literary, and Commercial — with tutors who understand the Ministry of Education curriculum."
     },
@@ -129,6 +160,13 @@
       "title": "Community",
       "desc": "We're Palestinian educators serving Palestinian students. This isn't just a service, it's a commitment."
     },
+    "familyTitle": "This is what the Ilm family looks like.",
+    "familyBody": "Behind every grade is a room full of people who know each student by name. This is the community our students walk into — and the one you're welcome to join.",
+    "familyBadge": "Inside Ilm",
+    "familyNote": "Every student here started with a single message. There's always room for one more.",
+    "familyJoin": "Join the family",
+    "altFamily": "A group of Ilm students and their tutor together at the centre",
+    "altPeer": "Two students studying together with a tutor",
     "teamTitle": "Meet the Team"
   },
   "contact": {
