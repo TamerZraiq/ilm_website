@@ -4,7 +4,7 @@ import { useState, useTransition } from "react";
 import Image from "next/image";
 import { Plus, Trash2, Users } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import { useAdmin } from "@/lib/auth/admin-context";
+import { useAdmin, useAdminData } from "@/lib/auth/admin-context";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -20,6 +20,10 @@ type Teacher = Database["public"]["Tables"]["teachers"]["Row"];
 
 export function TeacherEditor({ teachers }: { teachers: Teacher[] }) {
   const isAdmin = useAdmin();
+  // Admins get the full set (including hidden teachers) client-side; the public
+  // static render passes visible-only teachers as the fallback.
+  const { teachers: adminTeachers, refresh } = useAdminData();
+  const list = adminTeachers ?? teachers;
   const t = useTranslations("cms");
   const [adding, setAdding] = useState(false);
 
@@ -38,18 +42,19 @@ export function TeacherEditor({ teachers }: { teachers: Teacher[] }) {
       )}
 
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-        {teachers.map((teacher) => (
-          <TeacherCard key={teacher.id} teacher={teacher} isAdmin={isAdmin} />
+        {list.map((teacher) => (
+          <TeacherCard key={teacher.id} teacher={teacher} isAdmin={isAdmin} onChanged={refresh} />
         ))}
         {adding && isAdmin && (
           <TeacherCard
             isNew
             onSave={() => setAdding(false)}
             onCancel={() => setAdding(false)}
+            onChanged={refresh}
           />
         )}
       </div>
-      {teachers.length === 0 && !adding && (
+      {list.length === 0 && !adding && (
         <div className="mx-auto flex max-w-md flex-col items-center rounded-2xl border border-dashed border-navy/15 bg-white/60 px-8 py-12 text-center">
           <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gold/10 text-gold">
             <Users className="h-5 w-5" />
@@ -67,12 +72,14 @@ function TeacherCard({
   isNew,
   onSave,
   onCancel,
+  onChanged,
 }: {
   teacher?: Teacher;
   isAdmin?: boolean;
   isNew?: boolean;
   onSave?: () => void;
   onCancel?: () => void;
+  onChanged?: () => void;
 }) {
   const t = useTranslations("cms");
   const locale = useLocale();
@@ -116,6 +123,7 @@ function TeacherCard({
       }
       setEditing(false);
       onSave?.();
+      onChanged?.();
     });
   }
 
@@ -123,6 +131,7 @@ function TeacherCard({
     if (!teacher || !confirm(t("deleteConfirm"))) return;
     startTransition(async () => {
       await deleteTeacher(teacher.id);
+      onChanged?.();
     });
   }
 

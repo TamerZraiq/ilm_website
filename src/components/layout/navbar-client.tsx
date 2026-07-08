@@ -58,9 +58,19 @@ export function NavbarClient({ locale }: { locale: string }) {
               height={42}
               className="h-[42px] w-auto"
             />
-            <span className="hidden text-[17px] font-bold tracking-tight text-navy sm:block">
-              Ilm Learning Center
-            </span>
+            {locale === "ar" ? (
+              <Image
+                src="/logo-ar.png"
+                alt="علم — مركز علم التعليمي"
+                width={230}
+                height={244}
+                className="hidden h-[38px] w-auto sm:block"
+              />
+            ) : (
+              <span className="hidden text-[17px] font-bold tracking-tight text-navy sm:block">
+                Ilm Learning Center
+              </span>
+            )}
           </Link>
 
           <div className="hidden items-center gap-9 md:flex">

@@ -3,7 +3,7 @@
 import { useState, useTransition } from "react";
 import { Plus, Trash2 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import { useAdmin } from "@/lib/auth/admin-context";
+import { useAdmin, useAdminData } from "@/lib/auth/admin-context";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -16,12 +16,21 @@ type Program = Database["public"]["Tables"]["programs"]["Row"];
 
 export function ProgramEditor({ programs }: { programs: Program[] }) {
   const isAdmin = useAdmin();
+  // Admins get the full set (including hidden rows) client-side; the public
+  // static render passes visible-only programs as the fallback.
+  const { programs: adminPrograms, refresh } = useAdminData();
+  const list = adminPrograms ?? programs;
   const [adding, setAdding] = useState(false);
 
   return (
     <>
-      {programs.map((program) => (
-        <ProgramCard key={program.id} program={program} isAdmin={isAdmin} />
+      {list.map((program) => (
+        <ProgramCard
+          key={program.id}
+          program={program}
+          isAdmin={isAdmin}
+          onChanged={refresh}
+        />
       ))}
 
       {adding && isAdmin && (
@@ -29,6 +38,7 @@ export function ProgramEditor({ programs }: { programs: Program[] }) {
           isNew
           onSave={() => setAdding(false)}
           onCancel={() => setAdding(false)}
+          onChanged={refresh}
         />
       )}
 
@@ -50,12 +60,14 @@ function ProgramCard({
   isNew,
   onSave,
   onCancel,
+  onChanged,
 }: {
   program?: Program;
   isAdmin?: boolean;
   isNew?: boolean;
   onSave?: () => void;
   onCancel?: () => void;
+  onChanged?: () => void;
 }) {
   const t = useTranslations("cms");
   const locale = useLocale();
@@ -102,6 +114,7 @@ function ProgramCard({
       }
       setEditing(false);
       onSave?.();
+      onChanged?.();
     });
   }
 
@@ -109,6 +122,7 @@ function ProgramCard({
     if (!program || !confirm(t("deleteConfirm"))) return;
     startTransition(async () => {
       await deleteProgram(program.id);
+      onChanged?.();
     });
   }
 

@@ -3,7 +3,7 @@
 import { useState, useTransition } from "react";
 import { Plus, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useAdmin } from "@/lib/auth/admin-context";
+import { useAdmin, useAdminData } from "@/lib/auth/admin-context";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -18,6 +18,10 @@ const PERIOD_LABELS: Record<string, string> = { month: "/mo", term: "/term", yea
 
 export function PlanEditor({ plans }: { plans: Plan[] }) {
   const isAdmin = useAdmin();
+  // Admins get the full set (including inactive plans) client-side; the public
+  // static render passes active-only plans as the fallback.
+  const { plans: adminPlans, refresh } = useAdminData();
+  const list = adminPlans ?? plans;
   const t = useTranslations("cms");
   const [adding, setAdding] = useState(false);
 
@@ -33,14 +37,14 @@ export function PlanEditor({ plans }: { plans: Plan[] }) {
       )}
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {plans.map((plan) => (
-          <PlanCard key={plan.id} plan={plan} isAdmin={isAdmin} />
+        {list.map((plan) => (
+          <PlanCard key={plan.id} plan={plan} isAdmin={isAdmin} onChanged={refresh} />
         ))}
         {adding && isAdmin && (
-          <PlanCard isNew onSave={() => setAdding(false)} onCancel={() => setAdding(false)} />
+          <PlanCard isNew onSave={() => setAdding(false)} onCancel={() => setAdding(false)} onChanged={refresh} />
         )}
       </div>
-      {plans.length === 0 && !adding && isAdmin && (
+      {list.length === 0 && !adding && isAdmin && (
         <p className="mt-4 text-center text-gray-500">{t("noPlans")}</p>
       )}
     </>
@@ -53,12 +57,14 @@ function PlanCard({
   isNew,
   onSave,
   onCancel,
+  onChanged,
 }: {
   plan?: Plan;
   isAdmin?: boolean;
   isNew?: boolean;
   onSave?: () => void;
   onCancel?: () => void;
+  onChanged?: () => void;
 }) {
   const t = useTranslations("cms");
   const [editing, setEditing] = useState(!!isNew);
@@ -97,12 +103,16 @@ function PlanCard({
       }
       setEditing(false);
       onSave?.();
+      onChanged?.();
     });
   }
 
   function handleDelete() {
     if (!plan || !confirm(t("deleteConfirm"))) return;
-    startTransition(async () => { await deletePlan(plan.id); });
+    startTransition(async () => {
+      await deletePlan(plan.id);
+      onChanged?.();
+    });
   }
 
   if (!editing) {
