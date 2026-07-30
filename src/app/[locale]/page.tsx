@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { getPublicPlans } from "@/lib/content/public-queries";
 import { HomeClient } from "@/components/sections/home-client";
 
-export const revalidate = 3600;
+export const revalidate = false;
 
 export async function generateMetadata({
   params,
@@ -22,6 +21,5 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const plans = await getPublicPlans();
-  return <HomeClient plans={plans} />;
+  return <HomeClient />;
 }

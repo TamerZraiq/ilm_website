@@ -6,7 +6,6 @@ import { useTranslations } from "next-intl";
 import { Menu, X } from "lucide-react";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
-import { AdminToolbar } from "@/components/cms/admin-toolbar";
 
 const navLinks = [
   { key: "home" as const, href: "/" as const },
@@ -40,7 +39,6 @@ export function NavbarClient({ locale }: { locale: string }) {
 
   return (
     <>
-      <AdminToolbar />
       <header
         className={cn(
           "sticky top-0 z-50 transition-all duration-300",

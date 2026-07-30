@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { getPublicTeachers } from "@/lib/content/public-queries";
 import { AboutClient } from "@/components/sections/about-client";
 
-export const revalidate = 3600;
+export const revalidate = false;
 
 export async function generateMetadata({
   params,
@@ -23,11 +22,9 @@ export default async function AboutPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("about");
-  const teachers = await getPublicTeachers();
 
   return (
     <AboutClient
-      teachers={teachers}
       translations={{
         pageTitle: t("pageTitle"),
         story1: t("story1"),
@@ -43,7 +40,6 @@ export default async function AboutPage({
         familyBody: t("familyBody"),
         familyNote: t("familyNote"),
         familyJoin: t("familyJoin"),
-        teamTitle: t("teamTitle"),
       }}
     />
   );

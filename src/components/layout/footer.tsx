@@ -1,9 +1,9 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { BookOpen, Camera, Globe } from "lucide-react";
+import { BookOpen } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { InlineText } from "@/components/cms/inline-text";
+import { whatsappUrl } from "@/lib/site";
 
 export function Footer() {
   const t = useTranslations("footer");
@@ -18,9 +18,7 @@ export function Footer() {
               <BookOpen className="h-5 w-5 text-gold" />
               <span className="text-lg font-bold">Ilm Learning Center</span>
             </div>
-            <p className="mt-3 text-sm text-white/65">
-              <InlineText contentKey="footer.tagline" fallback={t("tagline")} />
-            </p>
+            <p className="mt-3 text-sm text-white/65">{t("tagline")}</p>
           </div>
 
           <div>
@@ -51,13 +49,19 @@ export function Footer() {
               {t("contactUs")}
             </h3>
             <ul className="space-y-2.5 text-sm text-white/65">
-              <li><InlineText contentKey="footer.email" fallback={t("email")} /></li>
-              <li><InlineText contentKey="footer.hours" fallback={t("hours")} /></li>
+              <li>{t("email")}</li>
+              <li>{t("hours")}</li>
+              <li>
+                <a
+                  href={whatsappUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-gold transition-colors hover:text-gold-light"
+                >
+                  {t("whatsapp")}
+                </a>
+              </li>
             </ul>
-            <div className="mt-5 flex gap-1">
-              <a href="#" aria-label="Instagram" className="-m-1.5 p-3 text-white/55 transition-colors hover:text-gold"><Camera className="h-4 w-4" /></a>
-              <a href="#" aria-label="Facebook" className="-m-1.5 p-3 text-white/55 transition-colors hover:text-gold"><Globe className="h-4 w-4" /></a>
-            </div>
           </div>
         </div>
 
