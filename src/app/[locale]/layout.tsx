@@ -10,6 +10,7 @@ import { Footer } from "@/components/layout/footer";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { LazyMotion, domAnimation } from "framer-motion";
 import "../globals.css";
 
 export function generateStaticParams() {
@@ -111,10 +112,12 @@ export default async function LocaleLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <NextIntlClientProvider messages={messages}>
-          <SmoothScroll />
-          <Navbar locale={locale} />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <LazyMotion features={domAnimation} strict>
+            <SmoothScroll />
+            <Navbar locale={locale} />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </LazyMotion>
         </NextIntlClientProvider>
         <Analytics />
         <SpeedInsights />

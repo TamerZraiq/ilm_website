@@ -1,11 +1,14 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { RevealImage } from "@/components/motion/motion";
 import { BrandImage } from "@/components/ui/brand-image";
 import { cn } from "@/lib/utils";
 
-/** Muted, looping, self-playing clip framed to match BrandImage tiles. */
+/** Muted, looping, self-playing clip framed to match BrandImage tiles.
+ *  Loading is deferred until the clip is close to entering the viewport,
+ *  so visitors who never scroll this far never pay for the download. */
 export function AutoVideo({
   src,
   className,
@@ -15,15 +18,35 @@ export function AutoVideo({
   className?: string;
   label?: string;
 }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "400px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <figure className={cn("relative overflow-hidden bg-navy-dark", className)}>
       <video
-        src={src}
-        autoPlay
+        ref={ref}
+        src={shouldLoad ? src : undefined}
+        autoPlay={shouldLoad}
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="none"
         aria-hidden
         className="absolute inset-0 h-full w-full object-cover"
       />
