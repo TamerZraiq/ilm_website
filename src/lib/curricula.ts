@@ -8,10 +8,22 @@ export const CURRICULA_KEYS = [
   "tawjihi",
   "sat",
   "ielts",
+  "toefl",
   "ap",
   "clep",
+  "gre",
+  "checkpoint",
   "schoolCurriculum",
 ] as const;
 
 export const CORE_CURRICULA = ["gcse", "alevel", "ib", "tawjihi"] as const;
-export const TEST_PREP_CURRICULA = ["sat", "ielts", "ap", "clep", "schoolCurriculum"] as const;
+export const TEST_PREP_CURRICULA = [
+  "sat",
+  "ielts",
+  "toefl",
+  "ap",
+  "clep",
+  "gre",
+  "checkpoint",
+  "schoolCurriculum",
+] as const;

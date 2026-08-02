@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/ui/reveal";
 import { CurriculumScatter } from "@/components/sections/curriculum-scatter";
+import { SubjectsScatter } from "@/components/sections/subjects-scatter";
 import { CORE_CURRICULA, TEST_PREP_CURRICULA } from "@/lib/curricula";
 
 interface ProgramsTranslations {
@@ -81,10 +82,25 @@ export function ProgramsClient({ translations: t }: { translations: ProgramsTran
         </div>
       </section>
 
+      {/* Subjects — a different axis from curricula: what's taught, not which exam board */}
+      <section className="bg-white py-20">
+        <div className="mx-auto mb-4 max-w-6xl px-6 text-center">
+          <Reveal>
+            <h2 className="text-3xl font-bold tracking-[-0.02em] text-navy text-balance sm:text-[2.75rem]">
+              {tp("subjects.heading")}
+            </h2>
+            <div className="mx-auto mt-5 h-[2px] w-12 bg-gold" />
+          </Reveal>
+        </div>
+        <Reveal delay={0.1}>
+          <SubjectsScatter />
+        </Reveal>
+      </section>
+
       {/* CTA */}
-      <section className="bg-white px-6 py-24">
+      <section className="bg-warm px-6 py-24">
         <Reveal>
-          <div className="mx-auto max-w-2xl rounded-2xl border border-gold/20 bg-warm p-12 text-center shadow-sm">
+          <div className="mx-auto max-w-2xl rounded-2xl border border-gold/20 bg-white p-12 text-center shadow-sm">
             <h2 className="text-2xl font-bold tracking-tight text-navy">{t.ctaHeading}</h2>
             <p className="mt-3 text-navy/70">{t.ctaText}</p>
             <Link href="/contact" className="mt-8 inline-flex h-12 items-center rounded-lg bg-gold px-8 text-sm font-semibold text-navy transition-colors hover:bg-gold-dark">

@@ -120,6 +120,12 @@
       "shortDesc": "Preparation for the international English language test",
       "longDesc": "Focused preparation across all four IELTS components — Listening, Reading, Writing, and Speaking — for students applying to universities or programmes that require an English proficiency score."
     },
+    "toefl": {
+      "name": "TOEFL",
+      "kicker": "English Proficiency",
+      "shortDesc": "Preparation for the Test of English as a Foreign Language",
+      "longDesc": "Focused preparation for the TOEFL iBT, covering Reading, Listening, Speaking, and Writing, for students applying to universities that require this specific English proficiency score."
+    },
     "ap": {
       "name": "AP",
       "kicker": "Advanced Placement",
@@ -131,6 +137,18 @@
       "kicker": "College Credit by Exam",
       "shortDesc": "Preparation for College-Level Examination Program tests",
       "longDesc": "Targeted preparation for CLEP exams, helping students test out of introductory college courses and earn credit faster."
+    },
+    "gre": {
+      "name": "GRE",
+      "kicker": "Graduate Admissions",
+      "shortDesc": "Preparation for graduate school admissions",
+      "longDesc": "Preparation for the GRE General Test — Verbal Reasoning, Quantitative Reasoning, and Analytical Writing — for students applying to graduate programmes abroad."
+    },
+    "checkpoint": {
+      "name": "Checkpoint",
+      "kicker": "Primary & Lower Secondary",
+      "shortDesc": "Cambridge Checkpoint and progression tests for younger students",
+      "longDesc": "Support for Cambridge Primary and Lower Secondary Checkpoint exams, helping younger students build strong foundations before they begin GCSE or IGCSE."
     },
     "schoolCurriculum": {
       "name": "School Curriculum",
@@ -144,7 +162,23 @@
     "moreText": "If a student needs it, we'll find the right tutor — just ask.",
     "ctaHeading": "Don't see your subject?",
     "ctaText": "Get in touch — we'll find the right tutor.",
-    "ctaButton": "Contact Us"
+    "ctaButton": "Contact Us",
+    "subjects": {
+      "heading": "Subjects We Cover",
+      "tagline": "One subject or ten — every session is built around what your child needs.",
+      "math": "Math",
+      "physics": "Physics",
+      "chemistry": "Chemistry",
+      "science": "Science",
+      "arabic": "Arabic",
+      "english": "English",
+      "history": "History",
+      "socialStudies": "Social Studies",
+      "economics": "Economics",
+      "businessStudies": "Business Studies",
+      "ict": "ICT",
+      "religion": "Religion"
+    }
   },
   "whyIlm": {
     "title": "Why Students Choose Ilm",
