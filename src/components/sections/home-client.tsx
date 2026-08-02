@@ -14,7 +14,7 @@ import { Reveal, RevealImage, Parallax } from "@/components/motion/motion";
 import { HorizontalGallery } from "@/components/motion/horizontal-gallery";
 import { BrandImage } from "@/components/ui/brand-image";
 import { FamilyMosaic } from "@/components/sections/family-mosaic";
-import { NeatGradientBackground } from "@/components/sections/neat-gradient-background";
+import { FlowyGradientBackground } from "@/components/sections/flowy-gradient-background";
 import { whatsappUrl } from "@/lib/site";
 import {
   LeafHorizontal,
@@ -89,7 +89,7 @@ export function HomeClient() {
     <div>
       {/* ═══ HERO ═══ */}
       <section className="relative flex min-h-screen flex-col items-center overflow-hidden bg-warm md:flex-row md:items-center">
-        <NeatGradientBackground className="pointer-events-none absolute inset-0" />
+        <FlowyGradientBackground />
 
         <div className="relative z-[1] flex w-full items-center justify-center px-6 py-10 sm:px-10 md:w-1/2 md:py-0 lg:px-14">
           <Parallax speed={26} className="flex w-full justify-center">
