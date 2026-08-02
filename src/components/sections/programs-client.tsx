@@ -3,8 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/ui/reveal";
-import { CurriculumScatter } from "@/components/sections/curriculum-scatter";
-import { SubjectsScatter } from "@/components/sections/subjects-scatter";
+import { SubjectsGallery } from "@/components/sections/subjects-gallery";
 import { CORE_CURRICULA, TEST_PREP_CURRICULA } from "@/lib/curricula";
 
 interface ProgramsTranslations {
@@ -34,14 +33,9 @@ export function ProgramsClient({ translations: t }: { translations: ProgramsTran
         </div>
       </section>
 
-      {/* Overview — every curriculum at a glance */}
-      <section className="bg-white py-20">
-        <CurriculumScatter showLink={false} />
-      </section>
-
       {/* Core curricula — full detail */}
       {CORE_CURRICULA.map((key, i) => (
-        <section key={key} className={`px-6 py-16 ${i % 2 === 0 ? "bg-warm" : "bg-white"}`}>
+        <section key={key} className={`px-6 py-16 ${i % 2 === 0 ? "bg-white" : "bg-warm"}`}>
           <div className="mx-auto max-w-5xl">
             <span className="text-[11px] font-semibold uppercase tracking-[2px] text-gold">
               {tp(`${key}.kicker`)}
@@ -84,16 +78,19 @@ export function ProgramsClient({ translations: t }: { translations: ProgramsTran
 
       {/* Subjects — a different axis from curricula: what's taught, not which exam board */}
       <section className="bg-white py-20">
-        <div className="mx-auto mb-4 max-w-6xl px-6 text-center">
+        <div className="mx-auto mb-10 max-w-6xl px-6 text-center">
           <Reveal>
             <h2 className="text-3xl font-bold tracking-[-0.02em] text-navy text-balance sm:text-[2.75rem]">
               {tp("subjects.heading")}
             </h2>
             <div className="mx-auto mt-5 h-[2px] w-12 bg-gold" />
+            <p className="mx-auto mt-5 max-w-xl text-[15px] leading-[1.75] text-navy/70">
+              {tp("subjects.tagline")}
+            </p>
           </Reveal>
         </div>
         <Reveal delay={0.1}>
-          <SubjectsScatter />
+          <SubjectsGallery />
         </Reveal>
       </section>
 

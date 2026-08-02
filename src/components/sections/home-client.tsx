@@ -12,7 +12,7 @@ import { Reveal, RevealImage, Parallax } from "@/components/motion/motion";
 import { BrandImage } from "@/components/ui/brand-image";
 import { FamilyMosaic } from "@/components/sections/family-mosaic";
 import { FlowyGradientBackground } from "@/components/sections/flowy-gradient-background";
-import { CurriculumScatter } from "@/components/sections/curriculum-scatter";
+import { CurriculumGallery } from "@/components/sections/curriculum-gallery";
 import { whatsappUrl } from "@/lib/site";
 import { CURRICULA_KEYS } from "@/lib/curricula";
 import {
@@ -221,24 +221,23 @@ export function HomeClient() {
         </div>
       </section>
 
-      {/* ═══ WHAT WE TEACH — scattered curricula ═══ */}
-      <section className="relative overflow-hidden bg-white py-24 lg:py-32">
-        <div className="mx-auto mb-4 max-w-6xl px-6 text-center">
+      {/* ═══ PROGRAMS — horizontal gallery ═══ */}
+      <section className="relative bg-white pt-24 lg:pt-32">
+        <div className="mx-auto mb-14 max-w-6xl px-6">
           <Reveal>
             <h2 className="text-3xl font-bold tracking-[-0.02em] text-navy text-balance sm:text-[2.75rem]">
               {t("programs.sectionTitle")}
             </h2>
-            <div className="mx-auto mt-5 h-[2px] w-12 bg-gold" />
+            <div className="mt-5 h-[2px] w-12 bg-gold" />
           </Reveal>
           <Reveal delay={0.08}>
-            <p className="mx-auto mt-5 max-w-[52ch] text-[15px] leading-[1.75] text-navy/70 text-pretty">
+            <p className="mt-5 max-w-[52ch] text-[15px] leading-[1.75] text-navy/70 text-pretty">
               {t("programs.galleryIntro")}
             </p>
           </Reveal>
         </div>
-        <Reveal delay={0.12}>
-          <CurriculumScatter />
-        </Reveal>
+        <CurriculumGallery />
+        <div className="pb-24 lg:pb-32" />
       </section>
 
       {/* ═══ WHY ILM ═══ */}
