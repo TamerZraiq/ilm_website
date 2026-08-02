@@ -1,13 +1,12 @@
 "use client";
 
-import { Mail, MapPin, Clock } from "lucide-react";
+import { Mail, MapPin, Clock, MessageCircle } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
-import { InlineText } from "@/components/cms/inline-text";
-import { ContactForm } from "./contact-form";
+import { whatsappUrl } from "@/lib/site";
 
 interface ContactTranslations {
   pageTitle: string;
-  formTitle: string;
+  intro: string;
   whatsapp: string;
   emailLabel: string;
   emailAddress: string;
@@ -21,81 +20,60 @@ export function ContactClient({ translations: t }: { translations: ContactTransl
   return (
     <>
       <section className="bg-warm px-6 py-20">
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-3xl text-center">
           <Reveal>
             <h1 className="text-4xl font-bold tracking-tight text-navy sm:text-5xl">
-              <InlineText contentKey="contact.pageTitle" fallback={t.pageTitle} />
+              {t.pageTitle}
             </h1>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-4 text-lg text-navy/70">We&apos;ll get back to you within 24 hours.</p>
+            <p className="mt-4 text-lg text-navy/70">{t.intro}</p>
+          </Reveal>
+          <Reveal delay={0.18}>
+            <a
+              href={whatsappUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-flex h-14 items-center gap-2.5 rounded-lg bg-gold px-9 text-base font-semibold text-navy shadow-[0_4px_20px_rgba(201,168,76,0.25)] transition-all hover:brightness-110"
+            >
+              <MessageCircle className="h-5 w-5" />
+              {t.whatsapp}
+            </a>
           </Reveal>
         </div>
       </section>
 
       <section className="bg-white px-6 py-16">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-16 lg:grid-cols-5">
-          <div className="lg:col-span-3">
-            <Reveal>
-              <h2 className="mb-8 text-2xl font-bold text-navy">
-                <InlineText contentKey="contact.formTitle" fallback={t.formTitle} />
-              </h2>
-            </Reveal>
-            <ContactForm />
-          </div>
-
-          <div className="lg:col-span-2">
-            <Reveal delay={0.15}>
-              <div className="rounded-xl border border-navy/[0.06] bg-white p-8 shadow-sm">
-                <div className="space-y-6">
-                  {/* Email */}
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-navy/[0.04]">
-                      <Mail className="h-5 w-5 text-navy/60" />
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-bold text-navy">
-                        <InlineText contentKey="contact.emailLabel" fallback={t.emailLabel} />
-                      </h3>
-                      <p className="mt-1 text-sm text-navy/70">
-                        <InlineText contentKey="contact.emailAddress" fallback={t.emailAddress} />
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Location */}
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-navy/[0.04]">
-                      <MapPin className="h-5 w-5 text-navy/60" />
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-bold text-navy">
-                        <InlineText contentKey="contact.locationLabel" fallback={t.locationLabel} />
-                      </h3>
-                      <p className="mt-1 text-sm text-navy/70">
-                        <InlineText contentKey="contact.location" fallback={t.location} />
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Hours */}
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-navy/[0.04]">
-                      <Clock className="h-5 w-5 text-navy/60" />
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-bold text-navy">
-                        <InlineText contentKey="contact.hoursLabel" fallback={t.hoursLabel} />
-                      </h3>
-                      <p className="mt-1 text-sm text-navy/70">
-                        <InlineText contentKey="contact.hours" fallback={t.hours} />
-                      </p>
-                    </div>
-                  </div>
-                </div>
+        <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-3">
+          <Reveal delay={0.05}>
+            <div className="flex flex-col items-center gap-3 rounded-xl border border-navy/[0.06] bg-white p-8 text-center shadow-sm">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-navy/[0.04]">
+                <Mail className="h-5 w-5 text-navy/60" />
               </div>
-            </Reveal>
-          </div>
+              <h3 className="text-sm font-bold text-navy">{t.emailLabel}</h3>
+              <p className="text-sm text-navy/70">{t.emailAddress}</p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <div className="flex flex-col items-center gap-3 rounded-xl border border-navy/[0.06] bg-white p-8 text-center shadow-sm">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-navy/[0.04]">
+                <MapPin className="h-5 w-5 text-navy/60" />
+              </div>
+              <h3 className="text-sm font-bold text-navy">{t.locationLabel}</h3>
+              <p className="text-sm text-navy/70">{t.location}</p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.15}>
+            <div className="flex flex-col items-center gap-3 rounded-xl border border-navy/[0.06] bg-white p-8 text-center shadow-sm">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-navy/[0.04]">
+                <Clock className="h-5 w-5 text-navy/60" />
+              </div>
+              <h3 className="text-sm font-bold text-navy">{t.hoursLabel}</h3>
+              <p className="text-sm text-navy/70">{t.hours}</p>
+            </div>
+          </Reveal>
         </div>
       </section>
     </>

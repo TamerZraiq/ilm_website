@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { getPublicPrograms } from "@/lib/content/public-queries";
 import { ProgramsClient } from "@/components/sections/programs-client";
 
-export const revalidate = 3600;
+export const revalidate = false;
 
 export async function generateMetadata({
   params,
@@ -23,11 +22,9 @@ export default async function ProgramsPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("programs");
-  const programs = await getPublicPrograms();
 
   return (
     <ProgramsClient
-      programs={programs}
       translations={{
         pageTitle: t("pageTitle"),
         pageIntro: t("pageIntro"),

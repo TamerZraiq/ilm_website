@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect, type ReactNode } from "react";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { m, useScroll, useTransform, useReducedMotion } from "framer-motion";
 
 /**
  * Pinned horizontal scroll on desktop: the section pins and its track
@@ -50,13 +50,13 @@ export function HorizontalGallery({
     >
       {enabled ? (
         <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-          <motion.div
+          <m.div
             ref={trackRef}
             style={{ x }}
             className="flex gap-6 px-[max(1.5rem,calc((100vw-1200px)/2))]"
           >
             {children}
-          </motion.div>
+          </m.div>
         </div>
       ) : (
         <div className="overflow-x-auto pb-2" data-lenis-prevent>

@@ -9,9 +9,6 @@ import {
   Sparkles,
   ArrowRight,
 } from "lucide-react";
-import { InlineText } from "@/components/cms/inline-text";
-import { PlanEditor } from "@/components/cms/plan-editor";
-import { useAdmin } from "@/lib/auth/admin-context";
 import { HeroIllustration } from "@/components/sections/hero-illustration";
 import { Reveal, RevealImage, Parallax } from "@/components/motion/motion";
 import { HorizontalGallery } from "@/components/motion/horizontal-gallery";
@@ -28,9 +25,6 @@ import {
   StarMedium,
   StarSmall,
 } from "@/components/sections/logo-svgs";
-import type { Database } from "@/types/database.types";
-
-type Plan = Database["public"]["Tables"]["subscription_plans"]["Row"];
 
 /** Photography — self-hosted under /public/images. Undefined renders a branded
  *  placeholder tile; drop a real photo path in to upgrade any slot. */
@@ -100,9 +94,8 @@ function ScatterDark() {
   );
 }
 
-export function HomeClient({ plans }: { plans: Plan[] }) {
+export function HomeClient() {
   const t = useTranslations();
-  const isAdmin = useAdmin();
   const isRtl = useLocale() === "ar";
 
   const consultHref = "/contact";
@@ -123,14 +116,14 @@ export function HomeClient({ plans }: { plans: Plan[] }) {
         <div className="relative z-[1] w-full px-6 pb-16 text-center md:w-1/2 md:pb-0 md:ps-10 md:pe-[8%] md:text-start">
           <Reveal y={20}>
             <p className="mb-6 text-[11px] font-semibold uppercase tracking-[3px] text-gold">
-              <InlineText contentKey="hero.label" fallback={t("hero.label")} />
+              {t("hero.label")}
             </p>
           </Reveal>
           <Reveal y={26} delay={0.05}>
             <h1 className="text-[2.2rem] font-bold leading-[1.05] tracking-[-0.03em] text-navy text-balance sm:text-5xl md:text-[56px]">
-              <InlineText contentKey="hero.title1" fallback={t("hero.title1")} />
+              {t("hero.title1")}
               <br />
-              <InlineText contentKey="hero.title2" fallback={t("hero.title2")} />
+              {t("hero.title2")}
             </h1>
           </Reveal>
           <div className="relative mx-auto mt-3 h-[3px] w-48 overflow-hidden rounded-full bg-gold md:mx-0">
@@ -138,24 +131,24 @@ export function HomeClient({ plans }: { plans: Plan[] }) {
           </div>
           <Reveal y={20} delay={0.12}>
             <p className="mx-auto mt-5 max-w-[440px] text-[16px] leading-[1.7] text-navy/70 md:mx-0">
-              <InlineText contentKey="hero.subheadline" fallback={t("hero.subheadline")} multiline />
+              {t("hero.subheadline")}
             </p>
           </Reveal>
           <Reveal y={18} delay={0.18}>
             <div className="mt-8 flex flex-col items-center gap-[14px] sm:flex-row sm:justify-center md:justify-start">
               <Link href={consultHref} className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-gold px-7 py-3 text-sm font-semibold text-navy transition-all hover:shadow-[0_4px_20px_rgba(201,168,76,0.35)] hover:brightness-110">
                 <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
-                <InlineText contentKey="hero.ctaConsult" fallback={t("hero.ctaConsult")} />
+                {t("hero.ctaConsult")}
               </Link>
               <a href={waHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-lg border-[1.5px] border-navy/20 px-7 py-3 text-sm font-semibold text-navy transition-all hover:border-navy/40 hover:bg-navy/[0.03]">
-                <InlineText contentKey="hero.ctaWhatsapp" fallback={t("hero.ctaWhatsapp")} />
+                {t("hero.ctaWhatsapp")}
               </a>
             </div>
           </Reveal>
           <Reveal y={14} delay={0.24}>
             <div className="mt-9 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 md:justify-start">
               <span className="text-[11px] uppercase tracking-[2px] text-navy/50">
-                <InlineText contentKey="hero.curriculaLabel" fallback={t("hero.curriculaLabel")} />
+                {t("hero.curriculaLabel")}
               </span>
               {PROGRAMS_META.map((p) => (
                 <span key={p.key} className="rounded-full border border-navy/10 bg-white/60 px-3.5 py-1.5 text-[13px] font-semibold text-navy">
@@ -173,13 +166,13 @@ export function HomeClient({ plans }: { plans: Plan[] }) {
           <div className="mb-14 grid gap-x-10 gap-y-6 md:grid-cols-12 md:items-end">
             <Reveal className="md:col-span-7">
               <h2 className="text-3xl font-bold leading-[1.08] tracking-[-0.02em] text-navy text-balance sm:text-[2.75rem]">
-                <InlineText contentKey="feature.title" fallback={t("feature.title")} />
+                {t("feature.title")}
               </h2>
               <div className="mt-5 h-[2px] w-12 bg-gold" />
             </Reveal>
             <Reveal delay={0.1} className="md:col-span-5">
               <p className="text-[15px] leading-[1.75] text-navy/70 text-pretty">
-                <InlineText contentKey="feature.body" fallback={t("feature.body")} multiline />
+                {t("feature.body")}
               </p>
             </Reveal>
           </div>
@@ -192,13 +185,13 @@ export function HomeClient({ plans }: { plans: Plan[] }) {
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <h2 className="max-w-[20ch] text-3xl font-bold leading-[1.08] tracking-[-0.02em] text-navy text-balance sm:text-[2.75rem]">
-              <InlineText contentKey="howItWorks.title" fallback={t("howItWorks.title")} />
+              {t("howItWorks.title")}
             </h2>
             <div className="mt-5 h-[2px] w-12 bg-gold" />
           </Reveal>
           <Reveal delay={0.08}>
             <p className="mt-5 max-w-[48ch] text-[15px] leading-[1.75] text-navy/70 text-pretty">
-              <InlineText contentKey="howItWorks.intro" fallback={t("howItWorks.intro")} />
+              {t("howItWorks.intro")}
             </p>
           </Reveal>
 
@@ -226,10 +219,10 @@ export function HomeClient({ plans }: { plans: Plan[] }) {
                       </span>
                     </div>
                     <h3 className="mt-4 text-lg font-semibold text-navy">
-                      <InlineText contentKey={`howItWorks.${step.tk}`} fallback={t(`howItWorks.${step.tk}`)} />
+                      {t(`howItWorks.${step.tk}`)}
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-navy/70">
-                      <InlineText contentKey={`howItWorks.${step.dk}`} fallback={t(`howItWorks.${step.dk}`)} multiline />
+                      {t(`howItWorks.${step.dk}`)}
                     </p>
                   </div>
                 </Reveal>
@@ -254,7 +247,7 @@ export function HomeClient({ plans }: { plans: Plan[] }) {
               Ilm
             </p>
             <h2 className="mt-5 max-w-[20ch] text-[2.2rem] font-bold leading-[1.12] tracking-[-0.02em] text-balance sm:text-[3.4rem]">
-              <InlineText contentKey="statement.text" fallback={t("statement.text")} multiline />
+              {t("statement.text")}
             </h2>
           </Reveal>
         </div>
@@ -265,13 +258,13 @@ export function HomeClient({ plans }: { plans: Plan[] }) {
         <div className="mx-auto mb-14 max-w-6xl px-6">
           <Reveal>
             <h2 className="text-3xl font-bold tracking-[-0.02em] text-navy text-balance sm:text-[2.75rem]">
-              <InlineText contentKey="programs.sectionTitle" fallback={t("programs.sectionTitle")} />
+              {t("programs.sectionTitle")}
             </h2>
             <div className="mt-5 h-[2px] w-12 bg-gold" />
           </Reveal>
           <Reveal delay={0.08}>
             <p className="mt-5 max-w-[52ch] text-[15px] leading-[1.75] text-navy/70 text-pretty">
-              <InlineText contentKey="programs.galleryIntro" fallback={t("programs.galleryIntro")} />
+              {t("programs.galleryIntro")}
             </p>
           </Reveal>
         </div>
@@ -296,10 +289,10 @@ export function HomeClient({ plans }: { plans: Plan[] }) {
                 {t(`programs.${p.key}.kicker`)}
               </span>
               <h3 className="mt-1.5 text-xl font-semibold text-navy">
-                <InlineText contentKey={`programs.${p.key}.name`} fallback={t(`programs.${p.key}.name`)} />
+                {t(`programs.${p.key}.name`)}
               </h3>
               <p className="mt-1.5 text-sm leading-relaxed text-navy/70">
-                <InlineText contentKey={`programs.${p.key}.shortDesc`} fallback={t(`programs.${p.key}.shortDesc`)} />
+                {t(`programs.${p.key}.shortDesc`)}
               </p>
               <span className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-semibold text-gold">
                 {t("programs.learnMore")}
@@ -326,7 +319,7 @@ export function HomeClient({ plans }: { plans: Plan[] }) {
           <div>
             <Reveal>
               <h2 className="text-3xl font-bold tracking-[-0.02em] text-navy text-balance sm:text-[2.75rem]">
-                <InlineText contentKey="whyIlm.title" fallback={t("whyIlm.title")} />
+                {t("whyIlm.title")}
               </h2>
               <div className="mt-4 h-[2px] w-12 bg-gold" />
             </Reveal>
@@ -342,12 +335,8 @@ export function HomeClient({ plans }: { plans: Plan[] }) {
                       <Sparkles className="h-3.5 w-3.5" />
                     </span>
                     <div>
-                      <h3 className="text-lg font-semibold text-navy">
-                        <InlineText contentKey={item.tk} fallback={item.tf} />
-                      </h3>
-                      <p className="mt-1 text-sm leading-relaxed text-navy/70">
-                        <InlineText contentKey={item.dk} fallback={item.df} multiline />
-                      </p>
+                      <h3 className="text-lg font-semibold text-navy">{item.tf}</h3>
+                      <p className="mt-1 text-sm leading-relaxed text-navy/70">{item.df}</p>
                     </div>
                   </div>
                 </Reveal>
@@ -357,43 +346,26 @@ export function HomeClient({ plans }: { plans: Plan[] }) {
         </div>
       </section>
 
-      {/* ═══ PRICING ═══ */}
-      {(plans.length > 0 || isAdmin) && (
-        <section className="relative overflow-hidden bg-white px-6 py-24 lg:py-32">
-          <div className="relative mx-auto max-w-7xl">
-            <div className="mb-14 text-center">
-              <h2 className="text-[2rem] font-bold tracking-[-0.02em] text-navy sm:text-[2.6rem]">{t("pricing.title")}</h2>
-              <div className="mx-auto mt-4 h-[2px] w-12 bg-gold" />
-            </div>
-            <PlanEditor plans={plans} />
-          </div>
-        </section>
-      )}
-
       {/* ═══ TESTIMONIALS ═══ */}
       <section className="relative overflow-hidden bg-navy px-6 py-24 lg:py-32">
         <ScatterDark />
         <div className="relative mx-auto max-w-5xl">
           <Reveal className="mb-14 text-center">
             <h2 className="text-3xl font-bold tracking-[-0.02em] text-white text-balance sm:text-[2.75rem]">
-              <InlineText contentKey="testimonials.title" fallback={t("testimonials.title")} />
+              {t("testimonials.title")}
             </h2>
             <div className="mx-auto mt-4 h-[2px] w-12 bg-gold" />
           </Reveal>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {[
-              { qk: "testimonials.quote1", qf: t("testimonials.quote1"), ak: "testimonials.author1", af: t("testimonials.author1") },
-              { qk: "testimonials.quote2", qf: t("testimonials.quote2"), ak: "testimonials.author2", af: t("testimonials.author2") },
+              { qf: t("testimonials.quote1"), af: t("testimonials.author1") },
+              { qf: t("testimonials.quote2"), af: t("testimonials.author2") },
             ].map((item, i) => (
-              <Reveal key={item.qk} delay={i * 0.12}>
+              <Reveal key={item.af} delay={i * 0.12}>
                 <div className="h-full rounded-xl border border-white/[0.08] bg-white/[0.05] p-8 backdrop-blur-sm transition-all duration-300 hover:border-gold/20 hover:bg-white/[0.08]">
                   <span className="mb-3 block text-5xl leading-none text-gold">&ldquo;</span>
-                  <p className="text-base italic leading-[1.7] text-white/85">
-                    <InlineText contentKey={item.qk} fallback={item.qf} multiline />
-                  </p>
-                  <p className="mt-5 text-[13px] text-white/65">
-                    — <InlineText contentKey={item.ak} fallback={item.af} />
-                  </p>
+                  <p className="text-base italic leading-[1.7] text-white/85">{item.qf}</p>
+                  <p className="mt-5 text-[13px] text-white/65">— {item.af}</p>
                 </div>
               </Reveal>
             ))}
@@ -417,18 +389,18 @@ export function HomeClient({ plans }: { plans: Plan[] }) {
           <Reveal>
             <div className="relative overflow-hidden rounded-2xl border border-gold/[0.2] bg-white p-10 text-center shadow-[0_0_40px_rgba(201,168,76,0.08)] lg:p-14">
               <h2 className="text-[32px] font-bold tracking-tight text-navy text-balance">
-                <InlineText contentKey="ctaBanner.heading" fallback={t("ctaBanner.heading")} />
+                {t("ctaBanner.heading")}
               </h2>
               <p className="mt-3 text-base text-navy/70">
-                <InlineText contentKey="ctaBanner.subtext" fallback={t("ctaBanner.subtext")} />
+                {t("ctaBanner.subtext")}
               </p>
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <Link href={consultHref} className="group relative inline-flex h-[52px] items-center justify-center overflow-hidden rounded-[10px] bg-gold px-8 text-sm font-semibold text-navy transition-all hover:shadow-[0_4px_20px_rgba(201,168,76,0.35)] hover:brightness-110">
                   <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
-                  <InlineText contentKey="hero.ctaConsult" fallback={t("hero.ctaConsult")} />
+                  {t("hero.ctaConsult")}
                 </Link>
                 <a href={waHref} target="_blank" rel="noopener noreferrer" className="inline-flex h-[52px] items-center justify-center rounded-[10px] border-[1.5px] border-navy/20 px-8 text-sm font-semibold text-navy transition-all hover:border-navy/40 hover:bg-navy/[0.03]">
-                  <InlineText contentKey="hero.ctaWhatsapp" fallback={t("hero.ctaWhatsapp")} />
+                  {t("hero.ctaWhatsapp")}
                 </a>
               </div>
             </div>

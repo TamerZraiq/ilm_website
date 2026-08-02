@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ContactClient } from "@/components/sections/contact-client";
 
+export const revalidate = false;
+
 export async function generateMetadata({
   params,
 }: {
@@ -25,7 +27,7 @@ export default async function ContactPage({
     <ContactClient
       translations={{
         pageTitle: t("pageTitle"),
-        formTitle: t("formTitle"),
+        intro: t("intro"),
         whatsapp: t("whatsapp"),
         emailLabel: t("emailLabel"),
         emailAddress: t("emailAddress"),

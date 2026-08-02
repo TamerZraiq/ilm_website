@@ -2,7 +2,7 @@
 
 import { useRef, type ReactNode } from "react";
 import {
-  motion,
+  m,
   useScroll,
   useTransform,
   useReducedMotion,
@@ -24,7 +24,7 @@ export function Reveal({
 }) {
   const reduce = useReducedMotion();
   return (
-    <motion.div
+    <m.div
       className={className}
       initial={reduce ? false : { opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -32,7 +32,7 @@ export function Reveal({
       transition={{ duration: 0.8, ease: EASE, delay }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -47,14 +47,14 @@ export function RevealImage({
   const reduce = useReducedMotion();
   if (reduce) return <div className={className}>{children}</div>;
   return (
-    <motion.div
+    <m.div
       className={className}
       initial={{ clipPath: "inset(0 0 100% 0)" }}
       whileInView={{ clipPath: "inset(0 0 0% 0)" }}
       viewport={{ once: true, margin: "-10%" }}
       transition={{ duration: 1.1, ease: EASE }}
     >
-      <motion.div
+      <m.div
         className="h-full w-full"
         initial={{ scale: 1.18 }}
         whileInView={{ scale: 1 }}
@@ -62,8 +62,8 @@ export function RevealImage({
         transition={{ duration: 1.3, ease: EASE }}
       >
         {children}
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   );
 }
 
@@ -86,9 +86,9 @@ export function Parallax({
   const y = useTransform(scrollYProgress, [0, 1], [speed, -speed]);
   return (
     <div ref={ref} className={className}>
-      <motion.div style={reduce ? undefined : { y }} className="h-full w-full">
+      <m.div style={reduce ? undefined : { y }} className="h-full w-full">
         {children}
-      </motion.div>
+      </m.div>
     </div>
   );
 }
