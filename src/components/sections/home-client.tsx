@@ -1,21 +1,20 @@
 "use client";
 
-import { Link } from "@/i18n/navigation";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import {
   GraduationCap,
   MessageSquare,
   ClipboardCheck,
   Sparkles,
-  ArrowRight,
 } from "lucide-react";
 import { HeroIllustration } from "@/components/sections/hero-illustration";
 import { Reveal, RevealImage, Parallax } from "@/components/motion/motion";
-import { HorizontalGallery } from "@/components/motion/horizontal-gallery";
 import { BrandImage } from "@/components/ui/brand-image";
 import { FamilyMosaic } from "@/components/sections/family-mosaic";
 import { FlowyGradientBackground } from "@/components/sections/flowy-gradient-background";
+import { CurriculumScatter } from "@/components/sections/curriculum-scatter";
 import { whatsappUrl } from "@/lib/site";
+import { CURRICULA_KEYS } from "@/lib/curricula";
 import {
   LeafHorizontal,
   LeafVertical,
@@ -32,10 +31,6 @@ const IMG: Record<string, string | undefined> = {
   step1: "/images/ILC/tutor-focus.jpg",
   step2: "/images/ILC/peer-study.jpg",
   step3: "/images/ILC/tutoring-1on1.jpg",
-  gcse: "/images/prog-gcse.jpg",
-  alevel: "/images/prog-alevel.jpg",
-  ib: "/images/prog-ib.jpg",
-  tawjihi: "/images/prog-tawjihi.jpg",
   driftB: "/images/ILC/study-pair.jpg",
   whyIlm: "/images/ILC/family-group.jpg",
 };
@@ -52,13 +47,6 @@ const HOME_MOSAIC = [
   { src: "/images/ILC/kids-creative.jpg", altKey: "feature.altKids" },
   { src: "/images/ILC/welcome.jpg", altKey: "feature.altWelcome" },
   { src: "/images/ILC/class-smiles.jpg", altKey: "feature.altClass" },
-] as const;
-
-const PROGRAMS_META = [
-  { key: "gcse", img: IMG.gcse, variant: 1 },
-  { key: "alevel", img: IMG.alevel, variant: 2 },
-  { key: "ib", img: IMG.ib, variant: 3 },
-  { key: "tawjihi", img: IMG.tawjihi, variant: 5 },
 ] as const;
 
 const STEPS = [
@@ -81,7 +69,6 @@ function ScatterDark() {
 
 export function HomeClient() {
   const t = useTranslations();
-  const isRtl = useLocale() === "ar";
 
   const waHref = whatsappUrl();
 
@@ -131,9 +118,9 @@ export function HomeClient() {
               <span className="text-[11px] uppercase tracking-[2px] text-navy/50">
                 {t("hero.curriculaLabel")}
               </span>
-              {PROGRAMS_META.map((p) => (
-                <span key={p.key} className="rounded-full border border-navy/10 bg-white/60 px-3.5 py-1.5 text-[13px] font-semibold text-navy">
-                  {t(`programs.${p.key}.name`)}
+              {CURRICULA_KEYS.map((key) => (
+                <span key={key} className="rounded-full border border-navy/10 bg-white/60 px-3.5 py-1.5 text-[13px] font-semibold text-navy">
+                  {t(`programs.${key}.name`)}
                 </span>
               ))}
             </div>
@@ -234,55 +221,24 @@ export function HomeClient() {
         </div>
       </section>
 
-      {/* ═══ PROGRAMS — horizontal gallery ═══ */}
-      <section className="relative bg-white pt-24 lg:pt-32">
-        <div className="mx-auto mb-14 max-w-6xl px-6">
+      {/* ═══ WHAT WE TEACH — scattered curricula ═══ */}
+      <section className="relative overflow-hidden bg-white py-24 lg:py-32">
+        <div className="mx-auto mb-4 max-w-6xl px-6 text-center">
           <Reveal>
             <h2 className="text-3xl font-bold tracking-[-0.02em] text-navy text-balance sm:text-[2.75rem]">
               {t("programs.sectionTitle")}
             </h2>
-            <div className="mt-5 h-[2px] w-12 bg-gold" />
+            <div className="mx-auto mt-5 h-[2px] w-12 bg-gold" />
           </Reveal>
           <Reveal delay={0.08}>
-            <p className="mt-5 max-w-[52ch] text-[15px] leading-[1.75] text-navy/70 text-pretty">
+            <p className="mx-auto mt-5 max-w-[52ch] text-[15px] leading-[1.75] text-navy/70 text-pretty">
               {t("programs.galleryIntro")}
             </p>
           </Reveal>
         </div>
-
-        <HorizontalGallery rtl={isRtl}>
-          {PROGRAMS_META.map((p) => (
-            <Link
-              key={p.key}
-              href="/programs"
-              className="group block w-[78vw] shrink-0 sm:w-[380px]"
-            >
-              <RevealImage className="overflow-hidden rounded-2xl">
-                <BrandImage
-                  src={p.img}
-                  alt={t(`programs.${p.key}.name`)}
-                  variant={p.variant}
-                  className="aspect-[4/5] w-full transition-transform duration-500 group-hover:scale-[1.02]"
-                  sizes="(min-width: 640px) 380px, 78vw"
-                />
-              </RevealImage>
-              <span className="mt-5 block text-[11px] font-semibold uppercase tracking-[2px] text-gold">
-                {t(`programs.${p.key}.kicker`)}
-              </span>
-              <h3 className="mt-1.5 text-xl font-semibold text-navy">
-                {t(`programs.${p.key}.name`)}
-              </h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-navy/70">
-                {t(`programs.${p.key}.shortDesc`)}
-              </p>
-              <span className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-semibold text-gold">
-                {t("programs.learnMore")}
-                <ArrowRight className={`h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1 ${isRtl ? "rotate-180 group-hover:-translate-x-1" : ""}`} />
-              </span>
-            </Link>
-          ))}
-        </HorizontalGallery>
-        <div className="pb-24 lg:pb-32" />
+        <Reveal delay={0.12}>
+          <CurriculumScatter />
+        </Reveal>
       </section>
 
       {/* ═══ WHY ILM ═══ */}

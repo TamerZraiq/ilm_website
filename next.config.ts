@@ -75,11 +75,11 @@ const nextConfig: NextConfig = {
         headers: staticAssetCache,
       },
       {
-        source: "/logo-icon.png",
+        source: "/videos/:path*",
         headers: staticAssetCache,
       },
       {
-        source: "/logo-ar.png",
+        source: "/logo-icon.png",
         headers: staticAssetCache,
       },
       {

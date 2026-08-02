@@ -3,6 +3,8 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/ui/reveal";
+import { CurriculumScatter } from "@/components/sections/curriculum-scatter";
+import { CORE_CURRICULA, TEST_PREP_CURRICULA } from "@/lib/curricula";
 
 interface ProgramsTranslations {
   pageTitle: string;
@@ -11,8 +13,6 @@ interface ProgramsTranslations {
   ctaText: string;
   ctaButton: string;
 }
-
-const PROGRAM_KEYS = ["gcse", "alevel", "ib", "tawjihi"] as const;
 
 export function ProgramsClient({ translations: t }: { translations: ProgramsTranslations }) {
   const tp = useTranslations("programs");
@@ -33,9 +33,14 @@ export function ProgramsClient({ translations: t }: { translations: ProgramsTran
         </div>
       </section>
 
-      {/* Programs */}
-      {PROGRAM_KEYS.map((key, i) => (
-        <section key={key} className={`px-6 py-16 ${i % 2 === 0 ? "bg-white" : "bg-warm"}`}>
+      {/* Overview — every curriculum at a glance */}
+      <section className="bg-white py-20">
+        <CurriculumScatter showLink={false} />
+      </section>
+
+      {/* Core curricula — full detail */}
+      {CORE_CURRICULA.map((key, i) => (
+        <section key={key} className={`px-6 py-16 ${i % 2 === 0 ? "bg-warm" : "bg-white"}`}>
           <div className="mx-auto max-w-5xl">
             <span className="text-[11px] font-semibold uppercase tracking-[2px] text-gold">
               {tp(`${key}.kicker`)}
@@ -49,10 +54,37 @@ export function ProgramsClient({ translations: t }: { translations: ProgramsTran
         </section>
       ))}
 
+      {/* Test prep & ongoing support — lighter cards */}
+      <section className="bg-warm px-6 py-20">
+        <div className="mx-auto max-w-5xl">
+          <Reveal>
+            <h2 className="text-2xl font-bold tracking-tight text-navy">
+              {tp("moreHeading")}
+            </h2>
+            <p className="mt-2 max-w-xl text-navy/70">{tp("moreText")}</p>
+          </Reveal>
+          <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {TEST_PREP_CURRICULA.map((key, i) => (
+              <Reveal key={key} delay={i * 0.06}>
+                <div className="h-full rounded-xl border border-navy/[0.06] bg-white p-6 shadow-sm">
+                  <span className="text-[10px] font-semibold uppercase tracking-[2px] text-gold">
+                    {tp(`${key}.kicker`)}
+                  </span>
+                  <h3 className="mt-1 text-lg font-bold text-navy">{tp(`${key}.name`)}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-navy/70">
+                    {tp(`${key}.shortDesc`)}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
-      <section className="bg-warm px-6 py-24">
+      <section className="bg-white px-6 py-24">
         <Reveal>
-          <div className="mx-auto max-w-2xl rounded-2xl border border-gold/20 bg-white p-12 text-center shadow-sm">
+          <div className="mx-auto max-w-2xl rounded-2xl border border-gold/20 bg-warm p-12 text-center shadow-sm">
             <h2 className="text-2xl font-bold tracking-tight text-navy">{t.ctaHeading}</h2>
             <p className="mt-3 text-navy/70">{t.ctaText}</p>
             <Link href="/contact" className="mt-8 inline-flex h-12 items-center rounded-lg bg-gold px-8 text-sm font-semibold text-navy transition-colors hover:bg-gold-dark">

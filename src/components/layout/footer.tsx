@@ -30,6 +30,7 @@ export function Footer() {
               <li><Link href="/programs" className="transition-colors hover:text-gold">{t("alevel")}</Link></li>
               <li><Link href="/programs" className="transition-colors hover:text-gold">{t("ib")}</Link></li>
               <li><Link href="/programs" className="transition-colors hover:text-gold">{t("tawjihi")}</Link></li>
+              <li><Link href="/programs" className="font-semibold text-gold transition-colors hover:text-gold-light">{t("viewAll")}</Link></li>
             </ul>
           </div>
 

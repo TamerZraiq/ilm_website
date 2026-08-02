@@ -15,10 +15,6 @@ const images = [
   "/images/ILC/peer-study.jpg",
   "/images/ILC/tutor-focus.jpg",
   "/images/ILC/tutoring-1on1.jpg",
-  "/images/prog-gcse.jpg",
-  "/images/prog-alevel.jpg",
-  "/images/prog-ib.jpg",
-  "/images/prog-tawjihi.jpg",
   "/images/ILC/study-pair.jpg",
   "/images/ILC/kids-creative.jpg",
 ];

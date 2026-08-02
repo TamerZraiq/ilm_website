@@ -66,7 +66,7 @@ The system explicitly rejects the generic 2025/2026 AI-landing-page grammar: no 
 **Key Characteristics:**
 - Two-color discipline: navy + gold, no added accent hues.
 - Warm off-white body background (#F7F5F0), not stark white, not cream-as-AI-default — it is the brand's own tint, not a cliché reach.
-- Generous whitespace; density stays low even with four parallel program tracks (GCSE/A-Level/IB/Tawjihi) to document.
+- Generous whitespace; density stays low even with nine parallel program tracks (GCSE/A-Level/IB/Tawjihi/SAT/IELTS/AP/CLEP/School Curriculum) to document — the scattered-typography treatment on "What We Teach" exists specifically to hold that many names without feeling like a directory listing.
 - Bilingual-native: every layout decision is tested in both LTR (English/Jakarta Sans) and RTL (Arabic/Cairo).
 
 ## 2. Colors
@@ -135,7 +135,7 @@ The system is mostly flat with restrained tonal layering, not a shadow-driven hi
 - **Background:** white on warm-paper page sections; white/5%-opacity glass-on-navy for testimonial cards on the dark section.
 - **Shadow Strategy:** resting card → hover lift (see Elevation).
 - **Border:** hairline navy at 6-8% opacity; gold at 20-30% opacity on hover as the accent signal.
-- **Internal Padding:** generous, ~32px (`p-8`) — the system favors whitespace over density even with four parallel program tracks to present.
+- **Internal Padding:** generous, ~32px (`p-8`) — the system favors whitespace over density even with nine parallel program tracks to present.
 
 ### Inputs / Fields
 - shadcn/ui primitives (Input, Textarea, Select) — navy-on-white, hairline border, gold focus ring (`--ring: #C9A84C`).

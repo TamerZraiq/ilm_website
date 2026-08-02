@@ -1,6 +1,6 @@
 # Ilm Learning Center — Website
 
-Public marketing site for Ilm Learning Center, a tutoring center in Palestine offering GCSE, A-Level, IB, and Tawjihi tutoring. Bilingual (English / Arabic with full RTL).
+Public marketing site for Ilm Learning Center, a tutoring center in Palestine offering GCSE, A-Level, IB, Tawjihi, SAT, IELTS, AP, CLEP, and school curriculum support. Bilingual (English / Arabic with full RTL).
 
 **Live:** https://ilm-website.vercel.app/en
 

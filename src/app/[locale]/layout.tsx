@@ -11,6 +11,7 @@ import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { LazyMotion, domAnimation } from "framer-motion";
+import { CURRICULA_KEYS } from "@/lib/curricula";
 import "../globals.css";
 
 export function generateStaticParams() {
@@ -84,18 +85,32 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
   const t = await getTranslations({ locale, namespace: "meta" });
+  const tp = await getTranslations({ locale, namespace: "programs" });
+
+  const orgId = `${SITE_URL}/#organization`;
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    name: t("siteName"),
-    description: t("siteDescription"),
-    url: `${SITE_URL}/${locale}`,
-    logo: `${SITE_URL}/logo-icon.png`,
-    areaServed: {
-      "@type": "Country",
-      name: "Palestine",
-    },
+    "@graph": [
+      {
+        "@type": "EducationalOrganization",
+        "@id": orgId,
+        name: t("siteName"),
+        description: t("siteDescription"),
+        url: `${SITE_URL}/${locale}`,
+        logo: `${SITE_URL}/logo-icon.png`,
+        areaServed: {
+          "@type": "Country",
+          name: "Palestine",
+        },
+      },
+      ...CURRICULA_KEYS.map((key) => ({
+        "@type": "Course",
+        name: tp(`${key}.name`),
+        description: tp(`${key}.shortDesc`),
+        provider: { "@id": orgId },
+      })),
+    ],
   };
 
   const dir = locale === "ar" ? "rtl" : "ltr";

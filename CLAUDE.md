@@ -2,7 +2,7 @@
 
 # Ilm Learning Center — Project Rules
 
-Public marketing site for a real tutoring center in Palestine (GCSE, A-Level, IB, Tawjihi). Bilingual EN/AR with RTL. Quality and correctness over speed.
+Public marketing site for a real tutoring center in Palestine (GCSE, A-Level, IB, Tawjihi, SAT, IELTS, AP, CLEP, and school curriculum support). Bilingual EN/AR with RTL. Quality and correctness over speed.
 
 ## Stack (do not deviate)
 

@@ -5,6 +5,7 @@ import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/ui/reveal";
 import { FamilyMosaic } from "@/components/sections/family-mosaic";
+import { BrandStoryVideo } from "@/components/sections/brand-story-video";
 
 const FAMILY_REEL = "/images/ILC/reel-1.mp4";
 const FAMILY_MOSAIC = [
@@ -53,6 +54,8 @@ export function AboutClient({ translations: t }: { translations: AboutTranslatio
           </div>
         </div>
       </section>
+
+      <BrandStoryVideo />
 
       {/* VALUES — white cards */}
       <section className="bg-white px-6 py-24">

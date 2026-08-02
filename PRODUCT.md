@@ -6,11 +6,11 @@ brand
 
 ## Users
 
-Parents and students in Palestine (and the diaspora) evaluating tutoring options for GCSE, A-Level, IB, and Tawjihi qualifications. They are comparison-shopping against international schools, private tutors, and other centers, often on a phone, often switching between English and Arabic. The job to be done: quickly judge whether this center is credible and qualified enough to trust with exam results that determine university admission, then start a WhatsApp conversation.
+Parents and students in Palestine (and the diaspora) evaluating tutoring options across GCSE, A-Level, IB, Tawjihi, SAT, IELTS, AP, CLEP, and everyday school curriculum support. They are comparison-shopping against international schools, private tutors, and other centers, often on a phone, often switching between English and Arabic. The job to be done: quickly judge whether this center is credible and qualified enough to trust with exam results that determine university admission, then start a WhatsApp conversation.
 
 ## Product Purpose
 
-A public marketing site for Ilm Learning Center, a tutoring center offering GCSE, A-Level, IB, and Tawjihi tutoring. It exists to build credibility for a real, currently-operating business, communicate program coverage clearly across four distinct qualification tracks, and convert visitors into a WhatsApp conversation. Success looks like a visitor coming away convinced this is run by serious educators (not a generic tutoring-listicle business) and messaging the center. The site is deliberately static — no accounts, portals, forms, or admin layer.
+A public marketing site for Ilm Learning Center, a tutoring center offering GCSE, A-Level, IB, Tawjihi, SAT, IELTS, AP, CLEP, and school curriculum support. It exists to build credibility for a real, currently-operating business, communicate broad curriculum coverage without looking like a generic "we do everything" listicle, and convert visitors into a WhatsApp conversation. Success looks like a visitor coming away convinced this is run by serious educators and messaging the center. The site is deliberately static — no accounts, portals, forms, or admin layer.
 
 ## Brand Personality
 
