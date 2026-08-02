@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { BLUR_PLACEHOLDERS } from "@/lib/blur-placeholders";
 
 const PLACEHOLDER: Record<number, string> = {
   1: "linear-gradient(150deg,#2A3D8F,#111E4A), radial-gradient(circle at 28% 30%, rgba(201,168,76,.28), transparent 55%)",
@@ -50,6 +51,8 @@ export function BrandImage({
           fill
           sizes={sizes}
           priority={priority}
+          placeholder={BLUR_PLACEHOLDERS[src] ? "blur" : "empty"}
+          blurDataURL={BLUR_PLACEHOLDERS[src]}
           className="object-cover"
         />
       ) : (

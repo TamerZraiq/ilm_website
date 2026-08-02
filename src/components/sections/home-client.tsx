@@ -14,11 +14,11 @@ import { Reveal, RevealImage, Parallax } from "@/components/motion/motion";
 import { HorizontalGallery } from "@/components/motion/horizontal-gallery";
 import { BrandImage } from "@/components/ui/brand-image";
 import { FamilyMosaic } from "@/components/sections/family-mosaic";
+import { NeatGradientBackground } from "@/components/sections/neat-gradient-background";
 import { whatsappUrl } from "@/lib/site";
 import {
   LeafHorizontal,
   LeafVertical,
-  LeafThin,
   LeafTall,
   LeafMedium,
   StarLarge,
@@ -67,21 +67,6 @@ const STEPS = [
   { icon: GraduationCap, img: IMG.step3, variant: 6, tk: "step3Title", dk: "step3Desc" },
 ] as const;
 
-function HeroBackground() {
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="absolute hidden md:block" style={{ left: "8%", top: "15%", width: "35vw", height: "35vw", background: "radial-gradient(circle, rgba(201,168,76,0.07) 0%, rgba(201,168,76,0.02) 50%, transparent 70%)", borderRadius: "50%" }} />
-      <div className="absolute hidden md:block" style={{ right: "-5%", top: "-20%", width: "60vw", height: "60vw", background: "radial-gradient(circle, rgba(201,168,76,0.03) 0%, transparent 60%)", borderRadius: "50%" }} />
-      <svg className="absolute inset-0 h-full w-full opacity-[0.04]" aria-hidden="true">
-        <pattern id="hero-dots" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#1A2B6B" /></pattern>
-        <rect width="100%" height="100%" fill="url(#hero-dots)" />
-      </svg>
-      <div className="absolute text-[#C9A84C] opacity-[0.10] hidden md:block" style={{ right: "6%", bottom: "18%", width: "80px", transform: "rotate(25deg)" }}><LeafThin /></div>
-      <div className="absolute text-[#C9A84C] opacity-[0.08] hidden md:block" style={{ left: "42%", top: "8%", width: "100px", transform: "rotate(40deg)" }}><LeafHorizontal /></div>
-    </div>
-  );
-}
-
 function ScatterDark() {
   return (
     <div className="pointer-events-none absolute inset-0">
@@ -98,14 +83,13 @@ export function HomeClient() {
   const t = useTranslations();
   const isRtl = useLocale() === "ar";
 
-  const consultHref = "/contact";
   const waHref = whatsappUrl();
 
   return (
     <div>
       {/* ═══ HERO ═══ */}
       <section className="relative flex min-h-screen flex-col items-center overflow-hidden bg-warm md:flex-row md:items-center">
-        <HeroBackground />
+        <NeatGradientBackground className="pointer-events-none absolute inset-0" />
 
         <div className="relative z-[1] flex w-full items-center justify-center px-6 py-10 sm:px-10 md:w-1/2 md:py-0 lg:px-14">
           <Parallax speed={26} className="flex w-full justify-center">
@@ -135,12 +119,9 @@ export function HomeClient() {
             </p>
           </Reveal>
           <Reveal y={18} delay={0.18}>
-            <div className="mt-8 flex flex-col items-center gap-[14px] sm:flex-row sm:justify-center md:justify-start">
-              <Link href={consultHref} className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-gold px-7 py-3 text-sm font-semibold text-navy transition-all hover:shadow-[0_4px_20px_rgba(201,168,76,0.35)] hover:brightness-110">
+            <div className="mt-8 flex justify-center md:justify-start">
+              <a href={waHref} target="_blank" rel="noopener noreferrer" className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-gold px-7 py-3 text-sm font-semibold text-navy transition-all hover:shadow-[0_4px_20px_rgba(201,168,76,0.35)] hover:brightness-110">
                 <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
-                {t("hero.ctaConsult")}
-              </Link>
-              <a href={waHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-lg border-[1.5px] border-navy/20 px-7 py-3 text-sm font-semibold text-navy transition-all hover:border-navy/40 hover:bg-navy/[0.03]">
                 {t("hero.ctaWhatsapp")}
               </a>
             </div>
@@ -394,12 +375,9 @@ export function HomeClient() {
               <p className="mt-3 text-base text-navy/70">
                 {t("ctaBanner.subtext")}
               </p>
-              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <Link href={consultHref} className="group relative inline-flex h-[52px] items-center justify-center overflow-hidden rounded-[10px] bg-gold px-8 text-sm font-semibold text-navy transition-all hover:shadow-[0_4px_20px_rgba(201,168,76,0.35)] hover:brightness-110">
+              <div className="mt-8 flex justify-center">
+                <a href={waHref} target="_blank" rel="noopener noreferrer" className="group relative inline-flex h-[52px] items-center justify-center overflow-hidden rounded-[10px] bg-gold px-8 text-sm font-semibold text-navy transition-all hover:shadow-[0_4px_20px_rgba(201,168,76,0.35)] hover:brightness-110">
                   <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
-                  {t("hero.ctaConsult")}
-                </Link>
-                <a href={waHref} target="_blank" rel="noopener noreferrer" className="inline-flex h-[52px] items-center justify-center rounded-[10px] border-[1.5px] border-navy/20 px-8 text-sm font-semibold text-navy transition-all hover:border-navy/40 hover:bg-navy/[0.03]">
                   {t("hero.ctaWhatsapp")}
                 </a>
               </div>

@@ -56,12 +56,35 @@ const securityHeaders = [
   },
 ];
 
+const staticAssetCache = [
+  {
+    key: "Cache-Control",
+    value: "public, max-age=604800, stale-while-revalidate=2592000",
+  },
+];
+
 const nextConfig: NextConfig = {
   async headers() {
     return [
       {
         source: "/(.*)",
         headers: securityHeaders,
+      },
+      {
+        source: "/images/:path*",
+        headers: staticAssetCache,
+      },
+      {
+        source: "/logo-icon.png",
+        headers: staticAssetCache,
+      },
+      {
+        source: "/logo-ar.png",
+        headers: staticAssetCache,
+      },
+      {
+        source: "/logo-icon.svg",
+        headers: staticAssetCache,
       },
     ];
   },
