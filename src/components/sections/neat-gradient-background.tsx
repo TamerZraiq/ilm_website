@@ -7,10 +7,10 @@ import { useReducedMotion } from "framer-motion";
 const CONFIG: NeatConfig = {
   colors: [
     { color: "#FFFFFF", enabled: true },
-    { color: "#DBB770", enabled: true },
-    { color: "#D6B773", enabled: true },
+    { color: "#EEDCB0", enabled: true },
+    { color: "#E8D4A6", enabled: true },
     { color: "#FFFFFF", enabled: true },
-    { color: "#D9B76D", enabled: true },
+    { color: "#ECDAAF", enabled: true },
     { color: "#FF9A9E", enabled: false },
   ],
   speed: 2.5,
@@ -22,7 +22,7 @@ const CONFIG: NeatConfig = {
   shadows: 1,
   highlights: 5,
   colorBrightness: 1,
-  colorSaturation: 7,
+  colorSaturation: 2.5,
   wireframe: false,
   antialias: false,
   colorBlending: 8,
