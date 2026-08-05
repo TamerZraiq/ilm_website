@@ -10,8 +10,8 @@ interface RevealProps {
   className?: string;
 }
 
-const ease = [0.22, 1, 0.36, 1] as const;
-
+// Matches the spring house style in components/motion/motion.tsx — critically
+// damped (no overshoot), so every reveal on the site settles the same way.
 export function Reveal({
   children,
   direction = "up",
@@ -29,7 +29,7 @@ export function Reveal({
       initial={hidden}
       whileInView={visible}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.7, ease, delay }}
+      transition={{ type: "spring", bounce: 0, duration: 0.7, delay }}
       className={className}
     >
       {children}

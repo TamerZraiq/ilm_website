@@ -2,7 +2,7 @@
 
 # Ilm Learning Center — Project Rules
 
-Public marketing site for a real tutoring center in Palestine (GCSE, A-Level, IB, Tawjihi). Bilingual EN/AR with RTL. Quality and correctness over speed.
+Public marketing site for a real tutoring center in Palestine (GCSE, A-Level, IB, Tawjihi, SAT, IELTS, AP, CLEP, and school curriculum support). Bilingual EN/AR with RTL. Quality and correctness over speed.
 
 ## Stack (do not deviate)
 
@@ -26,7 +26,7 @@ Next.js 16 App Router, TypeScript strict, Tailwind 4, next-intl, Vercel. That's 
 
 ## Brand
 
-Navy `#1A2B6B`, gold `#C9A84C`. EN: Plus Jakarta Sans, AR: Cairo. Premium through restraint — no extra accent colors, gradients, or ornamentation.
+Navy `#1A2B6B`, gold `#C9A84C`. EN: Plus Jakarta Sans, AR: Tajawal. Premium through restraint — no extra accent colors, gradients, or ornamentation.
 
 ## Out of scope
 

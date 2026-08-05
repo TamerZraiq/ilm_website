@@ -2,29 +2,30 @@
   "dir": "ltr",
   "meta": {
     "siteName": "Ilm Learning Center",
-    "siteDescription": "Expert tutoring for GCSE, A-Level, IB, and Tawjihi students in Palestine.",
+    "siteDescription": "Expert tutoring in Palestine — GCSE, A-Level, IB, Tawjihi, SAT, IELTS, and more.",
     "home": {
       "title": "Expert Tutoring in Palestine",
-      "description": "Expert tutoring for GCSE, A-Level, IB, and Tawjihi students. Personalised sessions built around each student's goals."
+      "description": "Expert tutoring for every curriculum — GCSE, A-Level, IB, Tawjihi, SAT, IELTS, and more. Personalised sessions built around your goals."
     },
     "programs": {
-      "title": "Our Programs",
-      "description": "Tutoring programs for GCSE, A-Level, IB Diploma, and Palestinian Tawjihi examinations. Subject specialists covering all major disciplines."
+      "title": "GCSE, A-Level, IB, Tawjihi & More",
+      "description": "Tutoring for GCSE, A-Level, IB, Tawjihi, SAT, IELTS, AP, CLEP, and everyday school curriculum support. Subject specialists for every level."
     },
     "about": {
-      "title": "About Us",
-      "description": "Ilm Learning Center — Palestinian educators providing expert, personalised tutoring for GCSE, A-Level, IB, and Tawjihi students."
+      "title": "Our Story & Approach to Tutoring",
+      "description": "Ilm Learning Center — Palestinian educators providing expert, personalised tutoring across every major curriculum and standardised test."
     },
     "contact": {
-      "title": "Contact Us",
-      "description": "Get in touch with Ilm Learning Center. Enquire about GCSE, A-Level, IB, or Tawjihi tutoring sessions."
+      "title": "Contact Us — Message on WhatsApp",
+      "description": "Get in touch with Ilm Learning Center. Enquire about GCSE, A-Level, IB, Tawjihi, SAT, IELTS, or any other tutoring you need."
     }
   },
   "nav": {
     "home": "Home",
     "programs": "Programs",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "whatsapp": "WhatsApp Us"
   },
   "footer": {
     "tagline": "Empowering students across Palestine",
@@ -32,33 +33,33 @@
     "programs": "Programs",
     "quickLinks": "Quick Links",
     "contactUs": "Contact Us",
-    "followUs": "Follow Us",
     "gcse": "GCSE",
     "alevel": "A-Level",
     "ib": "IB",
     "tawjihi": "Tawjihi",
-    "email": "info@ilmlearningcenter.com",
-    "hours": "Saturday – Thursday: 9am – 9pm",
+    "viewAll": "View all programs →",
+    "email": "ilmlearningcenter.ilc@gmail.com",
+    "address": "Tireh Main Street, Ramallah — 4th Floor, Murrah & Falaneh Center",
+    "hours": {
+      "academicLabel": "Academic Year",
+      "academic": "Sat–Sun, 9am–4pm · Mon–Thu, 3pm–6pm",
+      "summerLabel": "Summer",
+      "summer": "Sat–Tue (occasionally Wed), 10am–2pm"
+    },
     "whatsapp": "Chat on WhatsApp"
   },
   "hero": {
     "label": "Tutoring Centre — Palestine",
-    "headline": "Unlock Your Full Academic Potential",
     "title1": "Where Knowledge",
     "title2": "Takes Root",
-    "scrollHint": "Scroll to explore ↓",
-    "subheadline": "Expert tutoring for GCSE, A-Level, IB, and Tawjihi students. Personalised sessions built around each student's goals.",
+    "subheadline": "Few centres in Palestine teach Tawjihi and GCSE, A-Level, IB, and SAT under one roof. Ilm does — one-to-one, with a specialist who knows your exact syllabus.",
     "ctaPrimary": "Explore Programs",
-    "ctaSecondary": "Get in Touch",
-    "ctaConsult": "Book a free consultation",
     "ctaWhatsapp": "Message us on WhatsApp",
-    "curriculaLabel": "We teach",
-    "trustLine": "Trusted by students across Palestine"
+    "curriculaLabel": "We teach"
   },
   "feature": {
     "title": "This is what a session actually looks like.",
     "body": "No crowded classroom, no generic worksheet — one tutor, one student, and a plan built around the gaps that matter.",
-    "figLabel": "A tutoring session at Ilm",
     "badge": "Inside a session",
     "altTutoring": "A tutor working one-to-one with a young student at Ilm",
     "altKids": "Two young learners drawing together during a session",
@@ -72,22 +73,23 @@
     "step1Desc": "Send one message with the subject, level, and where the student is struggling. It takes two minutes.",
     "step2Title": "Free consultation & match",
     "step2Desc": "We assess the gaps and match the student with the right subject specialist — no charge, no pressure.",
-    "step3Title": "Personalised sessions",
-    "step3Desc": "One-to-one lessons built around a real plan, with exam technique and past papers that move the grade."
+    "step3Title": "Sessions that follow the plan",
+    "step3Desc": "One-to-one, using the plan from your consultation — exam technique and real past papers, until the grade moves."
   },
   "statement": {
     "text": "We don't run classes. We build a plan around one student."
   },
   "programs": {
     "sectionTitle": "What We Teach",
-    "galleryIntro": "Four curricula, one standard of tutoring — taught by specialists who know each syllabus inside out.",
+    "galleryIntro": "GCSE, A-Level, IB, Tawjihi, standardised tests, and everyday schoolwork — taught by specialists who know each syllabus inside out. Don't see it here? Ask us anyway.",
     "pageTitle": "Our Programs",
-    "pageIntro": "We offer expert tutoring across the most widely studied curricula in Palestine. Whether you're preparing for international examinations or the national Tawjihi, our tutors are subject specialists who know the syllabus inside out.",
+    "pageIntro": "We cover the most widely studied curricula and exams in Palestine, plus the standardised tests students need for university abroad — and everyday coursework in between. If your subject isn't listed, get in touch and we'll find the right tutor.",
+    "gradeRange": "From Grade 1 through university admission — every subject, every level.",
     "gcse": {
       "name": "GCSE",
       "kicker": "Years 10–11",
-      "shortDesc": "Core and extended subjects for Year 10–11 students",
-      "longDesc": "Our GCSE programme supports Year 10 and 11 students sitting Cambridge IGCSE and Edexcel GCSE examinations. We cover all core and extended subjects with a focus on exam technique and conceptual clarity."
+      "shortDesc": "Core and extended subjects for Years 10–11 students",
+      "longDesc": "Our GCSE programme supports Years 10 and 11 students sitting Cambridge IGCSE and Edexcel GCSE examinations. We cover all core and extended subjects with a focus on exam technique and conceptual clarity."
     },
     "alevel": {
       "name": "A-Level",
@@ -107,14 +109,81 @@
       "shortDesc": "Full support for the Palestinian national curriculum",
       "longDesc": "Complete preparation for the Palestinian General Secondary Education Certificate (Tawjihi). We cover all branches — Scientific, Literary, and Commercial — with tutors who understand the Ministry of Education curriculum."
     },
-    "tawjihiBranches": "All Tawjihi branches covered — Scientific, Literary, and Commercial",
+    "sat": {
+      "name": "SAT",
+      "kicker": "University Admissions",
+      "shortDesc": "Preparation for the US college admissions test",
+      "longDesc": "Structured preparation for the SAT, covering Reading, Writing, and Math, with timed practice tests and focused work on each student's weaker sections."
+    },
+    "ielts": {
+      "name": "IELTS",
+      "kicker": "English Proficiency",
+      "shortDesc": "Preparation for the international English language test",
+      "longDesc": "Focused preparation across all four IELTS components — Listening, Reading, Writing, and Speaking — for students applying to universities or programmes that require an English proficiency score."
+    },
+    "toefl": {
+      "name": "TOEFL",
+      "kicker": "English Proficiency",
+      "shortDesc": "Preparation for the Test of English as a Foreign Language",
+      "longDesc": "Focused preparation for the TOEFL iBT, covering Reading, Listening, Speaking, and Writing, for students applying to universities that require this specific English proficiency score."
+    },
+    "ap": {
+      "name": "AP",
+      "kicker": "Advanced Placement",
+      "shortDesc": "Subject-specific preparation for AP exams",
+      "longDesc": "Exam-focused tutoring for Advanced Placement subjects, built around the official AP curriculum and scoring criteria, with practice drawn from past exam questions."
+    },
+    "clep": {
+      "name": "CLEP",
+      "kicker": "College Credit by Exam",
+      "shortDesc": "Preparation for College-Level Examination Program tests",
+      "longDesc": "Targeted preparation for CLEP exams, helping students test out of introductory college courses and earn credit faster."
+    },
+    "gre": {
+      "name": "GRE",
+      "kicker": "Graduate Admissions",
+      "shortDesc": "Preparation for graduate school admissions",
+      "longDesc": "Preparation for the GRE General Test — Verbal Reasoning, Quantitative Reasoning, and Analytical Writing — for students applying to graduate programmes abroad."
+    },
+    "checkpoint": {
+      "name": "Checkpoint",
+      "kicker": "Primary & Lower Secondary",
+      "shortDesc": "Cambridge Checkpoint and progression tests for younger students",
+      "longDesc": "Support for Cambridge Primary and Lower Secondary Checkpoint exams, helping younger students build strong foundations before they begin GCSE or IGCSE."
+    },
+    "schoolCurriculum": {
+      "name": "School Curriculum",
+      "kicker": "Ongoing Coursework",
+      "shortDesc": "Homework and coursework support across any school curriculum",
+      "longDesc": "Not preparing for a specific exam yet? We support day-to-day schoolwork and homework across any curriculum, keeping students on track between formal exam preparation."
+    },
     "learnMore": "Learn more →",
+    "searchPlaceholder": "Search for a subject, exam, or curriculum…",
+    "noResultsHeading": "Nothing matched exactly",
+    "noResultsText": "We teach far more than what's listed here — message us and we'll find the right tutor for what your child needs.",
     "ctaHeading": "Don't see your subject?",
     "ctaText": "Get in touch — we'll find the right tutor.",
-    "ctaButton": "Contact Us"
+    "ctaButton": "Contact Us",
+    "subjects": {
+      "heading": "Subjects We Cover",
+      "tagline": "One subject or ten — every session is built around what your child needs.",
+      "math": "Math",
+      "physics": "Physics",
+      "chemistry": "Chemistry",
+      "science": "Science",
+      "arabic": "Arabic",
+      "english": "English",
+      "history": "History",
+      "socialStudies": "Social Studies",
+      "economics": "Economics",
+      "businessStudies": "Business Studies",
+      "ict": "ICT",
+      "religion": "Religion"
+    }
   },
   "whyIlm": {
     "title": "Why Students Choose Ilm",
+    "imageAlt": "Students and a tutor together at the Ilm centre",
     "specialists": {
       "title": "Subject Specialists",
       "desc": "Our tutors teach only their area of expertise — not generalists covering everything."
@@ -124,8 +193,8 @@
       "desc": "One of few centres supporting the Palestinian curriculum alongside international qualifications."
     },
     "tailored": {
-      "title": "Built Around You",
-      "desc": "Every session is tailored to the individual student's gaps, not a generic syllabus run-through."
+      "title": "Exam Technique, Not Just Content",
+      "desc": "Past papers, marking schemes, and the technique examiners actually reward — knowing the material isn't the same as knowing how to score it."
     }
   },
   "testimonials": {
@@ -137,13 +206,15 @@
   },
   "ctaBanner": {
     "heading": "Ready to start?",
-    "subtext": "Get in touch and we'll match you with the right tutor.",
+    "subtext": "Message us on WhatsApp and we'll match you with the right tutor.",
     "button": "Contact Us"
   },
   "about": {
     "pageTitle": "About Ilm Learning Center",
     "story1": "Ilm Learning Center was founded in Palestine with one goal: to give every student access to the kind of expert, focused tutoring that makes the difference between struggling and succeeding. Ilm (علم) means knowledge in Arabic — it's not just our name, it's our purpose.",
-    "story2": "We work with students preparing for GCSE, A-Level, IB, and Tawjihi examinations, offering personalised one-to-one sessions that are built around each student's specific needs, not a generic programme.",
+    "story2": "We work with students preparing for GCSE, A-Level, IB, Tawjihi, SAT, IELTS, AP, CLEP, and everyday schoolwork — matched one-to-one with a tutor who specialises in that exact subject and syllabus, not a generalist covering everything.",
+    "videoHeading": "See Ilm in a minute",
+    "videoIntro": "A short look at what we teach and how a session actually works.",
     "valuesTitle": "What We Stand For",
     "excellence": {
       "title": "Excellence",
@@ -151,7 +222,7 @@
     },
     "personalisation": {
       "title": "Personalisation",
-      "desc": "No two students are the same. We don't run classes — we build individual learning plans."
+      "desc": "Every plan starts with a real diagnostic — where the student is actually stuck — not a syllabus we run through top to bottom regardless."
     },
     "community": {
       "title": "Community",
@@ -170,9 +241,15 @@
     "intro": "Message us on WhatsApp and we'll get back to you the same day.",
     "whatsapp": "Chat on WhatsApp",
     "emailLabel": "Email",
-    "emailAddress": "info@ilmlearningcenter.com",
-    "location": "Palestine",
-    "hours": "Saturday – Thursday, 9:00am – 9:00pm",
+    "emailAddress": "ilmlearningcenter.ilc@gmail.com",
+    "location": "4th Floor, Murrah & Falaneh Center, Tireh Main Street — across from Jasmine Café",
+    "directions": "Get Directions",
+    "hours": {
+      "academicLabel": "Academic Year",
+      "academic": "Sat–Sun, 9am–4pm · Mon–Thu, 3pm–6pm",
+      "summerLabel": "Summer",
+      "summer": "Sat–Tue (occasionally Wed), 10am–2pm"
+    },
     "hoursLabel": "Working Hours",
     "locationLabel": "Location"
   },

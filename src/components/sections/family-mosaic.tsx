@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import { useReducedMotion } from "framer-motion";
 import { RevealImage } from "@/components/motion/motion";
 import { BrandImage } from "@/components/ui/brand-image";
 import { cn } from "@/lib/utils";
@@ -20,8 +21,10 @@ export function AutoVideo({
 }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
+  const reduce = useReducedMotion();
 
   useEffect(() => {
+    if (reduce) return;
     const el = ref.current;
     if (!el) return;
     const observer = new IntersectionObserver(
@@ -35,7 +38,7 @@ export function AutoVideo({
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [reduce]);
 
   return (
     <figure className={cn("relative overflow-hidden bg-navy-dark", className)}>

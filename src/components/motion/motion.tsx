@@ -8,7 +8,16 @@ import {
   useReducedMotion,
 } from "framer-motion";
 
-const EASE = [0.22, 1, 0.36, 1] as const;
+// Critically damped springs (bounce: 0) for the whole reveal system — no
+// overshoot, but a spring's organic, velocity-aware settle reads distinctly
+// different from a fixed cubic-bezier duration. Every Reveal/RevealImage on
+// the site runs through this, so the choice is a house style, not a
+// per-section flourish — see HeroIllustration for the one deliberate
+// exception (a touch of bounce) that marks the page's single signature
+// moment.
+const SPRING = { type: "spring", bounce: 0, duration: 0.7 } as const;
+const SPRING_IMAGE = { type: "spring", bounce: 0, duration: 0.9 } as const;
+const SPRING_IMAGE_INNER = { type: "spring", bounce: 0, duration: 1.05 } as const;
 
 /** Fade + rise as the element scrolls into view. */
 export function Reveal({
@@ -29,7 +38,36 @@ export function Reveal({
       initial={reduce ? false : { opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-12%" }}
-      transition={{ duration: 0.8, ease: EASE, delay }}
+      transition={{ ...SPRING, delay }}
+    >
+      {children}
+    </m.div>
+  );
+}
+
+/** Fade + rise on mount, not on scroll — for content that's already in the
+ *  initial viewport (the hero). `whileInView` has nothing to trigger on
+ *  there since the element never "scrolls into view," and it ships as an
+ *  inert `opacity:0` in any render that doesn't run the intersection
+ *  observer (crawlers, link-preview bots, backgrounded tabs). */
+export function RevealOnLoad({
+  children,
+  delay = 0,
+  y = 24,
+  className,
+}: {
+  children: ReactNode;
+  delay?: number;
+  y?: number;
+  className?: string;
+}) {
+  const reduce = useReducedMotion();
+  return (
+    <m.div
+      className={className}
+      initial={reduce ? false : { opacity: 0, y }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ ...SPRING, delay }}
     >
       {children}
     </m.div>
@@ -52,14 +90,14 @@ export function RevealImage({
       initial={{ clipPath: "inset(0 0 100% 0)" }}
       whileInView={{ clipPath: "inset(0 0 0% 0)" }}
       viewport={{ once: true, margin: "-10%" }}
-      transition={{ duration: 1.1, ease: EASE }}
+      transition={SPRING_IMAGE}
     >
       <m.div
         className="h-full w-full"
         initial={{ scale: 1.18 }}
         whileInView={{ scale: 1 }}
         viewport={{ once: true, margin: "-10%" }}
-        transition={{ duration: 1.3, ease: EASE }}
+        transition={SPRING_IMAGE_INNER}
       >
         {children}
       </m.div>

@@ -1,24 +1,24 @@
 "use client";
 
-import { Link } from "@/i18n/navigation";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import {
   GraduationCap,
   MessageSquare,
   ClipboardCheck,
   Sparkles,
-  ArrowRight,
 } from "lucide-react";
 import { HeroIllustration } from "@/components/sections/hero-illustration";
-import { Reveal, RevealImage, Parallax } from "@/components/motion/motion";
-import { HorizontalGallery } from "@/components/motion/horizontal-gallery";
+import { Reveal, RevealOnLoad, RevealImage, Parallax } from "@/components/motion/motion";
 import { BrandImage } from "@/components/ui/brand-image";
 import { FamilyMosaic } from "@/components/sections/family-mosaic";
+import { FlowyGradientBackground } from "@/components/sections/flowy-gradient-background";
+import { CurriculumGallery } from "@/components/sections/curriculum-gallery";
+import { Link } from "@/i18n/navigation";
 import { whatsappUrl } from "@/lib/site";
+import { CURRICULA_KEYS } from "@/lib/curricula";
 import {
   LeafHorizontal,
   LeafVertical,
-  LeafThin,
   LeafTall,
   LeafMedium,
   StarLarge,
@@ -32,10 +32,6 @@ const IMG: Record<string, string | undefined> = {
   step1: "/images/ILC/tutor-focus.jpg",
   step2: "/images/ILC/peer-study.jpg",
   step3: "/images/ILC/tutoring-1on1.jpg",
-  gcse: "/images/prog-gcse.jpg",
-  alevel: "/images/prog-alevel.jpg",
-  ib: "/images/prog-ib.jpg",
-  tawjihi: "/images/prog-tawjihi.jpg",
   driftB: "/images/ILC/study-pair.jpg",
   whyIlm: "/images/ILC/family-group.jpg",
 };
@@ -54,33 +50,11 @@ const HOME_MOSAIC = [
   { src: "/images/ILC/class-smiles.jpg", altKey: "feature.altClass" },
 ] as const;
 
-const PROGRAMS_META = [
-  { key: "gcse", img: IMG.gcse, variant: 1 },
-  { key: "alevel", img: IMG.alevel, variant: 2 },
-  { key: "ib", img: IMG.ib, variant: 3 },
-  { key: "tawjihi", img: IMG.tawjihi, variant: 5 },
-] as const;
-
 const STEPS = [
   { icon: MessageSquare, img: IMG.step1, variant: 4, tk: "step1Title", dk: "step1Desc" },
   { icon: ClipboardCheck, img: IMG.step2, variant: 1, tk: "step2Title", dk: "step2Desc" },
   { icon: GraduationCap, img: IMG.step3, variant: 6, tk: "step3Title", dk: "step3Desc" },
 ] as const;
-
-function HeroBackground() {
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="absolute hidden md:block" style={{ left: "8%", top: "15%", width: "35vw", height: "35vw", background: "radial-gradient(circle, rgba(201,168,76,0.07) 0%, rgba(201,168,76,0.02) 50%, transparent 70%)", borderRadius: "50%" }} />
-      <div className="absolute hidden md:block" style={{ right: "-5%", top: "-20%", width: "60vw", height: "60vw", background: "radial-gradient(circle, rgba(201,168,76,0.03) 0%, transparent 60%)", borderRadius: "50%" }} />
-      <svg className="absolute inset-0 h-full w-full opacity-[0.04]" aria-hidden="true">
-        <pattern id="hero-dots" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#1A2B6B" /></pattern>
-        <rect width="100%" height="100%" fill="url(#hero-dots)" />
-      </svg>
-      <div className="absolute text-[#C9A84C] opacity-[0.10] hidden md:block" style={{ right: "6%", bottom: "18%", width: "80px", transform: "rotate(25deg)" }}><LeafThin /></div>
-      <div className="absolute text-[#C9A84C] opacity-[0.08] hidden md:block" style={{ left: "42%", top: "8%", width: "100px", transform: "rotate(40deg)" }}><LeafHorizontal /></div>
-    </div>
-  );
-}
 
 function ScatterDark() {
   return (
@@ -96,16 +70,14 @@ function ScatterDark() {
 
 export function HomeClient() {
   const t = useTranslations();
-  const isRtl = useLocale() === "ar";
 
-  const consultHref = "/contact";
   const waHref = whatsappUrl();
 
   return (
     <div>
       {/* ═══ HERO ═══ */}
       <section className="relative flex min-h-screen flex-col items-center overflow-hidden bg-warm md:flex-row md:items-center">
-        <HeroBackground />
+        <FlowyGradientBackground />
 
         <div className="relative z-[1] flex w-full items-center justify-center px-6 py-10 sm:px-10 md:w-1/2 md:py-0 lg:px-14">
           <Parallax speed={26} className="flex w-full justify-center">
@@ -114,49 +86,54 @@ export function HomeClient() {
         </div>
 
         <div className="relative z-[1] w-full px-6 pb-16 text-center md:w-1/2 md:pb-0 md:ps-10 md:pe-[8%] md:text-start">
-          <Reveal y={20}>
+          <RevealOnLoad y={20}>
             <p className="mb-6 text-[11px] font-semibold uppercase tracking-[3px] text-gold">
               {t("hero.label")}
             </p>
-          </Reveal>
-          <Reveal y={26} delay={0.05}>
+          </RevealOnLoad>
+          <RevealOnLoad y={26} delay={0.05}>
             <h1 className="text-[2.2rem] font-bold leading-[1.05] tracking-[-0.03em] text-navy text-balance sm:text-5xl md:text-[56px]">
               {t("hero.title1")}
               <br />
               {t("hero.title2")}
             </h1>
-          </Reveal>
+          </RevealOnLoad>
           <div className="relative mx-auto mt-3 h-[3px] w-48 overflow-hidden rounded-full bg-gold md:mx-0">
             <div className="absolute inset-0 -translate-x-full animate-[shimmer_3s_ease-in-out_infinite]" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)" }} />
           </div>
-          <Reveal y={20} delay={0.12}>
+          <RevealOnLoad y={16} delay={0.09}>
+            <p className="mt-4 text-lg font-semibold text-navy md:text-xl">
+              {t("meta.siteName")}
+            </p>
+          </RevealOnLoad>
+          <RevealOnLoad y={20} delay={0.12}>
             <p className="mx-auto mt-5 max-w-[440px] text-[16px] leading-[1.7] text-navy/70 md:mx-0">
               {t("hero.subheadline")}
             </p>
-          </Reveal>
-          <Reveal y={18} delay={0.18}>
-            <div className="mt-8 flex flex-col items-center gap-[14px] sm:flex-row sm:justify-center md:justify-start">
-              <Link href={consultHref} className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-gold px-7 py-3 text-sm font-semibold text-navy transition-all hover:shadow-[0_4px_20px_rgba(201,168,76,0.35)] hover:brightness-110">
+          </RevealOnLoad>
+          <RevealOnLoad y={18} delay={0.18}>
+            <div className="mt-8 flex flex-wrap justify-center gap-3 md:justify-start">
+              <a href={waHref} target="_blank" rel="noopener noreferrer" className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-gold px-7 py-3 text-sm font-semibold text-navy transition-all hover:scale-[1.03] hover:shadow-[0_4px_20px_rgba(201,168,76,0.35)] hover:brightness-110 active:scale-[0.97] active:duration-100">
                 <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
-                {t("hero.ctaConsult")}
-              </Link>
-              <a href={waHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-lg border-[1.5px] border-navy/20 px-7 py-3 text-sm font-semibold text-navy transition-all hover:border-navy/40 hover:bg-navy/[0.03]">
                 {t("hero.ctaWhatsapp")}
               </a>
+              <Link href="/programs" className="inline-flex items-center justify-center rounded-lg border-[1.5px] border-navy/20 px-7 py-3 text-sm font-semibold text-navy transition-all hover:scale-[1.03] hover:border-navy/40 hover:bg-navy/[0.03] active:scale-[0.97] active:duration-100">
+                {t("hero.ctaPrimary")}
+              </Link>
             </div>
-          </Reveal>
-          <Reveal y={14} delay={0.24}>
+          </RevealOnLoad>
+          <RevealOnLoad y={14} delay={0.24}>
             <div className="mt-9 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 md:justify-start">
               <span className="text-[11px] uppercase tracking-[2px] text-navy/50">
                 {t("hero.curriculaLabel")}
               </span>
-              {PROGRAMS_META.map((p) => (
-                <span key={p.key} className="rounded-full border border-navy/10 bg-white/60 px-3.5 py-1.5 text-[13px] font-semibold text-navy">
-                  {t(`programs.${p.key}.name`)}
+              {CURRICULA_KEYS.map((key) => (
+                <span key={key} className="rounded-full border border-navy/10 bg-white/60 px-3.5 py-1.5 text-[13px] font-semibold text-navy">
+                  {t(`programs.${key}.name`)}
                 </span>
               ))}
             </div>
-          </Reveal>
+          </RevealOnLoad>
         </div>
       </section>
 
@@ -176,7 +153,7 @@ export function HomeClient() {
               </p>
             </Reveal>
           </div>
-          <FamilyMosaic video={ILC.reel2} photos={HOME_MOSAIC} />
+          <FamilyMosaic video={ILC.reel2} photos={HOME_MOSAIC} badgeKey="feature.badge" />
         </div>
       </section>
 
@@ -233,7 +210,7 @@ export function HomeClient() {
       </section>
 
       {/* ═══ STATEMENT ═══ */}
-      <section className="relative flex min-h-[80vh] items-center overflow-hidden bg-navy-dark px-6 py-28 text-white">
+      <section className="relative flex min-h-[80vh] items-center overflow-hidden bg-navy-dark px-6 py-24 text-white lg:py-32">
         <ScatterDark />
         <Parallax speed={90} className="absolute end-[6%] top-[12%] hidden w-[210px] md:block">
           <BrandImage src={ILC.classSmiles} alt="" variant={1} overlay="strong" className="aspect-[3/4] w-full" sizes="210px" />
@@ -243,10 +220,7 @@ export function HomeClient() {
         </Parallax>
         <div className="relative mx-auto w-full max-w-5xl">
           <Reveal>
-            <p className="text-[11px] font-semibold uppercase tracking-[3px] text-gold-light">
-              Ilm
-            </p>
-            <h2 className="mt-5 max-w-[20ch] text-[2.2rem] font-bold leading-[1.12] tracking-[-0.02em] text-balance sm:text-[3.4rem]">
+            <h2 className="max-w-[20ch] text-[2.2rem] font-bold leading-[1.12] tracking-[-0.02em] text-balance sm:text-[3.4rem]">
               {t("statement.text")}
             </h2>
           </Reveal>
@@ -267,40 +241,13 @@ export function HomeClient() {
               {t("programs.galleryIntro")}
             </p>
           </Reveal>
+          <Reveal delay={0.12}>
+            <p className="mt-3 max-w-[52ch] text-[15px] font-semibold leading-[1.75] text-navy text-pretty">
+              {t("programs.gradeRange")}
+            </p>
+          </Reveal>
         </div>
-
-        <HorizontalGallery rtl={isRtl}>
-          {PROGRAMS_META.map((p) => (
-            <Link
-              key={p.key}
-              href="/programs"
-              className="group block w-[78vw] shrink-0 sm:w-[380px]"
-            >
-              <RevealImage className="overflow-hidden rounded-2xl">
-                <BrandImage
-                  src={p.img}
-                  alt={t(`programs.${p.key}.name`)}
-                  variant={p.variant}
-                  className="aspect-[4/5] w-full transition-transform duration-500 group-hover:scale-[1.02]"
-                  sizes="(min-width: 640px) 380px, 78vw"
-                />
-              </RevealImage>
-              <span className="mt-5 block text-[11px] font-semibold uppercase tracking-[2px] text-gold">
-                {t(`programs.${p.key}.kicker`)}
-              </span>
-              <h3 className="mt-1.5 text-xl font-semibold text-navy">
-                {t(`programs.${p.key}.name`)}
-              </h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-navy/70">
-                {t(`programs.${p.key}.shortDesc`)}
-              </p>
-              <span className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-semibold text-gold">
-                {t("programs.learnMore")}
-                <ArrowRight className={`h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1 ${isRtl ? "rotate-180 group-hover:-translate-x-1" : ""}`} />
-              </span>
-            </Link>
-          ))}
-        </HorizontalGallery>
+        <CurriculumGallery />
         <div className="pb-24 lg:pb-32" />
       </section>
 
@@ -310,7 +257,7 @@ export function HomeClient() {
           <RevealImage className="overflow-hidden rounded-3xl">
             <BrandImage
               src={IMG.whyIlm}
-              alt=""
+              alt={t("whyIlm.imageAlt")}
               variant={3}
               className="aspect-[4/3] w-full"
               sizes="(min-width: 1024px) 560px, 100vw"
@@ -321,9 +268,9 @@ export function HomeClient() {
               <h2 className="text-3xl font-bold tracking-[-0.02em] text-navy text-balance sm:text-[2.75rem]">
                 {t("whyIlm.title")}
               </h2>
-              <div className="mt-4 h-[2px] w-12 bg-gold" />
+              <div className="mt-5 h-[2px] w-12 bg-gold" />
             </Reveal>
-            <div className="mt-10 flex flex-col gap-8">
+            <div className="mt-14 flex flex-col gap-8">
               {([
                 { tk: "whyIlm.specialists.title", tf: t("whyIlm.specialists.title"), dk: "whyIlm.specialists.desc", df: t("whyIlm.specialists.desc") },
                 { tk: "whyIlm.tawjihi.title", tf: t("whyIlm.tawjihi.title"), dk: "whyIlm.tawjihi.desc", df: t("whyIlm.tawjihi.desc") },
@@ -354,7 +301,7 @@ export function HomeClient() {
             <h2 className="text-3xl font-bold tracking-[-0.02em] text-white text-balance sm:text-[2.75rem]">
               {t("testimonials.title")}
             </h2>
-            <div className="mx-auto mt-4 h-[2px] w-12 bg-gold" />
+            <div className="mx-auto mt-5 h-[2px] w-12 bg-gold" />
           </Reveal>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {[
@@ -362,7 +309,7 @@ export function HomeClient() {
               { qf: t("testimonials.quote2"), af: t("testimonials.author2") },
             ].map((item, i) => (
               <Reveal key={item.af} delay={i * 0.12}>
-                <div className="h-full rounded-xl border border-white/[0.08] bg-white/[0.05] p-8 backdrop-blur-sm transition-all duration-300 hover:border-gold/20 hover:bg-white/[0.08]">
+                <div className="h-full -translate-y-0 rounded-xl border border-white/[0.08] bg-white/[0.05] p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-gold/20 hover:bg-white/[0.08] hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)]">
                   <span className="mb-3 block text-5xl leading-none text-gold">&ldquo;</span>
                   <p className="text-base italic leading-[1.7] text-white/85">{item.qf}</p>
                   <p className="mt-5 text-[13px] text-white/65">— {item.af}</p>
@@ -394,12 +341,9 @@ export function HomeClient() {
               <p className="mt-3 text-base text-navy/70">
                 {t("ctaBanner.subtext")}
               </p>
-              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <Link href={consultHref} className="group relative inline-flex h-[52px] items-center justify-center overflow-hidden rounded-[10px] bg-gold px-8 text-sm font-semibold text-navy transition-all hover:shadow-[0_4px_20px_rgba(201,168,76,0.35)] hover:brightness-110">
+              <div className="mt-8 flex justify-center">
+                <a href={waHref} target="_blank" rel="noopener noreferrer" className="group relative inline-flex h-[52px] items-center justify-center overflow-hidden rounded-[10px] bg-gold px-8 text-sm font-semibold text-navy transition-all hover:scale-[1.03] hover:shadow-[0_4px_20px_rgba(201,168,76,0.35)] hover:brightness-110 active:scale-[0.97] active:duration-100">
                   <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
-                  {t("hero.ctaConsult")}
-                </Link>
-                <a href={waHref} target="_blank" rel="noopener noreferrer" className="inline-flex h-[52px] items-center justify-center rounded-[10px] border-[1.5px] border-navy/20 px-8 text-sm font-semibold text-navy transition-all hover:border-navy/40 hover:bg-navy/[0.03]">
                   {t("hero.ctaWhatsapp")}
                 </a>
               </div>

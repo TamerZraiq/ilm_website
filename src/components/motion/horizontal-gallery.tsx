@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect, type ReactNode } from "react";
-import { m, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { m, useScroll, useTransform, useSpring, useReducedMotion } from "framer-motion";
 
 /**
  * Pinned horizontal scroll on desktop: the section pins and its track
@@ -41,7 +41,12 @@ export function HorizontalGallery({
     target: sectionRef,
     offset: ["start start", "end end"],
   });
-  const x = useTransform(scrollYProgress, [0, 1], rtl ? [0, maxX] : [0, -maxX]);
+  const xRaw = useTransform(scrollYProgress, [0, 1], rtl ? [0, maxX] : [0, -maxX]);
+  // Critically-damped smoothing so the track catches up to scroll fluidly
+  // instead of snapping 1:1 to every scroll-event tick — still tracks
+  // closely enough to feel directly driven, per the "kill latency" rule.
+  const xSpring = useSpring(xRaw, { stiffness: 300, damping: 40, mass: 0.5 });
+  const x = reduce ? xRaw : xSpring;
 
   return (
     <div

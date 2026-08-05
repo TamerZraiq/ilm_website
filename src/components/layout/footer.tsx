@@ -1,13 +1,14 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import { BookOpen } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
+import { BookOpen, MapPin } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { whatsappUrl } from "@/lib/site";
+import { whatsappUrl, MAPS_URL } from "@/lib/site";
 
 export function Footer() {
   const t = useTranslations("footer");
   const nav = useTranslations("nav");
+  const locale = useLocale();
 
   return (
     <footer className="border-t border-gold/30 bg-navy text-white">
@@ -16,7 +17,9 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-2">
               <BookOpen className="h-5 w-5 text-gold" />
-              <span className="text-lg font-bold">Ilm Learning Center</span>
+              <span className="text-lg font-bold">
+                {locale === "ar" ? "مركز علم التعليمي" : "Ilm Learning Center"}
+              </span>
             </div>
             <p className="mt-3 text-sm text-white/65">{t("tagline")}</p>
           </div>
@@ -30,6 +33,7 @@ export function Footer() {
               <li><Link href="/programs" className="transition-colors hover:text-gold">{t("alevel")}</Link></li>
               <li><Link href="/programs" className="transition-colors hover:text-gold">{t("ib")}</Link></li>
               <li><Link href="/programs" className="transition-colors hover:text-gold">{t("tawjihi")}</Link></li>
+              <li><Link href="/programs" className="font-semibold text-gold transition-colors hover:text-gold-light">{t("viewAll")}</Link></li>
             </ul>
           </div>
 
@@ -50,7 +54,27 @@ export function Footer() {
             </h3>
             <ul className="space-y-2.5 text-sm text-white/65">
               <li>{t("email")}</li>
-              <li>{t("hours")}</li>
+              <li>
+                <a
+                  href={MAPS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-start gap-1.5 transition-colors hover:text-gold"
+                >
+                  <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+                  <span>{t("address")}</span>
+                </a>
+              </li>
+              <li>
+                <span className="block text-xs uppercase tracking-wide text-white/45">
+                  {t("hours.academicLabel")}
+                </span>
+                <span className="block">{t("hours.academic")}</span>
+                <span className="mt-1.5 block text-xs uppercase tracking-wide text-white/45">
+                  {t("hours.summerLabel")}
+                </span>
+                <span className="block">{t("hours.summer")}</span>
+              </li>
               <li>
                 <a
                   href={whatsappUrl()}

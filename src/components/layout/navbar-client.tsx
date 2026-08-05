@@ -3,9 +3,10 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Menu, X } from "lucide-react";
+import { Menu, X, MessageCircle } from "lucide-react";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
+import { whatsappUrl } from "@/lib/site";
 
 const navLinks = [
   { key: "home" as const, href: "/" as const },
@@ -41,9 +42,9 @@ export function NavbarClient({ locale }: { locale: string }) {
     <>
       <header
         className={cn(
-          "sticky top-0 z-50 transition-all duration-300",
+          "site-header sticky top-0 z-50 transition-all duration-300",
           scrolled
-            ? "border-b border-navy/[0.06] bg-white/90 shadow-sm backdrop-blur-md"
+            ? "bg-white/90 shadow-[0_1px_20px_-4px_rgba(26,43,107,0.14)] backdrop-blur-md"
             : "bg-transparent"
         )}
       >
@@ -56,19 +57,9 @@ export function NavbarClient({ locale }: { locale: string }) {
               height={42}
               className="h-[42px] w-auto"
             />
-            {locale === "ar" ? (
-              <Image
-                src="/logo-ar.png"
-                alt="علم — مركز علم التعليمي"
-                width={230}
-                height={244}
-                className="hidden h-[38px] w-auto sm:block"
-              />
-            ) : (
-              <span className="hidden text-[17px] font-bold tracking-tight text-navy sm:block">
-                Ilm Learning Center
-              </span>
-            )}
+            <span className="hidden text-[17px] font-bold tracking-tight text-navy sm:block">
+              {locale === "ar" ? "مركز علم التعليمي" : "Ilm Learning Center"}
+            </span>
           </Link>
 
           <div className="hidden items-center gap-9 md:flex">
@@ -83,16 +74,25 @@ export function NavbarClient({ locale }: { locale: string }) {
               >
                 {t(link.key)}
                 {pathname === link.href && (
-                  <span className="absolute -bottom-1 left-0 h-[2px] w-full bg-gold" />
+                  <span className="absolute -bottom-1 start-0 h-[2px] w-full bg-gold" />
                 )}
               </Link>
             ))}
           </div>
 
-          <div className="hidden md:block">
+          <div className="hidden items-center gap-3 md:flex">
+            <a
+              href={whatsappUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-gold px-4 py-2 text-[13px] font-semibold text-navy transition-all hover:scale-[1.03] hover:brightness-110 active:scale-[0.97] active:duration-100"
+            >
+              <MessageCircle className="h-3.5 w-3.5" />
+              {t("whatsapp")}
+            </a>
             <button
               onClick={handleLocaleSwitch}
-              className="rounded-lg border border-navy/10 px-3.5 py-1.5 text-[13px] font-medium text-navy/70 transition-colors hover:border-gold/30 hover:text-gold"
+              className="rounded-lg border border-navy/10 px-3.5 py-1.5 text-[13px] font-medium text-navy/70 transition-all hover:border-gold/30 hover:text-gold active:scale-[0.94] active:duration-100"
             >
               {switchLocale === "ar" ? "عربي" : "EN"}
             </button>
@@ -100,7 +100,7 @@ export function NavbarClient({ locale }: { locale: string }) {
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="text-navy md:hidden"
+            className="text-navy transition-transform active:scale-90 active:duration-100 md:hidden"
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -109,7 +109,17 @@ export function NavbarClient({ locale }: { locale: string }) {
 
         {mobileOpen && (
           <div className="absolute inset-x-0 top-full border-b border-navy/[0.06] bg-white px-6 pb-6 shadow-lg md:hidden">
-            <div className="flex flex-col gap-1 pt-2">
+            <div className="flex flex-col gap-1 pt-4">
+              <a
+                href={whatsappUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileOpen(false)}
+                className="mb-2 inline-flex items-center justify-center gap-2 rounded-lg bg-gold px-4 py-3 text-[15px] font-semibold text-navy transition-all active:scale-[0.97]"
+              >
+                <MessageCircle className="h-4 w-4" />
+                {t("whatsapp")}
+              </a>
               {navLinks.map((link) => (
                 <Link
                   key={link.key}
