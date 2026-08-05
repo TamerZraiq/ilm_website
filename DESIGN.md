@@ -24,7 +24,7 @@ typography:
     fontWeight: 400
     lineHeight: 1.7
   arabic:
-    fontFamily: "Cairo, system-ui, sans-serif"
+    fontFamily: "Tajawal, system-ui, sans-serif"
     fontWeight: 400
     lineHeight: 1.7
   label:
@@ -67,7 +67,7 @@ The system explicitly rejects the generic 2025/2026 AI-landing-page grammar: no 
 - Two-color discipline: navy + gold, no added accent hues.
 - Warm off-white body background (#F7F5F0), not stark white, not cream-as-AI-default — it is the brand's own tint, not a cliché reach.
 - Generous whitespace; density stays low even with nine parallel program tracks (GCSE/A-Level/IB/Tawjihi/SAT/IELTS/AP/CLEP/School Curriculum) to document — the scattered-typography treatment on "What We Teach" exists specifically to hold that many names without feeling like a directory listing.
-- Bilingual-native: every layout decision is tested in both LTR (English/Jakarta Sans) and RTL (Arabic/Cairo).
+- Bilingual-native: every layout decision is tested in both LTR (English/Jakarta Sans) and RTL (Arabic/Tajawal).
 
 ## 2. Colors
 
@@ -96,9 +96,9 @@ The palette is deliberately narrow: one authority color, one distinction color, 
 
 **Display Font:** Plus Jakarta Sans (with system-ui, sans-serif fallback)
 **Body Font:** Plus Jakarta Sans (same family, lighter weights)
-**Arabic Font:** Cairo (with system-ui, sans-serif fallback) — swaps in fully for `dir="rtl"`, not a fallback patch on the Latin stack.
+**Arabic Font:** Tajawal (with system-ui, sans-serif fallback) — swaps in fully for `dir="rtl"`, not a fallback patch on the Latin stack. (Previously Cairo; swapped 2026-08 for stronger body-text legibility — Cairo's tighter counters read dense at 16px paragraph sizes.)
 
-**Character:** A single confident geometric-humanist sans carries both display and body — Jakarta Sans reads modern and credible without the coldness of a pure geometric face like Inter. Cairo is its Arabic counterpart at matching weight and warmth, chosen so neither language reads as the "translated" afterthought.
+**Character:** A single confident geometric-humanist sans carries both display and body — Jakarta Sans reads modern and credible without the coldness of a pure geometric face like Inter. Tajawal is its Arabic counterpart at matching weight and warmth (rounded terminals, generous counters, built for UI legibility), chosen so neither language reads as the "translated" afterthought.
 
 ### Hierarchy
 - **Display** (700, clamp(2.2rem, 5vw, 56px), line-height 1.05, letter-spacing -0.03em): hero H1 only.
@@ -151,7 +151,7 @@ The hero illustration — the single brand-mark image (hand + leaves + stars, tr
 ### Do:
 - **Do** keep gold to one full-saturation fill per viewport (Single-Accent Rule).
 - **Do** use the warm-paper background (#F7F5F0) as-is — it's the brand's own tint, already differentiated from generic AI-cream by the navy/gold system around it.
-- **Do** test every layout in both `dir="ltr"` (Jakarta Sans) and `dir="rtl"` (Cairo) before calling a section done.
+- **Do** test every layout in both `dir="ltr"` (Jakarta Sans) and `dir="rtl"` (Tajawal) before calling a section done.
 - **Do** treat hover shadow/lift as the only place elevation gets heavier than the 0.04-opacity ambient card shadow.
 - **Do** keep the hero illustration as one cohesive image/asset, not a hand-placed collection of pieces.
 

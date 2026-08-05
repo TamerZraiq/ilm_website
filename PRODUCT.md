@@ -32,4 +32,4 @@ Trustworthy, premium, warm. Credible enough that a parent will hand over tuition
 
 ## Accessibility & Inclusion
 
-Target WCAG 2.1 AA. Specific considerations: full RTL correctness for Arabic (not just text direction but icon/illustration mirroring and reading order), bilingual font legibility (Plus Jakarta Sans / Cairo) at body-text sizes, and `prefers-reduced-motion` support for all entrance/scroll animations.
+Target WCAG 2.1 AA. Specific considerations: full RTL correctness for Arabic (not just text direction but icon/illustration mirroring and reading order), bilingual font legibility (Plus Jakarta Sans / Tajawal) at body-text sizes, and `prefers-reduced-motion` support for all entrance/scroll animations.

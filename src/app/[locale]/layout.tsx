@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Cairo } from "next/font/google";
+import { Plus_Jakarta_Sans, Tajawal } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -12,6 +12,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { LazyMotion, domAnimation } from "framer-motion";
 import { CURRICULA_KEYS } from "@/lib/curricula";
+import { pageAlternates, pageOpenGraph } from "@/lib/site";
 import "../globals.css";
 
 export function generateStaticParams() {
@@ -23,9 +24,10 @@ const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
 });
 
-const cairo = Cairo({
+const tajawal = Tajawal({
   subsets: ["arabic", "latin"],
-  variable: "--font-cairo",
+  weight: ["400", "500", "700", "800"],
+  variable: "--font-tajawal",
 });
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
@@ -47,17 +49,8 @@ export async function generateMetadata({
       template: `%s | ${siteName}`,
     },
     description,
-    alternates: {
-      languages: { en: "/en", ar: "/ar" },
-    },
-    openGraph: {
-      siteName,
-      title: siteName,
-      description,
-      url: `/${locale}`,
-      locale: locale === "ar" ? "ar_PS" : "en_US",
-      type: "website",
-    },
+    alternates: pageAlternates(locale, ""),
+    openGraph: pageOpenGraph({ locale, path: "", title: siteName, description, siteName }),
     twitter: {
       card: "summary_large_image",
       title: siteName,
@@ -97,8 +90,15 @@ export default async function LocaleLayout({
         "@id": orgId,
         name: t("siteName"),
         description: t("siteDescription"),
-        url: `${SITE_URL}/${locale}`,
+        url: `${SITE_URL}${locale === "ar" ? "" : "/en"}`,
         logo: `${SITE_URL}/logo-icon.png`,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "4th Floor, Murrah and Falaneh Center, Tireh Main Street",
+          addressLocality: "Ramallah",
+          addressRegion: "Tireh",
+          addressCountry: "PS",
+        },
         areaServed: {
           "@type": "Country",
           name: "Palestine",
@@ -116,11 +116,11 @@ export default async function LocaleLayout({
   const dir = locale === "ar" ? "rtl" : "ltr";
   const fontClass =
     locale === "ar"
-      ? `${cairo.variable} font-arabic`
+      ? `${tajawal.variable} font-arabic`
       : `${jakarta.variable} font-sans`;
 
   return (
-    <html lang={locale} dir={dir} className={`${jakarta.variable} ${cairo.variable}`}>
+    <html lang={locale} dir={dir} className={`${jakarta.variable} ${tajawal.variable}`}>
       <body className={`${fontClass} min-h-screen flex flex-col bg-warm text-navy antialiased`}>
         <script
           type="application/ld+json"

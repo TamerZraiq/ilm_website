@@ -26,7 +26,7 @@ Next.js 16 App Router, TypeScript strict, Tailwind 4, next-intl, Vercel. That's 
 
 ## Brand
 
-Navy `#1A2B6B`, gold `#C9A84C`. EN: Plus Jakarta Sans, AR: Cairo. Premium through restraint — no extra accent colors, gradients, or ornamentation.
+Navy `#1A2B6B`, gold `#C9A84C`. EN: Plus Jakarta Sans, AR: Tajawal. Premium through restraint — no extra accent colors, gradients, or ornamentation.
 
 ## Out of scope
 

@@ -1,29 +1,18 @@
-/** Single source of truth for which curricula/exams the site lists.
- *  Keys must match objects under the `programs` namespace in
- *  src/messages/{en,ar}.json. Add here first when adding a new one. */
+/** Single source of truth for which curricula/exams the site lists, in
+ *  display priority order. Keys must match objects under the `programs`
+ *  namespace in src/messages/{en,ar}.json. Add here first when adding a
+ *  new one. */
 export const CURRICULA_KEYS = [
-  "gcse",
-  "alevel",
+  "schoolCurriculum",
   "ib",
+  "clep",
+  "gcse",
+  "ap",
+  "sat",
   "tawjihi",
-  "sat",
+  "alevel",
   "ielts",
   "toefl",
-  "ap",
-  "clep",
   "gre",
   "checkpoint",
-  "schoolCurriculum",
-] as const;
-
-export const CORE_CURRICULA = ["gcse", "alevel", "ib", "tawjihi"] as const;
-export const TEST_PREP_CURRICULA = [
-  "sat",
-  "ielts",
-  "toefl",
-  "ap",
-  "clep",
-  "gre",
-  "checkpoint",
-  "schoolCurriculum",
 ] as const;

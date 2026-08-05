@@ -92,12 +92,6 @@ export function BrandImage({
           )}
         </figcaption>
       )}
-
-      {!src && (
-        <span className="absolute end-3 top-3 z-[2] text-[9px] uppercase tracking-[1.5px] text-white/45">
-          Placeholder
-        </span>
-      )}
     </figure>
   );
 }

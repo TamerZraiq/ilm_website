@@ -13,13 +13,14 @@ export function BrandStoryVideo() {
   const poster = locale === "ar" ? "/videos/brand-story-ar-poster.jpg" : "/videos/brand-story-en-poster.jpg";
 
   return (
-    <section className="bg-warm px-6 py-24">
+    <section className="bg-warm px-6 py-24 lg:py-32">
       <div className="mx-auto max-w-4xl">
         <Reveal>
           <h2 className="text-center text-3xl font-bold tracking-tight text-navy sm:text-[2.75rem]">
             {t("videoHeading")}
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-center text-navy/70">{t("videoIntro")}</p>
+          <div className="mx-auto mt-5 h-[2px] w-12 bg-gold" />
+          <p className="mx-auto mt-5 max-w-xl text-center text-navy/70">{t("videoIntro")}</p>
         </Reveal>
         <Reveal delay={0.1}>
           <video

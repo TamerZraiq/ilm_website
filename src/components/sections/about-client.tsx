@@ -37,14 +37,14 @@ export function AboutClient({ translations: t }: { translations: AboutTranslatio
   return (
     <>
       {/* STORY — editorial, left-aligned */}
-      <section className="bg-warm px-6 py-24">
+      <section className="bg-warm px-6 py-24 lg:py-32">
         <div className="mx-auto max-w-7xl">
           <Reveal>
             <h1 className="text-4xl font-bold tracking-tight text-navy sm:text-5xl">
               {t.pageTitle}
             </h1>
           </Reveal>
-          <div className="mt-10 max-w-2xl">
+          <div className="mt-4 max-w-2xl">
             <Reveal delay={0.1}>
               <p className="text-lg leading-relaxed text-navy/70">{t.story1}</p>
             </Reveal>
@@ -58,10 +58,10 @@ export function AboutClient({ translations: t }: { translations: AboutTranslatio
       <BrandStoryVideo />
 
       {/* VALUES — white cards */}
-      <section className="bg-white px-6 py-24">
+      <section className="bg-white px-6 py-24 lg:py-32">
         <div className="mx-auto max-w-7xl">
           <Reveal>
-            <h2 className="mb-12 text-3xl font-bold tracking-tight text-navy">
+            <h2 className="mb-14 text-3xl font-bold tracking-tight text-navy">
               {t.valuesTitle}
             </h2>
           </Reveal>
@@ -86,7 +86,7 @@ export function AboutClient({ translations: t }: { translations: AboutTranslatio
       </section>
 
       {/* FAMILY — this is the community you're joining */}
-      <section className="bg-white px-6 py-24">
+      <section className="bg-white px-6 py-24 lg:py-32">
         <div className="mx-auto max-w-6xl">
           <div className="mb-14 grid gap-x-10 gap-y-6 md:grid-cols-12 md:items-end">
             <Reveal className="md:col-span-7">
@@ -100,7 +100,7 @@ export function AboutClient({ translations: t }: { translations: AboutTranslatio
             </Reveal>
           </div>
 
-          <FamilyMosaic video={FAMILY_REEL} photos={FAMILY_MOSAIC} />
+          <FamilyMosaic video={FAMILY_REEL} photos={FAMILY_MOSAIC} badgeKey="about.familyBadge" />
 
           <Reveal delay={0.1}>
             <div className="mt-10 flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between sm:text-start">
@@ -109,7 +109,7 @@ export function AboutClient({ translations: t }: { translations: AboutTranslatio
               </p>
               <Link
                 href="/contact"
-                className="group inline-flex shrink-0 items-center gap-2 rounded-lg bg-navy px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-navy-dark hover:shadow-[0_4px_20px_rgba(26,43,107,0.25)]"
+                className="group inline-flex shrink-0 items-center gap-2 rounded-lg bg-navy px-6 py-3 text-sm font-semibold text-white transition-all hover:scale-[1.03] hover:bg-navy-dark hover:shadow-[0_4px_20px_rgba(26,43,107,0.25)] active:scale-[0.97] active:duration-100"
               >
                 {t.familyJoin}
                 <ArrowRight className={`h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 ${isRtl ? "rotate-180 group-hover:-translate-x-1" : ""}`} />
