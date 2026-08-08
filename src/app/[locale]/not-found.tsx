@@ -1,21 +1,32 @@
 import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
+import { ButtonRoute } from "@/components/ui/button";
 
 export default async function NotFound() {
   const t = await getTranslations("errors");
 
   return (
-    <section className="flex min-h-[70vh] items-center justify-center bg-navy px-6">
-      <div className="text-center">
-        <p className="text-6xl font-bold text-gold">404</p>
-        <h1 className="mt-4 text-3xl font-bold text-white">{t("notFoundTitle")}</h1>
-        <p className="mt-3 text-lg text-white/65">{t("notFoundMessage")}</p>
-        <Link
-          href="/"
-          className="mt-8 inline-flex h-11 items-center rounded-lg bg-gold px-8 text-sm font-semibold text-navy transition-colors hover:bg-gold-light"
-        >
-          {t("goHome")}
-        </Link>
+    <section className="grain on-dark relative flex min-h-[78vh] items-center justify-center overflow-hidden bg-navy-deep px-6 text-white">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.09]"
+        style={{
+          background:
+            "radial-gradient(circle at 50% 55%, rgba(201,168,76,0.5) 0%, transparent 62%)",
+        }}
+      />
+      <div className="relative text-center">
+        <p aria-hidden className="t-mega leading-none text-white/[0.07]">
+          404
+        </p>
+        <h1 className="t-h2 -mt-[0.32em] text-white text-balance">{t("notFoundTitle")}</h1>
+        <p className="t-lead mx-auto mt-5 max-w-[40ch] text-white/70 text-pretty">
+          {t("notFoundMessage")}
+        </p>
+        <div className="mt-10 flex justify-center">
+          <ButtonRoute href="/" variant="primary" size="lg">
+            {t("goHome")}
+          </ButtonRoute>
+        </div>
       </div>
     </section>
   );

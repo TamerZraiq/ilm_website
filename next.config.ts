@@ -64,6 +64,12 @@ const staticAssetCache = [
 ];
 
 const nextConfig: NextConfig = {
+  // The OG-image route reads its font files at runtime via `process.cwd()`,
+  // which static tracing can't infer — without this they're absent from the
+  // deployed bundle and Arabic renders as empty boxes.
+  outputFileTracingIncludes: {
+    "/[locale]/opengraph-image": ["./assets/fonts/**"],
+  },
   async headers() {
     return [
       {

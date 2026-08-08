@@ -26,7 +26,15 @@ Next.js 16 App Router, TypeScript strict, Tailwind 4, next-intl, Vercel. That's 
 
 ## Brand
 
-Navy `#1A2B6B`, gold `#C9A84C`. EN: Plus Jakarta Sans, AR: Tajawal. Premium through restraint — no extra accent colors, gradients, or ornamentation.
+Navy `#1A2B6B`, gold `#C9A84C`. EN: Plus Jakarta Sans, AR: Tajawal. Premium through restraint — no third accent colour, no gradient text, no ornamentation for its own sake.
+
+**`DESIGN.md` is the design contract, not a description.** Read it before touching any layout, type, colour, or motion. Its §10 "definition of done" is the checklist a section has to pass. The rules that get broken most often:
+
+- No two sections share a layout (§2) or a spacing rhythm.
+- Muted text bottoms out at `navy/70`; `text-gold` is **never** used for text on a light ground — that's `gold-ink` (§4).
+- Use the `t-*` type classes and `section*` rhythm classes rather than ad-hoc Tailwind sizes, so RTL overrides and the fluid scale apply automatically.
+- Entrance motion is not the default answer; prefer `Stagger`/`StaggerItem` over hand-passed delays (§6).
+- Hover-lift only on things that are genuinely clickable.
 
 ## Out of scope
 

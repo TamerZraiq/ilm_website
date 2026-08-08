@@ -1,9 +1,8 @@
 "use client";
 
-import { Award, User, Users, ArrowRight } from "lucide-react";
-import { useLocale } from "next-intl";
-import { Link } from "@/i18n/navigation";
-import { Reveal } from "@/components/ui/reveal";
+import { useTranslations } from "next-intl";
+import { Reveal, ScrollScale, Stagger, StaggerItem } from "@/components/motion/motion";
+import { ButtonRoute } from "@/components/ui/button";
 import { FamilyMosaic } from "@/components/sections/family-mosaic";
 import { BrandStoryVideo } from "@/components/sections/brand-story-video";
 
@@ -15,41 +14,42 @@ const FAMILY_MOSAIC = [
   { src: "/images/ILC/peer-study.jpg", altKey: "about.altPeer" },
 ] as const;
 
-interface AboutTranslations {
-  pageTitle: string;
-  story1: string;
-  story2: string;
-  valuesTitle: string;
-  excellenceTitle: string;
-  excellenceDesc: string;
-  personalisationTitle: string;
-  personalisationDesc: string;
-  communityTitle: string;
-  communityDesc: string;
-  familyTitle: string;
-  familyBody: string;
-  familyNote: string;
-  familyJoin: string;
-}
+const VALUES = ["excellence", "personalisation", "community"] as const;
 
-export function AboutClient({ translations: t }: { translations: AboutTranslations }) {
-  const isRtl = useLocale() === "ar";
+export function AboutClient() {
+  const t = useTranslations("about");
+
   return (
     <>
-      {/* STORY — editorial, left-aligned */}
-      <section className="bg-warm px-6 py-24 lg:py-32">
-        <div className="mx-auto max-w-7xl">
+      {/* ── Story: the brand's own word, set as the ground it's told on ── */}
+      <section className="section relative overflow-hidden bg-warm">
+        {/* علم — "knowledge". The name is the thesis, so it's the artwork. */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute -top-[0.1em] select-none text-navy/[0.05]"
+          style={{
+            insetInlineEnd: "-0.06em",
+            fontFamily: "var(--font-tajawal), serif",
+            fontSize: "clamp(9rem, 26vw, 24rem)",
+            lineHeight: 0.8,
+          }}
+        >
+          علم
+        </span>
+
+        <div className="relative mx-auto max-w-6xl px-6">
           <Reveal>
-            <h1 className="text-4xl font-bold tracking-tight text-navy sm:text-5xl">
-              {t.pageTitle}
-            </h1>
+            <h1 className="t-display max-w-[13ch] text-navy text-balance">{t("pageTitle")}</h1>
           </Reveal>
-          <div className="mt-4 max-w-2xl">
-            <Reveal delay={0.1}>
-              <p className="text-lg leading-relaxed text-navy/70">{t.story1}</p>
+
+          <div className="mt-14 grid gap-x-14 gap-y-8 md:grid-cols-12">
+            <Reveal delay={0.08} className="md:col-span-7">
+              {/* The opening paragraph is the lead — it gets lead sizing and
+               *  the column width, not the same body treatment as the rest. */}
+              <p className="t-lead text-navy/80 text-pretty">{t("story1")}</p>
             </Reveal>
-            <Reveal delay={0.2}>
-              <p className="mt-6 text-lg leading-relaxed text-navy/70">{t.story2}</p>
+            <Reveal delay={0.16} className="md:col-span-5 md:pt-2">
+              <p className="t-body text-navy/70 text-pretty">{t("story2")}</p>
             </Reveal>
           </div>
         </div>
@@ -57,63 +57,57 @@ export function AboutClient({ translations: t }: { translations: AboutTranslatio
 
       <BrandStoryVideo />
 
-      {/* VALUES — white cards */}
-      <section className="bg-white px-6 py-24 lg:py-32">
-        <div className="mx-auto max-w-7xl">
+      {/* ── Values: three columns, no cards, staggered off each other's
+           baseline so the row reads as composed rather than tabulated ── */}
+      <section className="section-loose relative overflow-hidden bg-white">
+        <div className="mx-auto max-w-6xl px-6">
           <Reveal>
-            <h2 className="mb-14 text-3xl font-bold tracking-tight text-navy">
-              {t.valuesTitle}
-            </h2>
+            <h2 className="t-h2 max-w-[16ch] text-navy text-balance">{t("valuesTitle")}</h2>
           </Reveal>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {[
-              { icon: <Award className="h-6 w-6 text-gold" />, tf: t.excellenceTitle, df: t.excellenceDesc },
-              { icon: <User className="h-6 w-6 text-gold" />, tf: t.personalisationTitle, df: t.personalisationDesc },
-              { icon: <Users className="h-6 w-6 text-gold" />, tf: t.communityTitle, df: t.communityDesc },
-            ].map((v, i) => (
-              <Reveal key={v.tf} delay={i * 0.1}>
-                <div className="rounded-xl border border-navy/[0.06] bg-white p-8 shadow-sm">
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-gold/10">
-                    {v.icon}
-                  </div>
-                  <h3 className="text-lg font-bold text-navy">{v.tf}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-navy/70">{v.df}</p>
-                </div>
-              </Reveal>
+
+          <Stagger className="mt-20 grid grid-cols-1 gap-14 md:grid-cols-3 md:gap-10" stagger={0.11}>
+            {VALUES.map((key, i) => (
+              <StaggerItem
+                key={key}
+                anticipate
+                className={i === 1 ? "md:mt-16" : i === 2 ? "md:mt-8" : undefined}
+              >
+                <span aria-hidden className="t-mega block text-[4rem] leading-none text-gold/25 sm:text-[5rem]">
+                  {`0${i + 1}`}
+                </span>
+                <h3 className="t-h3 mt-6 text-navy">{t(`${key}.title`)}</h3>
+                <div className="mt-5 h-px w-10 bg-gold" />
+                <p className="t-body mt-5 text-navy/70 text-pretty">{t(`${key}.desc`)}</p>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 
-      {/* FAMILY — this is the community you're joining */}
-      <section className="bg-white px-6 py-24 lg:py-32">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-14 grid gap-x-10 gap-y-6 md:grid-cols-12 md:items-end">
+      {/* ── Family: heading contained, media bleeding wider than it ── */}
+      <section className="section relative overflow-hidden bg-warm-deep">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="grid gap-x-10 gap-y-6 md:grid-cols-12 md:items-start">
             <Reveal className="md:col-span-7">
-              <h2 className="text-3xl font-bold leading-[1.08] tracking-tight text-navy sm:text-[2.75rem]">
-                {t.familyTitle}
-              </h2>
-              <div className="mt-5 h-[2px] w-12 bg-gold" />
+              <h2 className="t-h2 text-navy text-balance">{t("familyTitle")}</h2>
             </Reveal>
             <Reveal delay={0.1} className="md:col-span-5">
-              <p className="text-[15px] leading-[1.75] text-navy/70">{t.familyBody}</p>
+              <p className="t-body text-navy/70 text-pretty">{t("familyBody")}</p>
             </Reveal>
           </div>
+        </div>
 
+        <ScrollScale className="mx-auto mt-14 max-w-[1440px] px-4 sm:px-6 lg:px-10">
           <FamilyMosaic video={FAMILY_REEL} photos={FAMILY_MOSAIC} badgeKey="about.familyBadge" />
+        </ScrollScale>
 
+        <div className="mx-auto max-w-6xl px-6">
           <Reveal delay={0.1}>
-            <div className="mt-10 flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between sm:text-start">
-              <p className="max-w-[42ch] text-[15px] leading-[1.7] text-navy/70">
-                {t.familyNote}
-              </p>
-              <Link
-                href="/contact"
-                className="group inline-flex shrink-0 items-center gap-2 rounded-lg bg-navy px-6 py-3 text-sm font-semibold text-white transition-all hover:scale-[1.03] hover:bg-navy-dark hover:shadow-[0_4px_20px_rgba(26,43,107,0.25)] active:scale-[0.97] active:duration-100"
-              >
-                {t.familyJoin}
-                <ArrowRight className={`h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 ${isRtl ? "rotate-180 group-hover:-translate-x-1" : ""}`} />
-              </Link>
+            <div className="mt-14 flex flex-col items-center gap-6 text-center sm:flex-row sm:justify-between sm:text-start">
+              <p className="t-lead max-w-[38ch] text-navy/75 text-pretty">{t("familyNote")}</p>
+              <ButtonRoute href="/contact" variant="navy" size="lg" className="shrink-0">
+                {t("familyJoin")}
+              </ButtonRoute>
             </div>
           </Reveal>
         </div>

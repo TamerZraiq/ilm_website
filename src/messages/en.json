@@ -25,7 +25,11 @@
     "programs": "Programs",
     "about": "About",
     "contact": "Contact",
-    "whatsapp": "WhatsApp Us"
+    "whatsapp": "WhatsApp Us",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "switchLanguage": "Switch to Arabic",
+    "skipToContent": "Skip to content"
   },
   "footer": {
     "tagline": "Empowering students across Palestine",
@@ -33,11 +37,7 @@
     "programs": "Programs",
     "quickLinks": "Quick Links",
     "contactUs": "Contact Us",
-    "gcse": "GCSE",
-    "alevel": "A-Level",
-    "ib": "IB",
-    "tawjihi": "Tawjihi",
-    "viewAll": "View all programs →",
+    "viewAll": "View all programs",
     "email": "ilmlearningcenter.ilc@gmail.com",
     "address": "Tireh Main Street, Ramallah — 4th Floor, Murrah & Falaneh Center",
     "hours": {
@@ -77,7 +77,7 @@
     "step3Desc": "One-to-one, using the plan from your consultation — exam technique and real past papers, until the grade moves."
   },
   "statement": {
-    "text": "We don't run classes. We build a plan around one student."
+    "text": "We don't run classes. We build a plan around each student."
   },
   "programs": {
     "sectionTitle": "What We Teach",
@@ -157,8 +157,9 @@
       "shortDesc": "Homework and coursework support across any school curriculum",
       "longDesc": "Not preparing for a specific exam yet? We support day-to-day schoolwork and homework across any curriculum, keeping students on track between formal exam preparation."
     },
-    "learnMore": "Learn more →",
+    "learnMore": "Learn more",
     "searchPlaceholder": "Search for a subject, exam, or curriculum…",
+    "resultCount": "{count, plural, =0 {No matches} one {1 match} other {# matches}}",
     "noResultsHeading": "Nothing matched exactly",
     "noResultsText": "We teach far more than what's listed here — message us and we'll find the right tutor for what your child needs.",
     "ctaHeading": "Don't see your subject?",
@@ -170,6 +171,7 @@
       "math": "Math",
       "physics": "Physics",
       "chemistry": "Chemistry",
+      "biology": "Biology",
       "science": "Science",
       "arabic": "Arabic",
       "english": "English",
