@@ -29,26 +29,5 @@ export default async function AboutPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations("about");
-
-  return (
-    <AboutClient
-      translations={{
-        pageTitle: t("pageTitle"),
-        story1: t("story1"),
-        story2: t("story2"),
-        valuesTitle: t("valuesTitle"),
-        excellenceTitle: t("excellence.title"),
-        excellenceDesc: t("excellence.desc"),
-        personalisationTitle: t("personalisation.title"),
-        personalisationDesc: t("personalisation.desc"),
-        communityTitle: t("community.title"),
-        communityDesc: t("community.desc"),
-        familyTitle: t("familyTitle"),
-        familyBody: t("familyBody"),
-        familyNote: t("familyNote"),
-        familyJoin: t("familyJoin"),
-      }}
-    />
-  );
+  return <AboutClient />;
 }

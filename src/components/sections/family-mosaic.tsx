@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useReducedMotion } from "framer-motion";
-import { RevealImage } from "@/components/motion/motion";
 import { BrandImage } from "@/components/ui/brand-image";
 import { cn } from "@/lib/utils";
 
@@ -81,7 +80,17 @@ const POS = [
 ] as const;
 
 /** Two photo columns flanking a self-playing reel. Reflows from a single
- *  mobile column to a 3-column desktop grid. Expects exactly four photos. */
+ *  mobile column to a 3-column desktop grid. Expects exactly four photos.
+ *
+ *  Every caller wraps this whole component in `ScrollScale`, which already
+ *  gives the block one clean scroll-linked entrance — these tiles used to
+ *  each run their *own* one-shot `RevealImage` wipe on top of that, five
+ *  independent IntersectionObservers stacked on an already-animating
+ *  parent. In practice they didn't all resolve in sync: some tiles settled
+ *  and others stayed clipped to zero height indefinitely, which read as
+ *  "half the photos are just missing." One reveal driver per block, not
+ *  five racing ones — the tiles render plainly and let the parent carry
+ *  the motion. */
 export function FamilyMosaic({
   video,
   photos,
@@ -94,15 +103,15 @@ export function FamilyMosaic({
   const t = useTranslations();
   return (
     <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 md:grid-rows-2 md:h-[560px] lg:h-[620px]">
-      <RevealImage className="order-first col-span-2 mx-auto aspect-[9/16] w-[72%] max-w-[290px] overflow-hidden rounded-2xl border border-navy/10 md:order-none md:col-span-2 md:col-start-2 md:row-span-2 md:mx-0 md:aspect-auto md:h-full md:w-full md:max-w-none">
+      <div className="order-first col-span-2 mx-auto aspect-[9/16] w-[72%] max-w-[290px] overflow-hidden rounded-2xl border border-navy/10 md:order-none md:col-span-2 md:col-start-2 md:row-span-2 md:mx-0 md:aspect-auto md:h-full md:w-full md:max-w-none">
         <AutoVideo
           src={video}
           label={badgeKey ? t(badgeKey) : undefined}
           className="h-full w-full"
         />
-      </RevealImage>
+      </div>
       {photos.slice(0, 4).map((p, i) => (
-        <RevealImage
+        <div
           key={p.src}
           className={cn(
             "aspect-[4/5] overflow-hidden rounded-2xl md:aspect-auto md:h-full",
@@ -116,7 +125,7 @@ export function FamilyMosaic({
             className="h-full w-full"
             sizes="(min-width: 768px) 22vw, 45vw"
           />
-        </RevealImage>
+        </div>
       ))}
     </div>
   );

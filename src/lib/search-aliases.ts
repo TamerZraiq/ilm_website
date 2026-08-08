@@ -41,6 +41,7 @@ type SubjectKey =
   | "math"
   | "physics"
   | "chemistry"
+  | "biology"
   | "science"
   | "arabic"
   | "english"
@@ -55,6 +56,7 @@ export const SUBJECT_ALIASES: Record<SubjectKey, string[]> = {
   math: ["math", "maths", "mathematics", "رياضيات", "حساب", "جبر", "هندسة"],
   physics: ["physics", "فيزياء"],
   chemistry: ["chemistry", "كيمياء"],
+  biology: ["biology", "bio", "احياء", "أحياء", "علم الأحياء"],
   science: ["science", "علوم"],
   arabic: ["arabic", "عربي", "لغة عربية"],
   english: ["english", "eng", "انجليزي", "إنجليزي", "انكليزي", "إنكليزي", "لغة انجليزية", "لغة إنجليزية"],

@@ -29,18 +29,5 @@ export default async function ProgramsPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations("programs");
-
-  return (
-    <ProgramsClient
-      translations={{
-        pageTitle: t("pageTitle"),
-        pageIntro: t("pageIntro"),
-        gradeRange: t("gradeRange"),
-        ctaHeading: t("ctaHeading"),
-        ctaText: t("ctaText"),
-        ctaButton: t("ctaButton"),
-      }}
-    />
-  );
+  return <ProgramsClient />;
 }
