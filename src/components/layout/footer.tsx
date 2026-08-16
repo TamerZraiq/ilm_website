@@ -4,7 +4,8 @@ import { useTranslations } from "next-intl";
 import { MapPin } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { CURRICULA_KEYS } from "@/lib/curricula";
-import { MAPS_URL, whatsappUrl } from "@/lib/site";
+import { SocialLinks } from "@/components/ui/social-links";
+import { MAPS_URL, SOCIALS, whatsappUrl } from "@/lib/site";
 
 /** The four highest-priority curricula, taken from the single source of
  *  truth rather than re-listed in the message files — a duplicate list here
@@ -37,6 +38,13 @@ export function Footer() {
             >
               {t("whatsapp")}
             </a>
+
+            {SOCIALS.length > 0 && (
+              <div className="mt-10">
+                <h2 className="t-micro text-white/55">{t("followUs")}</h2>
+                <SocialLinks className="mt-5" />
+              </div>
+            )}
           </div>
 
           <div className="lg:col-span-3">

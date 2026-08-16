@@ -1,10 +1,11 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { Clock, Mail, MapPin, MessageCircle, Navigation } from "lucide-react";
+import { Clock, Mail, MapPin, MessageCircle, Navigation, Share2 } from "lucide-react";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/motion";
 import { ButtonLink } from "@/components/ui/button";
-import { MAPS_URL, whatsappUrl } from "@/lib/site";
+import { SocialLinks } from "@/components/ui/social-links";
+import { MAPS_URL, SOCIALS, whatsappUrl } from "@/lib/site";
 
 export function ContactClient() {
   const t = useTranslations("contact");
@@ -109,6 +110,23 @@ export function ContactClient() {
               </dl>
             </StaggerItem>
           </Stagger>
+
+          {SOCIALS.length > 0 && (
+            <Reveal delay={0.1}>
+              <div className="mt-16 flex flex-col gap-7 border-t border-white/10 pt-12 md:flex-row md:items-center md:justify-between md:gap-12">
+                <div>
+                  <h2 className="t-micro flex items-center gap-2.5 text-gold-light">
+                    <Share2 aria-hidden className="h-4 w-4" />
+                    {t("socialLabel")}
+                  </h2>
+                  <p className="mt-4 max-w-[46ch] text-base leading-relaxed text-white/70">
+                    {t("socialIntro")}
+                  </p>
+                </div>
+                <SocialLinks className="shrink-0" />
+              </div>
+            </Reveal>
+          )}
         </div>
       </section>
     </>

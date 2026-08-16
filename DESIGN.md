@@ -387,6 +387,24 @@ edge. Active link marked by a gold underline that animates between links via
 a shared layout transition. Mobile is a full drawer with focus trap, Escape
 to close, and scroll lock.
 
+**The locale switch is never inside the drawer.** It is a segmented control
+showing *both* languages, each in its own script, pinned to the bar at every
+breakpoint. Rationale: almost all traffic is mobile, and a switch hidden
+behind a hamburger is a switch nobody finds — visitors reach for Google
+Translate instead and read a mangled machine translation of a site that has a
+real, hand-written version of that exact page. The same reasoning drives the
+language hint (`HINT` in `navbar-client.tsx`), which offers the other locale
+when the visitor's browser asks for it. Its copy is always written in the
+language being *offered*, so it can never live in the message files.
+
+### Social links
+
+One source of truth: `SOCIAL_PROFILES` in `lib/site.ts`. An empty URL drops
+the platform from `SOCIALS`, so it renders nowhere and never reaches the
+JSON-LD `sameAs` — never ship a half-filled handle. Icons are 44px circular
+targets on the navy-deep band (footer brand column, Contact practicals), and
+brand glyphs are drawn locally because this lucide version has no brand set.
+
 ---
 
 ## 8. Bilingual (RTL) rules
