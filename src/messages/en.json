@@ -28,7 +28,7 @@
     "whatsapp": "WhatsApp Us",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
-    "switchLanguage": "Switch to Arabic",
+    "language": "Language",
     "skipToContent": "Skip to content"
   },
   "footer": {
@@ -38,6 +38,7 @@
     "quickLinks": "Quick Links",
     "contactUs": "Contact Us",
     "viewAll": "View all programs",
+    "followUs": "Follow Us",
     "email": "ilmlearningcenter.ilc@gmail.com",
     "address": "Tireh Main Street, Ramallah — 4th Floor, Murrah & Falaneh Center",
     "hours": {
@@ -253,7 +254,9 @@
       "summer": "Sat–Tue (occasionally Wed), 10am–2pm"
     },
     "hoursLabel": "Working Hours",
-    "locationLabel": "Location"
+    "locationLabel": "Location",
+    "socialLabel": "Follow Ilm",
+    "socialIntro": "Sessions, results, and what happens inside the centre — posted as it happens."
   },
   "errors": {
     "title": "Something went wrong",

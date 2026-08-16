@@ -45,6 +45,28 @@ export const MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=" +
   encodeURIComponent("Murrah and Falaneh Center, Tireh Main Street, Ramallah, Palestine");
 
+export type SocialKey = "instagram" | "facebook" | "tiktok" | "linkedin";
+
+/**
+ * The centre's public profiles — the one place a handle is ever written down.
+ *
+ * A platform whose URL is an empty string is dropped from `SOCIALS` below, so
+ * it renders nowhere and never reaches the JSON-LD `sameAs`. Filling one in is
+ * a one-line change here; nothing else needs touching.
+ */
+const SOCIAL_PROFILES: Record<SocialKey, string> = {
+  instagram: "https://www.instagram.com/ilmlearningcenter/",
+  facebook: "https://www.facebook.com/ILMLEARNINGCENTER",
+  tiktok: "https://www.tiktok.com/@ilmlearningcenter",
+  linkedin: "https://www.linkedin.com/company/ilm-learning-center-ilc/",
+};
+
+export const SOCIALS: ReadonlyArray<{ key: SocialKey; href: string }> = (
+  Object.entries(SOCIAL_PROFILES) as [SocialKey, string][]
+)
+  .filter(([, href]) => href.trim().length > 0)
+  .map(([key, href]) => ({ key, href: href.trim() }));
+
 const DEFAULT_LOCALE = "ar";
 
 /** Locale-aware href for a locale-free path (e.g. "/about", or "" for home).

@@ -12,7 +12,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { LazyMotion, domAnimation } from "framer-motion";
 import { CURRICULA_KEYS } from "@/lib/curricula";
-import { pageAlternates, pageOpenGraph, SITE_URL } from "@/lib/site";
+import { pageAlternates, pageOpenGraph, SITE_URL, SOCIALS } from "@/lib/site";
 import "../globals.css";
 
 export function generateStaticParams() {
@@ -135,6 +135,9 @@ export default async function LocaleLayout({
           "@type": "Country",
           name: "Palestine",
         },
+        // Ties the profiles to this organisation entity, so search engines
+        // treat them as the same brand rather than four unrelated accounts.
+        ...(SOCIALS.length > 0 && { sameAs: SOCIALS.map((s) => s.href) }),
       },
       ...CURRICULA_KEYS.map((key) => ({
         "@type": "Course",

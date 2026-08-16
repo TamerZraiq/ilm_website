@@ -1,6 +1,6 @@
 import en from "@/messages/en.json";
 import ar from "@/messages/ar.json";
-import { pageAlternates, pageOpenGraph } from "../site";
+import { pageAlternates, pageOpenGraph, SOCIALS } from "../site";
 
 type Json = Record<string, unknown>;
 
@@ -38,6 +38,22 @@ describe("message files", () => {
   it("declare the right text direction", () => {
     expect(en.dir).toBe("ltr");
     expect(ar.dir).toBe("rtl");
+  });
+});
+
+describe("social profiles", () => {
+  // These render as icon-only links in the footer and on Contact, and are
+  // published to search engines via JSON-LD `sameAs`. A half-filled entry
+  // would ship a visible dead link with no text to explain where it went.
+  it("are absolute https URLs, never a bare handle", () => {
+    for (const { key, href } of SOCIALS) {
+      expect(`${key}:${href}`).toMatch(/^[a-z]+:https:\/\/[^\s]+$/);
+    }
+  });
+
+  it("point at one distinct platform each", () => {
+    const hrefs = SOCIALS.map((s) => s.href);
+    expect(new Set(hrefs).size).toBe(hrefs.length);
   });
 });
 
